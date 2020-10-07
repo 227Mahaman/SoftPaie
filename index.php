@@ -91,7 +91,7 @@ $app->get('/getEntClients', function (Request $request, Response $response) {
 //get AllTypeEntreprise
 $app->get('/getTypeEntreprise', function (Request $request, Response $response) {
     $pdo = new db();
-    $data = $pdo->query('SELECT * FROM type_entreprise WHERE statut=1');
+    $data = $pdo->query('SELECT * FROM type_entreprise');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
 
