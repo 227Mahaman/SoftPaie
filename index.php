@@ -76,5 +76,11 @@ $app->get('/getTypeUser', function (Request $request, Response $response) {
     $data = $pdo->query('SELECT * FROM type_users');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//get All Pays
+$app->get('/getPays', function (Request $request, Response $response) {
+    $pdo = new db();
+    $data = $pdo->query('SELECT * FROM pays');
+    return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
+});
 
 $app->run();
