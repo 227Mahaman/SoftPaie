@@ -48,11 +48,11 @@ ob_start();
                                     <td><?= $value['description'];?></td>
                                     <td><?= $value['created_at'];?></td>
                                     <td>
-                                        <a href="index.php?action=addUser&modif=<?= $value['id'] ?>" class="btn btn-primary">
+                                        <a href="index.php?action=addEntreprise&modif=<?= $value['id_entreprise'] ?>" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <form method="post">
-                                            <input type="hidden" name="id" value="<?= $value['id'] ?>">
+                                            <input type="hidden" name="id_entreprise" value="<?= $value['id_entreprise'] ?>">
                                             <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </form>
                                         <!--<a href="index.php?action=lstUser&delete=<?//= $value['id'] ?>" class="btn btn-danger">

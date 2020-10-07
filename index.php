@@ -82,5 +82,11 @@ $app->get('/getPays', function (Request $request, Response $response) {
     $data = $pdo->query('SELECT * FROM pays');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//get All Entreprise Clients
+$app->get('/getEntClients', function (Request $request, Response $response) {
+    $pdo = new db();
+    $data = $pdo->query('SELECT * FROM entreprise WHERE statut=1');
+    return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
+});
 
 $app->run();
