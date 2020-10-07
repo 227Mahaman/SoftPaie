@@ -1,0 +1,13 @@
+{
+    "name": "mahaman/slim3",
+    "authors": [
+        {
+            "name": "227Mahaman",
+            "email": "zalkiabass.456@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "3.5",
+        "slim/php-view": "3.0"
+    }
+}
