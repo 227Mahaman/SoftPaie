@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 use App\Database\db;
 
 require '../app/App.php';
@@ -88,12 +88,15 @@ if (isset($_SESSION['user-auth'])) {
         $data = $_POST;
         $pass = sha1($data['mot_pass']);
         $pdo = new db();
-        $user = $pdo->prepare("SELECT * FROM users where pseudo=? and mot_pass=?", [$data['pseudo'], $pass]);
-        if (!isset($user)) {
-            $_SESSION['messages'] = $user;
+        $user = $pdo->prepare("SELECT * FROM users WHERE pseudo=? AND mot_pass=?", [$data['pseudo'], $pass]);
+        //var_dump($user);die();
+        if (empty($user)) {
+            $_SESSION['messages'] = "Erreur authentification";
         } else {
             $_SESSION['user-auth']['id'] = $user['0']['id'];
             $_SESSION['user-auth']['pseudo'] = $user['0']['pseudo'];
+            $type= $pdo->prepare("SELECT * FROM type_users where id_typeuser=?", [$user['0']['type_user']]);
+            $_SESSION['user-auth']['typeUser'] = $type['0']['label'];
             header('Location: index.php?p=dashboard');
         }
     }

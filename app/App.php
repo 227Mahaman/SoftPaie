@@ -27,7 +27,7 @@ class App
      * @return void
      */
     public static function load(){
-        session_start();
+        //session_start();
         //define('ROOT', dirname(__DIR__));
         require '../app/Autoloader.php';
         App\Autoloader::register();
