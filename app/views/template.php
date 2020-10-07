@@ -93,7 +93,8 @@ var_dump($_SESSION['user-auth']['typeUser']);//die();?>
 									<li><a href="index.php?p=module" class="">Module</a></li>
 									<li><a href="index.php?p=addUser" class="">Ajout Utilisateur</a></li>
 									<li><a href="index.php?p=lstUser" class="">Liste Utilisateur</a></li>
-									<li><a href="index.php?p=type" class="">Type</a></li>
+									<li><a href="index.php?p=addTypeUser" class="">Ajout Type Utilisateur</a></li>
+									<li><a href="index.php?p=lstTypeUser" class="">Liste Type Utilisateur</a></li>
 								</ul>
 							</div>
 						</li>

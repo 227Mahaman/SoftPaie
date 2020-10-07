@@ -68,6 +68,18 @@ if (isset($_SESSION['user-auth'])) {
                 }
             }
         include_once('../app/views/view_identite.php');
+        } elseif($p == "lstTypeUser"){
+            if(!empty($_POST)){//Suppression TypeUser
+                $id = $_POST['id_typeuser'];
+                $url = ROOT_PATH."index.php/deleteTypeUser/".$id;
+                $delete = file_get_contents($url);
+                if($delete){
+                    $_SESSION['message'] = "Opération reussi !!";
+                } else {
+                    $_SESSION['message'] = "Echec de l'opération!!";
+                }
+            }
+            include_once('../app/views/view_lstTypeUser.php');
         }
     } else{
         include_once('../app/views/view_dashboard.php');
