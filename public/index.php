@@ -56,6 +56,18 @@ if (isset($_SESSION['user-auth'])) {
                 }
             }
             include_once('../app/views/view_addUser.php');
+        } elseif($p == "identite"){//View Identité
+            if(!empty($_POST)){//Suppression Identité
+                $id = $_POST['id_identite'];
+                $url = ROOT_PATH."index.php/deleteIdentity/".$id;
+                $delete = file_get_contents($url);
+                if($delete){
+                    $_SESSION['message'] = "Opération reussi !!";
+                } else {
+                    $_SESSION['message'] = "Echec de l'opération!!";
+                }
+            }
+        include_once('../app/views/view_identite.php');
         }
     } else{
         include_once('../app/views/view_dashboard.php');
