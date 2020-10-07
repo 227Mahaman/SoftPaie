@@ -104,6 +104,18 @@ if (isset($_SESSION['user-auth'])) {
                 }
             }
             include_once('../app/views/view_lstEntClient.php');
+        } elseif($p == "lstTypeEnt"){//View Liste TypeEntreprise 
+            if(!empty($_POST)){//Suppression Type Entreprise
+                $id = $_POST['id_entreprise'];
+                $url = ROOT_PATH."index.php/deleteTypeEnt/".$id;
+                $delete = file_get_contents($url);
+                if($delete){
+                    $_SESSION['message'] = "Opération reussi !!";
+                } else {
+                    $_SESSION['message'] = "Echec de l'opération!!";
+                }
+            }
+            include_once('../app/views/view_lstTypeEnt.php');
         }
     } else{
         include_once('../app/views/view_dashboard.php');

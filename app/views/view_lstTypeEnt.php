@@ -26,7 +26,7 @@ ob_start();
                             </thead>
                             <tbody>
                             <?php
-                                $datas = file_get_contents(ROOT_PATH."index.php/getPays");
+                                $datas = file_get_contents(ROOT_PATH."index.php/getTypeEntreprise");
                                 $datas = json_decode($datas, true);
                                 //var_dump($datas);
                                 //die();

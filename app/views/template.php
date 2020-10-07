@@ -106,6 +106,7 @@ var_dump($_SESSION['user-auth']['typeUser']);//die();?>
 									<li><a href="index.php?p=depot" class="">Dépôt</a></li>
 									<li><a href="index.php?p=identite" class="">Identité</a></li>
 									<li><a href="index.php?p=lstPays" class="lnr lnr-city">Pays</a></li>
+									<li><a href="index.php?p=lstTypeEnt" class="lnr lnr-list">Type Entreprise</a></li>
 								</ul>
 							</div>
 						</li>
