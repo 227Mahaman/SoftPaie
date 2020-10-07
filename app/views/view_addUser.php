@@ -1,6 +1,14 @@
 <?php
 $title = "Ajout Utilisateur";
 ob_start();
+$datas = "";
+if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
+$id = $_GET['modif'];
+//var_dump($id);
+$datas = file_get_contents(ROOT_PATH."index.php/getUser/".$id);
+$datas = json_decode($datas, true);
+//var_dump($datas);
+}
 ?>
 
 <!-- MAIN CONTENT -->
@@ -9,7 +17,7 @@ ob_start();
         <h3 class="page-title"><?= $title;?></h3>
         <div class="row">
             <div class="col-md-12">
-                <form method="POST">
+                <form role="form" method="post" enctype="multipart/form-data">
                 <!-- INPUTS -->
                 <div class="panel">
                     <div class="panel-heading">
@@ -18,23 +26,23 @@ ob_start();
                     <div class="panel-body">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input class="form-control" name="pseudo" placeholder="Pseudo de l'utilisateur" type="text">
+                            <input class="form-control" name="pseudo" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['pseudo'] : "" ?>" placeholder="Pseudo de l'utilisateur" type="text">
                         </div>
                         <br>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input class="form-control" name="email" placeholder="aaaaa@aaaa.com" type="text">
+                            <input class="form-control" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['email'] : "" ?>" name="email" placeholder="aaaaa@aaaa.com" type="text">
                         </div>
                         <br>
                         <label for="">Type utilisateur</label>
-                        <select class="form-control">
-                            <option value="cheese">Administrateur</option>
-                            <option value="tomatoes">Entreprise</option>
+                        <select class="form-control" name="type_user">
+                            <option value="1">Administrateur</option>
+                            <option value="2">Entreprise</option>
                         </select>
                         <br>
                     </div>
                     <div class="panel-footer">
-						<button type="button" class="btn btn-primary btn-block">Ajouter</button>
+						<button type="sumit" class="btn btn-primary btn-block">Ajouter</button>
                     </div>
                 </div>
                 <!-- END INPUTS -->

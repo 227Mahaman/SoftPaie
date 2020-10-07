@@ -43,6 +43,13 @@ ob_start();
                                         <a href="index.php?action=addUser&modif=<?= $value['id'] ?>" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
+                                        <form method="post">
+                                            <input type="hidden" name="id" value="<?= $value['id'] ?>">
+                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                        <!--<a href="index.php?action=lstUser&delete=<?//= $value['id'] ?>" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </a>-->
                                     </td>
                                 </tr>
                                     <?php }

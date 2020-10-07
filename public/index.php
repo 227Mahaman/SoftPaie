@@ -19,13 +19,42 @@ if (isset($_SESSION['user-auth'])) {
         } elseif($p == "login"){
             include_once('../app/views/view_login.php');
         } elseif($p == "lstUser"){
-            //$routes = "/api/lsts";
-            //$datas = file_get_contents('/api/lsts');
-            //json_decode($datas);
-            //var_dump($datas);
-            //die();
+                if(!empty($_POST)){//Suppression User
+                    $id = $_POST['id'];
+                $url = ROOT_PATH."index.php/deleteUser/".$id;
+                $delete = file_get_contents($url);
+                //var_dump($delete);
+                //die();
+                    if($delete){
+                        $_SESSION['message'] = "Opération reussi !!";
+                    } else {
+                        $_SESSION['message'] = "Echec de l'opération!!";
+                    }
+                }
             include_once('../app/views/view_lstUsers.php');
         } elseif($p == "addUser"){
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {//Modif User
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $url = ROOT_PATH."update/user/".$_GET['modif'];
+                    $update = App::file_post_contents($url, $data);
+                    if($update){
+                        header('Location: index.php?p=lstUser');
+                    }
+                }
+            } else { // Ajout User
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    var_dump($data);//index.php/getUsers
+                    $url = ROOT_PATH."index.php/addUser";
+                    $add = App::file_post_contents($url, $data);
+                    var_dump($add);
+                    die();
+                    if($add){
+                        header('Location: index.php?p=lstUser');
+                    }
+                }
+            }
             include_once('../app/views/view_addUser.php');
         }
     } else{
