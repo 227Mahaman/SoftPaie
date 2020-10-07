@@ -91,8 +91,8 @@ var_dump($_SESSION['user-auth']['typeUser']);//die();?>
 								<ul class="nav">
 									<li><a href="index.php?p=role" class="">Rôle</a></li>
 									<li><a href="index.php?p=module" class="">Module</a></li>
-									<li><a href="index.php?p=addUser" class="">Ajout Utilisateur</a></li>
-									<li><a href="index.php?p=lstUser" class="">Liste Utilisateur</a></li>
+									<li><a href="index.php?p=addUser" class="lnr lnr-users">Ajout Utilisateur</a></li>
+									<li><a href="index.php?p=lstUser" class="lnr lnr-list">Liste Utilisateur</a></li>
 									<li><a href="index.php?p=addTypeUser" class="">Ajout Type Utilisateur</a></li>
 									<li><a href="index.php?p=lstTypeUser" class="">Liste Type Utilisateur</a></li>
 								</ul>
@@ -104,7 +104,7 @@ var_dump($_SESSION['user-auth']['typeUser']);//die();?>
 								<ul class="nav">
 									<li><a href="index.php?p=depot" class="">Dépôt</a></li>
 									<li><a href="index.php?p=identite" class="">Identité</a></li>
-									<li><a href="index.php?p=Pays" class="">Pays</a></li>
+									<li><a href="index.php?p=lstPays" class="">Pays</a></li>
 								</ul>
 							</div>
 						</li>
