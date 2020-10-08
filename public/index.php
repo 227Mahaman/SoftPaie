@@ -113,6 +113,27 @@ if (isset($_SESSION['user-auth'])) {
                 }
             }
             include_once('../app/views/view_lstTypeEnt.php');
+        } elseif($p == "addTypeUser"){
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {//Modif TypeUser
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $url = ROOT_PATH."update/type/user/".$_GET['modif'];
+                    $update = App::file_post_contents($url, $data);
+                    if($update){
+                        header('Location: index.php?p=lstTypeUser');
+                    }
+                }
+            } else { // Ajout TypeUser
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $url = ROOT_PATH."index.php/addTypeUser";
+                    $add = App::file_post_contents($url, $data);
+                    if($add){
+                        header('Location: index.php?p=lstTypeUser');
+                    }
+                }
+            }
+            include_once('../app/views/view_addTypeUser.php');
         }
     } else{
         include_once('../app/views/view_dashboard.php');
