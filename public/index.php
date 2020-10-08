@@ -45,13 +45,8 @@ if (isset($_SESSION['user-auth'])) {
             } else { // Ajout User
                 if (!empty($_POST)) {
                     $data = $_POST;
-                    var_dump($data);//index.php/getUsers
                     $url = ROOT_PATH."index.php/addUser";
-                    //$add = App::file_post_contents($url, $data);
-                    $add = file_put_contents($url, $data);
-                    var_dump($add);
-                    //die();
-                    //die();
+                    $add = App::file_post_contents($url, $data);
                     if($add){
                         header('Location: index.php?p=lstUser');
                     }

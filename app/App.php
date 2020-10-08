@@ -62,6 +62,13 @@ class App
         return $this->db_instance;
     }
 
+    /**
+     * Fonction file_post_contents
+     * Elle traite le data en json code et retourne ce traitement et  l'url réçu
+     * @param String url
+     * @param Array data
+     * @return Function file_get_contents
+     */
     public static function file_post_contents($url, $data){
         $postdata = http_build_query($data);
         $opts = array(
