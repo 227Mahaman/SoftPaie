@@ -52,6 +52,20 @@ $app->post('/addUser', function (Request $request, Response $response, $args = [
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//make a post request
+$app->post('/signUpUser', function (Request $request, Response $response, $args = []) {//AddUser
+    //get db object
+    $pdo = new db();
+    $sql = "INSERT INTO users (pseudo, email, mot_pass, type_user) VALUES (?,?,?,?)";
+    $pseudo = $request->getParam('pseudo');
+    $email = $request->getParam('email');
+    $mot_pass = sha1($request->getParam('mot_pass'));
+    $type_user = $request->getParam('type_user');
+    $data = $pdo->prepare($sql, [$pseudo, $email, $mot_pass, $type_user]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //make a get request
 $app->post('/update/user/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
