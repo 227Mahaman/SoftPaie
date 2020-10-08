@@ -16,8 +16,24 @@ if (isset($_SESSION['user-auth'])) {
             include_once('../app/views/view_login.php');
         } elseif($p == "deconnexion"){
             include_once('../app/views/view_deconnexion.php');
-        } elseif($p == "login"){
-            include_once('../app/views/view_login.php');
+        } elseif($p == "login"){//Se connecter au plateforme
+            if (!empty($_POST)) {
+                $data = $_POST;
+                $pass = sha1($data['mot_pass']);
+                $pdo = new db();
+                $user = $pdo->prepare("SELECT * FROM users WHERE pseudo=? AND mot_pass=?", [$data['pseudo'], $pass]);
+                //var_dump($user);die();
+                if (empty($user)) {
+                    $_SESSION['messages'] = "Erreur authentification";
+                } else {
+                    $_SESSION['user-auth']['id'] = $user['0']['id'];
+                    $_SESSION['user-auth']['pseudo'] = $user['0']['pseudo'];
+                    $type= $pdo->prepare("SELECT * FROM type_users where id_typeuser=?", [$user['0']['type_user']]);
+                    $_SESSION['user-auth']['typeUser'] = $type['0']['label'];
+                    header('Location: index.php?p=dashboard');
+                }
+            }
+            include_once('../app/views/view_loginIn.php');
         } elseif($p == "lstUser"){
                 if(!empty($_POST)){//Suppression User
                     $id = $_POST['id'];
@@ -149,23 +165,15 @@ if (isset($_SESSION['user-auth'])) {
         //     header('Location: index.php?action=profile');
         // }
     }
-    require('../app/views/view_login.php');
+    require('../app/views/view_signUp.php');
 } else {
-    if (!empty($_POST)) {
+    if (!empty($_POST)) {//Inscription à la plateforme
         $data = $_POST;
-        $pass = sha1($data['mot_pass']);
-        $pdo = new db();
-        $user = $pdo->prepare("SELECT * FROM users WHERE pseudo=? AND mot_pass=?", [$data['pseudo'], $pass]);
-        //var_dump($user);die();
-        if (empty($user)) {
-            $_SESSION['messages'] = "Erreur authentification";
-        } else {
-            $_SESSION['user-auth']['id'] = $user['0']['id'];
-            $_SESSION['user-auth']['pseudo'] = $user['0']['pseudo'];
-            $type= $pdo->prepare("SELECT * FROM type_users where id_typeuser=?", [$user['0']['type_user']]);
-            $_SESSION['user-auth']['typeUser'] = $type['0']['label'];
-            header('Location: index.php?p=dashboard');
+        $url = ROOT_PATH."index.php/signUpUser";
+        $signUp = App::file_post_contents($url, $data);
+        if($signUp){
+            header('Location: index.php?p=login');
         }
     }
-    require('../app/views/view_login.php');
+    require('../app/views/view_signUp.php');
 }

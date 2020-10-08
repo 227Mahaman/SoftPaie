@@ -31,26 +31,24 @@
 						<div class="content">
 							<div class="header">
 								<div class="logo text-center"><img src="assets/img/logo.png" alt="Logo 2iSoft"></div>
-								<p class="lead">Login to your account</p>
+								<p class="lead">Création de compte utilisateur</p>
 							</div>
 							<form class="form-auth-small" method="POST">
 								<div class="form-group">
-									<label for="signin-email" class="control-label sr-only">Email | Pseudo</label>
-									<input type="text" class="form-control" id="signin-email" name="pseudo" placeholder="Email">
+									<label for="signin-email" class="control-label sr-only">Pseudo</label>
+									<input type="text" class="form-control" id="signin-email" name="pseudo" placeholder="Votre pseudo nom">
+								</div>
+								<div class="form-group">
+									<label for="signin-email" class="control-label sr-only">Email</label>
+									<input type="email" class="form-control" id="signin-email" name="email" placeholder="Email">
 								</div>
 								<div class="form-group">
 									<label for="signin-password" class="control-label sr-only">Mot de passe</label>
 									<input type="password" class="form-control" id="signin-password" name="mot_pass" placeholder="Password">
 								</div>
-								<div class="form-group clearfix">
-									<label class="fancy-checkbox element-left">
-										<input type="checkbox">
-										<span>Remember me</span>
-									</label>
-								</div>
-								<button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
+								<button type="submit" class="btn btn-primary btn-lg btn-block">Inscription</button>
 								<div class="bottom">
-									<span class="helper-text"><i class="fa fa-lock"></i> <a href="#">Forgot password?</a></span>
+									<span class="helper-text"><i class="fa fa-user"></i> J'ai déjà un compte, <a href="index.php?p=login">Me connecter</a></span>
 								</div>
 							</form>
 						</div>
