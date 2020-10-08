@@ -47,9 +47,11 @@ if (isset($_SESSION['user-auth'])) {
                     $data = $_POST;
                     var_dump($data);//index.php/getUsers
                     $url = ROOT_PATH."index.php/addUser";
-                    $add = App::file_post_contents($url, $data);
+                    //$add = App::file_post_contents($url, $data);
+                    $add = file_put_contents($url, $data);
                     var_dump($add);
-                    die();
+                    //die();
+                    //die();
                     if($add){
                         header('Location: index.php?p=lstUser');
                     }

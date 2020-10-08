@@ -31,7 +31,7 @@ $app->get('/getUsers', function (Request $request, Response $response) {
     ->withStatus(200);
 });
 //get a single user
-$app->get('/getUser/{id}', function (Request $request, Response $response, array $args) {
+$app->get('/getUser/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
     $pdo = new db();
     $data = $pdo->query("SELECT * FROM users WHERE id='$id'");
@@ -40,20 +40,20 @@ $app->get('/getUser/{id}', function (Request $request, Response $response, array
     ->withStatus(200);
 });
 //make a post request
-$app->post('/addUser', function (Request $request, Response $response, array $args) {//AddUser
+$app->post('/addUser', function (Request $request, Response $response, $args = []) {//AddUser
     //get db object
     $pdo = new db();
     $sql = "INSERT INTO users (pseudo, email, type_user) VALUES (?,?,?)";
-    //$pseudo = $request->getParam('pseudo');
-    //$email = $request->getParam('email');
-    //$type_user = $request->getParam('type_user');
-    $data = $pdo->prepare($sql)->execute($request->getParsedBody());
+    $pseudo = $request->getParam('pseudo');
+    $email = $request->getParam('email');
+    $type_user = $request->getParam('type_user');
+    $data = $pdo->prepare($sql, [$pseudo, $email, $type_user]);
     return $response->write(json_encode($data))
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
 //make a get request
-$app->get('/deleteUser/{id}', function (Request $request, Response $response, array $args) {
+$app->get('/deleteUser/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
     $sql= "DELETE from users where id='$id'";
     $pdo = new db();
