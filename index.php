@@ -25,7 +25,7 @@ $app->get('/', function (Request $request, Response $response) {
 //get all users
 $app->get('/getUsers', function (Request $request, Response $response) {
     $pdo = new db();
-    $data = $pdo->query('SELECT * FROM users');
+    $data = $pdo->query('SELECT * FROM users WHERE statut=1');
     return $response->write(json_encode($data))
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
