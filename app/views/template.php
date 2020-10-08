@@ -1,8 +1,3 @@
-<?php
-
-var_dump($_SESSION['user-auth']['id']);
-var_dump($_SESSION['user-auth']['pseudo']);
-var_dump($_SESSION['user-auth']['typeUser']);//die();?>
 <!doctype html>
 <html lang="en">
 

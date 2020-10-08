@@ -70,6 +70,18 @@ $app->get('/getIdentity', function (Request $request, Response $response) {//GET
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//make a post request add type user
+$app->post('/addTypeUser', function (Request $request, Response $response, $args = []) {//AddTypeUser
+    //get db object
+    $pdo = new db();
+    $sql = "INSERT INTO type_users (label, role) VALUES (?,?)";
+    $label = $request->getParam('label');
+    $role = $request->getParam('role');
+    $data = $pdo->prepare($sql, [$label, $role]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //get all Type users
 $app->get('/getTypeUser', function (Request $request, Response $response) {
     $pdo = new db();

@@ -25,15 +25,13 @@ $datas = json_decode($datas, true);
                     </div>
                     <div class="panel-body">
                         <div class="input-group">
-                            <label for="">Label</label>
-                            <span class="input-group-addon"><i class="fa fa-"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-">Label</i></span>
                             <input class="form-control" name="label" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['label'] : "" ?>" placeholder="Label du type" type="text">
                         </div>
                         <br>
                         <div class="input-group">
-                            <label for="">Rôle</label>
-                            <span class="input-group-addon"><i class="fa fa-"></i></span>
-                            <input class="form-control" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['role'] : "" ?>" name="role" placeholder="aaaaa@aaaa.com" type="text">
+                            <span class="input-group-addon"><i class="fa fa-">Rôle</i></span>
+                            <input class="form-control" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['role'] : "" ?>" name="role" placeholder="(Description)" type="text">
                         </div>
                         <br>
                     </div>
