@@ -40,7 +40,7 @@ ob_start();
                                     <td><?= $value['email'];?></td>
                                     <td><?= $value['created_at'];?></td>
                                     <td>
-                                        <a href="index.php?action=addUser&modif=<?= $value['id'] ?>" class="btn btn-primary">
+                                        <a href="index.php?p=addUser&modif=<?= $value['id'] ?>" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <form method="post">

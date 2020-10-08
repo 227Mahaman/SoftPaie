@@ -9,6 +9,8 @@ $datas = file_get_contents(ROOT_PATH."index.php/getUser/".$id);
 $datas = json_decode($datas, true);
 //var_dump($datas);
 }
+$typeUser = file_get_contents(ROOT_PATH."index.php/getTypeUser");
+$types = json_decode($typeUser, true);
 ?>
 
 <!-- MAIN CONTENT -->
@@ -36,8 +38,14 @@ $datas = json_decode($datas, true);
                         <br>
                         <label for="">Type utilisateur</label>
                         <select class="form-control" name="type_user">
-                            <option value="1">Administrateur</option>
-                            <option value="2">Entreprise</option>
+                            <?php
+                                if(is_array($types) || is_object($types)) {
+                                    foreach ($types as $value) {  
+                                    ?>
+                                    <option <?= (is_array($datas) || is_object($datas))? ($value['id_typeuser'] == $datas['0']['type_user'])? "selected" : "" : "" ?> value="<?= $value['id_typeuser']?>"><?= $value['label']?></option>
+                                    <?php }
+                                }
+                            ?>
                         </select>
                         <br>
                     </div>

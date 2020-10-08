@@ -53,6 +53,21 @@ $app->post('/addUser', function (Request $request, Response $response, $args = [
     ->withStatus(200);
 });
 //make a get request
+$app->post('/update/user/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pseudo = $request->getParam('pseudo');
+    $email = $request->getParam('email');
+    $type_user = $request->getParam('type_user');
+    $date = new DateTime('now');
+    $d = $date->format("Y-m-d h:i:s");
+    $sql= "UPDATE users SET pseudo =?, email=?, type_user=?, updated_at=? WHERE id=?";
+    $pdo = new db();
+    $data = $pdo->prepare($sql, [$pseudo, $email, $type_user, $d, $id]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
+//make a get request
 $app->get('/deleteUser/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
     $sql= "DELETE from users where id='$id'";
