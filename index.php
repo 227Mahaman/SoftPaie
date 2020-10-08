@@ -70,9 +70,9 @@ $app->post('/update/user/{id}', function (Request $request, Response $response, 
 //make a get request
 $app->get('/deleteUser/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
-    $sql= "DELETE from users where id='$id'";
+    $sql= "UPDATE users SET statut=2 WHERE id=?";
     $pdo = new db();
-    $data = $pdo->prepare($sql);
+    $data = $pdo->prepare($sql,[$id]);
     return $response->write(json_encode($data))
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
