@@ -36,7 +36,8 @@ if (isset($_SESSION['user-auth'])) {
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {//Modif User
                 if (!empty($_POST)) {
                     $data = $_POST;
-                    $url = ROOT_PATH."update/user/".$_GET['modif'];
+                    $id=$_GET['modif'];
+                    $url = ROOT_PATH."index.php/update/user/".$id;
                     $update = App::file_post_contents($url, $data);
                     if($update){
                         header('Location: index.php?p=lstUser');
