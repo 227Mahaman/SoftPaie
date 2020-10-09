@@ -9,8 +9,12 @@ $datas = file_get_contents(ROOT_PATH."index.php/getUser/".$id);
 $datas = json_decode($datas, true);
 //var_dump($datas);
 }
-$typeUser = file_get_contents(ROOT_PATH."index.php/getTypeUser");
-$types = json_decode($typeUser, true);
+$typeEnt = file_get_contents(ROOT_PATH."index.php/getTypeEntreprise");
+$typeEnt = json_decode($typeEnt, true);
+$identites = file_get_contents(ROOT_PATH."index.php/getIdentites");
+$identites = json_decode($identites, true);
+$pays = file_get_contents(ROOT_PATH."index.php/getPays");
+$pays = json_decode($pays, true);
 ?>
 <!-- MAIN CONTENT -->
 <div class="main-content">

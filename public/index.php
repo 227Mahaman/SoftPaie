@@ -15,16 +15,24 @@ if (isset($_SESSION['user-auth'])) {
         } elseif($p == "deconnexion"){
             include_once('../app/views/view_deconnexion.php');
         } elseif($p == "compte"){//(Compte | Profil) Entreprise
+            if(!empty($_POST)){//Renseignez les informations de l'entreprise
+                $data = $_POST;
+                $url = ROOT_PATH."index.php/creationCompte";
+                $add = App::file_post_contents($url, $data);
+                if($add){
+                    header('Location: index.php?p=dashboard');
+                }
+            }
             include_once('../app/views/view_compteEnt.php');
         } elseif($p == "login"){//Se connecter au plateforme
             include_once('../app/views/view_loginIn.php');
         } elseif($p == "lstUser"){
                 if(!empty($_POST)){//Suppression User
                     $id = $_POST['id'];
-                $url = ROOT_PATH."index.php/deleteUser/".$id;
-                $delete = file_get_contents($url);
-                //var_dump($delete);
-                //die();
+                    $url = ROOT_PATH."index.php/deleteUser/".$id;
+                    $delete = file_get_contents($url);
+                    //var_dump($delete);
+                    //die();
                     if($delete){
                         $_SESSION['message'] = "Opération reussi !!";
                     } else {
