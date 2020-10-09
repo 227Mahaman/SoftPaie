@@ -14,6 +14,8 @@ if (isset($_SESSION['user-auth'])) {
             include_once('../app/views/view_dashboard.php');
         } elseif($p == "deconnexion"){
             include_once('../app/views/view_deconnexion.php');
+        } elseif($p == "compte"){//(Compte | Profil) Entreprise
+            include_once('../app/views/view_compteEnt.php');
         } elseif($p == "login"){//Se connecter au plateforme
             include_once('../app/views/view_loginIn.php');
         } elseif($p == "lstUser"){
@@ -137,7 +139,7 @@ if (isset($_SESSION['user-auth'])) {
     } else{
         include_once('../app/views/view_dashboard.php');
     }
-} elseif($p == "login"){
+} elseif(!empty($p) && $p == "login"){
     if (!empty($_POST)) {
         $data = $_POST;
         $pass = sha1($data['mot_pass']);
@@ -151,7 +153,17 @@ if (isset($_SESSION['user-auth'])) {
             $_SESSION['user-auth']['pseudo'] = $user['0']['pseudo'];
             $type= $pdo->prepare("SELECT * FROM type_users where id_typeuser=?", [$user['0']['type_user']]);
             $_SESSION['user-auth']['typeUser'] = $type['0']['label'];
-            header('Location: index.php?p=dashboard');
+            //header('Location: index.php?p=dashboard');
+            if($user['0']['type_user']===1){//Verification si c'est un Administrateur
+                header('Location: index.php?p=dashboard');
+            } else {
+                $compte = $pdo->prepare("SELECT * FROM entreprise WHERE statut=1 AND user_create=?", [$_SESSION['user-auth']['id']]);
+                if(!isset($compte)){//Vérification (Si l'utilisateur a déjà crée un compte entreprise)
+                    header('Location: index.php?p=dashboard');
+                } else {
+                    header('Location: index.php?p=compte');
+                }   
+            }
         }
     }
     include_once('../app/views/view_loginIn.php');

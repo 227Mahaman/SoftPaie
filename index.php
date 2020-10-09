@@ -92,9 +92,10 @@ $app->get('/deleteUser/{id}', function (Request $request, Response $response, $a
     ->withStatus(200);
 });
 //get all Identity
-$app->get('/getIdentity', function (Request $request, Response $response) {//GET IDENTITY
+$app->get('/getIdentites', function (Request $request, Response $response) {//GET IDENTITY
+    $sql= "SELECT * FROM identite";
     $pdo = new db();
-    $data = $pdo->query('SELECT * FROM identite');
+    $data = $pdo->query($sql);
     return $response->write(json_encode($data))
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
