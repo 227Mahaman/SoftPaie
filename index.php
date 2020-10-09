@@ -136,5 +136,30 @@ $app->get('/getTypeEntreprise', function (Request $request, Response $response) 
     $data = $pdo->query('SELECT * FROM type_entreprise');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//make a post request Création de compte Entreprise
+$app->post('/creationCompte', function (Request $request, Response $response, $args = []) {//Création de Compte Entreprise
+    //get db object
+    $pdo = new db();
+    $sql = "INSERT INTO entreprise (type_entreprise, identite, pays, nom, adresse, email, bp, tel, nidentite, reference, description, nregistration, website, localisation, user_create) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $type_entreprise = $request->getParam('type_entreprise');
+    $identite = $request->getParam('identite');
+    $pays = $request->getParam('pays');
+    $nom = $request->getParam('nom');
+    $adresse = $request->getParam('adresse');
+    $email = $request->getParam('email');
+    $bp = $request->getParam('bp');
+    $tel = $request->getParam('tel');
+    $nidentite = $request->getParam('nidentite');
+    $reference = $request->getParam('reference');
+    $description = $request->getParam('description');
+    $nregistration = $request->getParam('nregistration');
+    $website = $request->getParam('website');
+    $localisation = $request->getParam('localisation');
+    $user_create = $request->getParam('user_create');
+    $data = $pdo->prepare($sql, [$type_entreprise, $identite, $pays, $nom, $adresse, $email, $bp, $tel, $nidentite, $reference, $description, $nregistration, $website, $localisation, $user_create]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 
 $app->run();

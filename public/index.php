@@ -17,6 +17,7 @@ if (isset($_SESSION['user-auth'])) {
         } elseif($p == "compte"){//(Compte | Profil) Entreprise
             if(!empty($_POST)){//Renseignez les informations de l'entreprise
                 $data = $_POST;
+                $data['user_create'] = $_SESSION['user-auth']['id'];
                 $url = ROOT_PATH."index.php/creationCompte";
                 $add = App::file_post_contents($url, $data);
                 if($add){
