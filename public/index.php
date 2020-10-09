@@ -27,6 +27,8 @@ if (isset($_SESSION['user-auth'])) {
             include_once('../app/views/view_compteEnt.php');
         } elseif($p == "login"){//Se connecter au plateforme
             include_once('../app/views/view_loginIn.php');
+        } elseif($p == "profil"){//My Profil
+            include_once('../app/views/view_myProfil.php');
         } elseif($p == "lstUser"){
                 if(!empty($_POST)){//Suppression User
                     $id = $_POST['id'];

@@ -130,6 +130,15 @@ $app->get('/getEntClients', function (Request $request, Response $response) {
     $data = $pdo->query('SELECT * FROM entreprise WHERE statut=1');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//get a single Entreprise
+$app->get('/getEntreprise/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM entreprise WHERE id_entreprise='$id'");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //get AllTypeEntreprise
 $app->get('/getTypeEntreprise', function (Request $request, Response $response) {
     $pdo = new db();

@@ -28,7 +28,7 @@
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="index.php?p=dashboard"><img src="assets/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+				<a href="index.php?p=dashboard"><!--<img src="assets/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo">-->2iSoft | 2iPaie</a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
@@ -59,9 +59,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="assets/img/user.png" class="img-circle" alt="Avatar"> <span><?= $_SESSION['user-auth']['pseudo'];?></span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
-								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
+								<li><a href="index.php?p=profil"><i class="lnr lnr-user"></i> <span>Mon Profile</span></a></li>
 								<li><a href="index.php?p=deconnexion"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>

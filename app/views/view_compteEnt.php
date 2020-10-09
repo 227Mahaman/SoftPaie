@@ -1,5 +1,5 @@
 <?php
-$title = "Dashboard";
+$title = "Compte Entreprise";
 ob_start();
 $datas = "";
 if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
