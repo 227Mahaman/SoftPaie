@@ -165,14 +165,14 @@ if (isset($_SESSION['user-auth'])) {
             $type= $pdo->prepare("SELECT * FROM type_users where id_typeuser=?", [$user['0']['type_user']]);
             $_SESSION['user-auth']['typeUser'] = $type['0']['label'];
             //header('Location: index.php?p=dashboard');
-            if($user['0']['type_user']===1){//Verification si c'est un Administrateur
+            if($_SESSION['user-auth']['typeUser']==="Administrateur"){//Verification si c'est un Administrateur
                 header('Location: index.php?p=dashboard');
             } else {
                 $compte = $pdo->prepare("SELECT * FROM entreprise WHERE statut=1 AND user_create=?", [$_SESSION['user-auth']['id']]);
-                if(!isset($compte)){//Vérification (Si l'utilisateur a déjà crée un compte entreprise)
-                    header('Location: index.php?p=dashboard');
-                } else {
+                if(!isset($compte)){//Vérification (Si l'utilisateur n'a pas de compte entreprise)
                     header('Location: index.php?p=compte');
+                } else {
+                    header('Location: index.php?p=dashboard');
                 }   
             }
         }
