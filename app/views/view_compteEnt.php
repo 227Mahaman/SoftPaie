@@ -22,6 +22,7 @@ $pays = json_decode($pays, true);
         <div class="panel panel-profile">
             <div class="clearfix">
                 <!-- INPUT GROUPS -->
+                <form method="post">
 					<div class="panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">Compte (Profil) Entreprise</h3>
@@ -119,7 +120,11 @@ $pays = json_decode($pays, true);
                             </select>
                             <br>
                         </div>
+                        <div class="panel-footer">
+						    <button type="sumit" class="btn btn-primary btn-block">Ajouter</button>
+                        </div>
                     </div>
+                </form>
                 <!-- END INPUT GROUPS -->
             </div>
         </div>
