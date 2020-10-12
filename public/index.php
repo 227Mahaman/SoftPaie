@@ -174,6 +174,7 @@ if (isset($_SESSION['user-auth'])) {
                 if(!isset($compte)){//Vérification (Si l'utilisateur n'a pas de compte entreprise)
                     header('Location: index.php?p=compte');
                 } else {
+                    $_SESSION['user-auth']['entreprise'] = $compte['0']['id_entreprise'];//ID Entreprise
                     header('Location: index.php?p=dashboard');
                 }   
             }

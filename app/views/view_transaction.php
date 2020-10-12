@@ -96,7 +96,8 @@ ob_start();
                             </thead>
                             <tbody>
                                 <?php
-                                $datas = file_get_contents(ROOT_PATH."index.php/getPays");
+                                $id = $_SESSION['user-auth']['entreprise'];
+                                $datas = file_get_contents(ROOT_PATH."index.php/getMyTransaction/".$id);
                                 $datas = json_decode($datas, true);
                                 if (is_array($datas) || is_object($datas)) {
                                     foreach ($datas as $value) {  
