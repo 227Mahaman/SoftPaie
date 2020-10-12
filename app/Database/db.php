@@ -20,7 +20,7 @@ class db
         $dbname = "2i_soft_paie";
         if($this->pdo == null){
             //connect database using php pdo wrapper 
-            $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+            $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             $this->pdo = $pdo;

@@ -3,7 +3,7 @@
  * Slim Framework (http://slimframework.com)
  *
  * @link      https://github.com/slimphp/Slim
- * @copyright Copyright (c) 2011-2016 Josh Lockhart
+ * @copyright Copyright (c) 2011-2015 Josh Lockhart
  * @license   https://github.com/slimphp/Slim/blob/3.x/LICENSE.md (MIT License)
  */
 namespace Slim;
@@ -79,10 +79,7 @@ final class CallableResolver implements CallableResolverInterface
         }
 
         if (!is_callable($resolved)) {
-            throw new RuntimeException(sprintf(
-                '%s is not resolvable',
-                is_array($toResolve) || is_object($toResolve) ? json_encode($toResolve) : $toResolve
-            ));
+            throw new RuntimeException(sprintf('%s is not resolvable', $toResolve));
         }
 
         return $resolved;

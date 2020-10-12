@@ -128,6 +128,9 @@ $app->get('/getPays', function (Request $request, Response $response) {
 $app->get('/getEntClients', function (Request $request, Response $response) {
     $pdo = new db();
     $data = $pdo->query('SELECT * FROM entreprise WHERE statut=1');
+    //var_dump($data);
+    //var_dump($response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200));
+    //die();
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
 //get a single Entreprise
