@@ -146,6 +146,8 @@ if (isset($_SESSION['user-auth'])) {
                 }
             }
             include_once('../app/views/view_addTypeUser.php');
+        } elseif($p == "transaction"){//View Transaction
+            include_once('../app/views/view_transaction.php');
         }
     } else{
         include_once('../app/views/view_dashboard.php');
