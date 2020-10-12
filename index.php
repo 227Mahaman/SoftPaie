@@ -173,5 +173,14 @@ $app->post('/creationCompte', function (Request $request, Response $response, $a
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get MyTransaction
+$app->get('/getMyTransaction/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM transaction WHERE id_entreprise='$id'");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 
 $app->run();

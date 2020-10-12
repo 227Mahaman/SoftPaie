@@ -96,8 +96,8 @@ ob_start();
                             </thead>
                             <tbody>
                                 <?php
-                                $id = $_SESSION['user-auth']['entreprise'];
-                                $datas = file_get_contents(ROOT_PATH."index.php/getMyTransaction/".$id);
+                                //$id = $_SESSION['user-auth']['entreprise'];
+                                $datas = file_get_contents(ROOT_PATH."index.php/getMyTransaction/2");
                                 $datas = json_decode($datas, true);
                                 if (is_array($datas) || is_object($datas)) {
                                     foreach ($datas as $value) {  
@@ -105,7 +105,7 @@ ob_start();
                                     <tr>
                                         <td><a href="#"><?= $value['id_transaction'];?></a></td>
                                         <td><?= $value['codeclient'];?></td>
-                                        <td><?= $value['montant_transaction'];?></td>
+                                        <td><?= $value['montant_transaction'];?> FCFA</td>
                                         <td><?= $value['created_at'];?></td>
                                         <?php if($value['statut'] == 1){?>
                                             <td><span class="label label-success">Succès</span></td>
