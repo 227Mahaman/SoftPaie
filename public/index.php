@@ -147,6 +147,7 @@ if (isset($_SESSION['user-auth'])) {
             }
             include_once('../app/views/view_addTypeUser.php');
         } elseif($p == "transaction"){//View Transaction
+            $id = $_SESSION['user-auth']['entreprise'];
             include_once('../app/views/view_transaction.php');
         }
     } else{
@@ -171,10 +172,10 @@ if (isset($_SESSION['user-auth'])) {
                 header('Location: index.php?p=dashboard');
             } else {
                 $compte = $pdo->prepare("SELECT * FROM entreprise WHERE statut=1 AND user_create=?", [$_SESSION['user-auth']['id']]);
+                $_SESSION['user-auth']['entreprise'] = $compte['0']['id_entreprise'];//ID Entreprise
                 if(!isset($compte)){//Vérification (Si l'utilisateur n'a pas de compte entreprise)
                     header('Location: index.php?p=compte');
                 } else {
-                    $_SESSION['user-auth']['entreprise'] = $compte['0']['id_entreprise'];//ID Entreprise
                     header('Location: index.php?p=dashboard');
                 }   
             }

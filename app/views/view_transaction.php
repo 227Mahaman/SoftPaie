@@ -97,7 +97,7 @@ ob_start();
                             <tbody>
                                 <?php
                                 //$id = $_SESSION['user-auth']['entreprise'];
-                                $datas = file_get_contents(ROOT_PATH."index.php/getMyTransaction/2");
+                                $datas = file_get_contents(ROOT_PATH."index.php/getMyTransaction/".$id);
                                 $datas = json_decode($datas, true);
                                 if (is_array($datas) || is_object($datas)) {
                                     foreach ($datas as $value) {  
@@ -120,8 +120,8 @@ ob_start();
                     </div>
                     <div class="panel-footer">
                         <div class="row">
-                            <div class="col-md-6"><span class="panel-note"><i class="fa fa-clock-o"></i> Last 24 hours</span></div>
-                            <div class="col-md-6 text-right"><a href="#" class="btn btn-primary">View All Purchases</a></div>
+                            <div class="col-md-6"><span class="panel-note"><i class="fa fa-clock-o"></i> Tout</span></div>
+                            <div class="col-md-6 text-right"><a href="#" class="btn btn-primary">Transactions</a></div>
                         </div>
                     </div>
                 </div>
