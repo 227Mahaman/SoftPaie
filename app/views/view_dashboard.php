@@ -1,6 +1,9 @@
 <?php
 $title = "Dashboard";
 ob_start();
+$id =  $_SESSION['user-auth']['entreprise'];
+$datas = file_get_contents(ROOT_PATH."index.php/getSolde/".$id);
+$datas = json_decode($datas, true);
 ?>
 <!-- MAIN CONTENT -->
 <div class="main-content">
@@ -15,10 +18,10 @@ ob_start();
                 <div class="row">
                     <div class="col-md-3">
                         <div class="metric">
-                            <span class="icon"><i class="fa fa-download"></i></span>
+                            <span class="icon"><i class="fa fa-money"></i></span>
                             <p>
-                                <span class="number">1,252</span>
-                                <span class="title">Downloads</span>
+                                <span class="number"><?= $datas['0']['solde'];?> FCFA</span>
+                                <span class="title">Solde</span>
                             </p>
                         </div>
                     </div>
