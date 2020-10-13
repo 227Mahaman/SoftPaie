@@ -26,7 +26,7 @@ ob_start();
                             </thead>
                             <tbody>
                             <?php
-                                $datas = file_get_contents(ROOT_PATH."index.php/getIdentity");
+                                $datas = file_get_contents(ROOT_PATH."index.php/getIdentites");
                                 $datas = json_decode($datas, true);
                                 //var_dump($datas);
                                 //die();
