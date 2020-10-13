@@ -16,11 +16,7 @@ $app = new App([
 ]);
 
 $app->get('/', function (Request $request, Response $response) {
-    $pdo = new db();
-    $data = $pdo->query('SELECT * FROM users');
-    return $response->write(json_encode($data))
-    ->withHeader('Content-type', 'application/json')
-    ->withStatus(200);
+    echo "Welcome to 2iPaie API";
 });
 //get all users
 $app->get('/getUsers', function (Request $request, Response $response) {
