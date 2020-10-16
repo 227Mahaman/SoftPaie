@@ -216,6 +216,7 @@ if (isset($_SESSION['user-auth'])) {
                         }
                     } else {//Ajout STA Dépôt
                         $data = $_POST;
+                        $data['user_create'] = $_SESSION['user-auth']['id'];
                         $url = ROOT_PATH."index.php/addSta";
                         $add = App::file_post_contents($url, $data);
                         if($add){
