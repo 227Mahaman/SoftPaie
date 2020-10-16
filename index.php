@@ -96,6 +96,17 @@ $app->get('/getIdentites', function (Request $request, Response $response) {//GE
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//post: add Identity
+$app->post('/addIdentity', function (Request $request, Response $response, $args = []) {//AddIdentity
+    //get db object
+    $pdo = new db();
+    $sql = "INSERT INTO type_identite (libelle) VALUES (?)";
+    $libelle = $request->getParam('libelle');
+    $data = $pdo->prepare($sql, [$libelle]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //make a post request add type user
 $app->post('/addTypeUser', function (Request $request, Response $response, $args = []) {//AddTypeUser
     //get db object
