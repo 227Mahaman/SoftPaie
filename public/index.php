@@ -66,14 +66,23 @@ if (isset($_SESSION['user-auth'])) {
             }
             include_once('../app/views/view_addUser.php');
         } elseif($p == "identite"){//View Identité
-            if(!empty($_POST)){//Suppression Identité
+            if(!empty($_POST)){
                 $id = $_POST['id_identite'];
-                $url = ROOT_PATH."index.php/deleteIdentity/".$id;
-                $delete = file_get_contents($url);
-                if($delete){
-                    $_SESSION['message'] = "Opération reussi !!";
-                } else {
-                    $_SESSION['message'] = "Echec de l'opération!!";
+                if(isset($id)){//Suppression Identité
+                    $url = ROOT_PATH."index.php/deleteIdentity/".$id;
+                    $delete = file_get_contents($url);
+                    if($delete){
+                        $_SESSION['message'] = "Opération reussi !!";
+                    } else {
+                        $_SESSION['message'] = "Echec de l'opération!!";
+                    }
+                } else {//Ajout Identité
+                    $data = $_POST;
+                    $url = ROOT_PATH."index.php/addIdentity";
+                    $add = App::file_post_contents($url, $data);
+                    if($add){
+                        header('Location: index.php?p=identite');
+                    }
                 }
             }
         include_once('../app/views/view_identite.php');
