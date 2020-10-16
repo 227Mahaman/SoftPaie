@@ -317,4 +317,16 @@ $app->post('/update/sta/{id}', function (Request $request, Response $response, $
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//post: delete (logique) STA
+$app->post('/delete/sta/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $sql= "UPDATE sta SET statut=?, update_at=? WHERE id_sta=?";
+    $pdo = new db();
+    $date = new DateTime('now');
+    $d = $date->format("Y-m-d h:i:s");
+    $data = $pdo->prepare($sql,[0, $d, $id]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
