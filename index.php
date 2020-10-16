@@ -208,5 +208,14 @@ $app->get('/getCommissions', function (Request $request, Response $response) {
     $data = $pdo->query('SELECT * FROM commission');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//get: a single Commission
+$app->get('/getCommission/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM commission WHERE id_commission='$id'");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 
 $app->run();

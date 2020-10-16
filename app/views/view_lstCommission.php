@@ -44,7 +44,7 @@ ob_start();
                                     <td><?= $value['taux'];?> %</td>
                                     <td><?= $value['created_at'];?></td>
                                     <td>
-                                        <a href="index.php?action=lstCommission&modif=<?= $value['id_commission'] ?>" class="btn btn-primary">
+                                        <a href="index.php?p=addCommission&modif=<?= $value['id_commission'] ?>" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <form method="post">
