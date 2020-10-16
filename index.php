@@ -96,6 +96,15 @@ $app->get('/getIdentites', function (Request $request, Response $response) {//GE
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get: a single Identity
+$app->get('/getIdentity/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM type_identite WHERE id_type_identite='$id'");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //post: add Identity
 $app->post('/addIdentity', function (Request $request, Response $response, $args = []) {//AddIdentity
     //get db object
