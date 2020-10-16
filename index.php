@@ -300,4 +300,21 @@ $app->get('/getStas', function (Request $request, Response $response) {
     $data = $pdo->query('SELECT * FROM sta');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//post: update Sta
+$app->post('/update/sta/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $nom = $request->getParam('nom');
+    $adresse = $request->getParam('adresse');
+    $email = $request->getParam('email');
+    $bp = $request->getParam('bp');
+    $tel = $request->getParam('tel');
+    $date = new DateTime('now');
+    $d = $date->format("Y-m-d h:i:s");
+    $sql= "UPDATE sta SET nom=?, adresse=?, email=?, tel=?, bp=?, update_at=? WHERE id_sta=?";
+    $data = $pdo->prepare($sql, [$nom, $adresse, $email, $tel, $bp, $d, $id]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
