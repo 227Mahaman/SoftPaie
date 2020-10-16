@@ -149,6 +149,8 @@ if (isset($_SESSION['user-auth'])) {
         } elseif($p == "transaction"){//View Transaction
             $id = $_SESSION['user-auth']['entreprise'];
             include_once('../app/views/view_transaction.php');
+        } elseif($p == "lstCommission"){//View Liste Commission
+            include_once('../app/views/view_lstCommission.php');
         }
     } else{
         include_once('../app/views/view_dashboard.php');
