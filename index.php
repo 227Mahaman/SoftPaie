@@ -202,5 +202,11 @@ $app->post('/addCommission', function (Request $request, Response $response, $ar
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get: All Commission
+$app->get('/getCommissions', function (Request $request, Response $response) {
+    $pdo = new db();
+    $data = $pdo->query('SELECT * FROM commission');
+    return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
+});
 
 $app->run();
