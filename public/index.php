@@ -78,8 +78,8 @@ if (isset($_SESSION['user-auth'])) {
             } else {
                 if(!empty($_POST)){
                     $id = $_POST['id_identite'];
-                    if(isset($id)){//Suppression Identité
-                        $url = ROOT_PATH."index.php/deleteIdentity/".$id;
+                    if(isset($id)){//Suppression (Logique) Identité
+                        $url = ROOT_PATH."index.php/delete/identity/".$id;
                         $delete = file_get_contents($url);
                         if($delete){
                             $_SESSION['message'] = "Opération reussi !!";
