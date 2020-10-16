@@ -5,7 +5,7 @@ $datas = "";
 if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
 $id = $_GET['modif'];
 $datas = file_get_contents(ROOT_PATH."index.php/getIdentity/".$id);
-$datas = json_decode($datas, true);
+$datas = json_decode($datas, true);}
 ?>
 
 <!-- MAIN CONTENT -->
@@ -62,7 +62,7 @@ $datas = json_decode($datas, true);
                                     <td><?= $value['libelle'];?></td>
                                     <td><?= $value['created_at'];?></td>
                                     <td>
-                                        <a href="index.php?action=identite&modif=<?= $value['id_type_identite'] ?>" class="btn btn-primary">
+                                        <a href="index.php?p=identite&modif=<?= $value['id_type_identite'] ?>" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <form method="post">
