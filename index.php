@@ -107,6 +107,19 @@ $app->post('/addIdentity', function (Request $request, Response $response, $args
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//post: update Identity
+$app->post('/update/identity/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $libelle = $request->getParam('libelle');
+    $date = new DateTime('now');
+    $d = $date->format("Y-m-d h:i:s");
+    $sql= "UPDATE type_identite SET libelle=?, update_at=? WHERE id_type_identite=?";
+    $data = $pdo->prepare($sql, [$libelle, $d, $id]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //make a post request add type user
 $app->post('/addTypeUser', function (Request $request, Response $response, $args = []) {//AddTypeUser
     //get db object
