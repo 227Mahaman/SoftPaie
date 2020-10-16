@@ -69,7 +69,7 @@ if (isset($_SESSION['user-auth'])) {
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {//Modif Identity
                 if (!empty($_POST)) {
                     $data = $_POST;
-                    $url = ROOT_PATH."update/identity/".$_GET['modif'];
+                    $url = ROOT_PATH."index.php/update/identity/".$_GET['modif'];
                     $update = App::file_post_contents($url, $data);
                     if($update){
                         header('Location: index.php?p=identite');
