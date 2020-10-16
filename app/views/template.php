@@ -96,6 +96,7 @@
 							<a href="#subPages2" data-toggle="collapse" class="collapsed"><i class="lnr lnr-briefcase"></i> <span>Configuration</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages2" class="collapse ">
 								<ul class="nav">
+									<li><a href="index.php?p=addCommission" class="">Ajouter une commission</a></li>
 									<li><a href="index.php?p=depot" class="">Dépôt</a></li>
 									<li><a href="index.php?p=identite" class="">Identité</a></li>
 									<li><a href="index.php?p=lstPays" class="lnr lnr-city">Pays</a></li>
