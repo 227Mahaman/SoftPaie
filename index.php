@@ -187,5 +187,20 @@ $app->get('/getSolde/{id}', function (Request $request, Response $response, $arg
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//post: Add Commission
+$app->post('/addCommission', function (Request $request, Response $response, $args = []) {//AddCommission
+    //get db object
+    $pdo = new db();
+    $sql = "INSERT INTO commission (montant_debut, montant_fin, frais, taux, user_create) VALUES (?,?,?,?,?)";
+    $montant_debut = $request->getParam('montant_debut');
+    $montant_fin = $request->getParam('montant_fin');
+    $frais = $request->getParam('frais');
+    $taux = $request->getParam('taux');
+    $user = $request->getParam('user_create');
+    $data = $pdo->prepare($sql, [$montant_debut, $montant_fin, $frais, $taux, $user]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 
 $app->run();
