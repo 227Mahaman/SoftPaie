@@ -34,7 +34,7 @@ ob_start();
                                     foreach ($datas as $value) {  
                                     ?>
                                 <tr>
-                                    <td><?= $value['id_entreprise'];?></td>
+                                    <td><?= $value['id_type_entreprise'];?></td>
                                     <td><?= $value['libelle'];?></td>
                                     <td><?= $value['created_at'];?></td>
                                     <td>
