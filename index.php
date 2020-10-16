@@ -329,4 +329,13 @@ $app->post('/delete/sta/{id}', function (Request $request, Response $response, $
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get: a single Sta
+$app->get('/getSta/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM sta WHERE id_sta='$id'");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
