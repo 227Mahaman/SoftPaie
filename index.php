@@ -89,7 +89,7 @@ $app->get('/deleteUser/{id}', function (Request $request, Response $response, $a
 });
 //get all Identity
 $app->get('/getIdentites', function (Request $request, Response $response) {//GET IDENTITY
-    $sql= "SELECT * FROM type_identite";
+    $sql= "SELECT * FROM type_identite WHERE statut=1";
     $pdo = new db();
     $data = $pdo->query($sql);
     return $response->write(json_encode($data))
