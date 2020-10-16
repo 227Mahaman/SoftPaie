@@ -129,6 +129,18 @@ $app->post('/update/identity/{id}', function (Request $request, Response $respon
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//post: delete (logique) Identity
+$app->post('/delete/identity/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $sql= "UPDATE type_identite SET statut=?, update_at=? WHERE id_type_identite=?";
+    $pdo = new db();
+    $date = new DateTime('now');
+    $d = $date->format("Y-m-d h:i:s");
+    $data = $pdo->prepare($sql,[0, $d, $id]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //make a post request add type user
 $app->post('/addTypeUser', function (Request $request, Response $response, $args = []) {//AddTypeUser
     //get db object
