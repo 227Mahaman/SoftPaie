@@ -1,6 +1,11 @@
 <?php
 $title = "Liste Identité";
 ob_start();
+$datas = "";
+if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {
+$id = $_GET['modif'];
+$datas = file_get_contents(ROOT_PATH."index.php/getIdentity/".$id);
+$datas = json_decode($datas, true);
 ?>
 
 <!-- MAIN CONTENT -->
