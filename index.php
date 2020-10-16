@@ -228,7 +228,7 @@ $app->get('/getCommission/{id}', function (Request $request, Response $response,
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
-//post: 
+//post: update Commission
 $app->post('/update/commission/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
     $pdo = new db();
