@@ -294,5 +294,10 @@ $app->post('/addSta', function (Request $request, Response $response, $args = []
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
-
+//get: All Stas
+$app->get('/getStas', function (Request $request, Response $response) {
+    $pdo = new db();
+    $data = $pdo->query('SELECT * FROM sta');
+    return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
+});
 $app->run();
