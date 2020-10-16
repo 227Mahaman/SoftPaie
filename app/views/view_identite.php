@@ -38,11 +38,11 @@ ob_start();
                                     <td><?= $value['libelle'];?></td>
                                     <td><?= $value['created_at'];?></td>
                                     <td>
-                                        <a href="index.php?action=identite&modif=<?= $value['id_identite'] ?>" class="btn btn-primary">
+                                        <a href="index.php?action=identite&modif=<?= $value['id_type_identite'] ?>" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <form method="post">
-                                            <input type="hidden" name="id_identite" value="<?= $value['id_identite'] ?>">
+                                            <input type="hidden" name="id_type_identite" value="<?= $value['id_type_identite'] ?>">
                                             <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </form>
                                     </td>

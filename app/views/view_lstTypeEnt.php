@@ -38,11 +38,11 @@ ob_start();
                                     <td><?= $value['libelle'];?></td>
                                     <td><?= $value['created_at'];?></td>
                                     <td>
-                                        <a href="index.php?action=lstTypeEnt&modif=<?= $value['id_entreprise'] ?>" class="btn btn-primary">
+                                        <a href="index.php?action=lstTypeEnt&modif=<?= $value['id_type_entreprise'] ?>" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <form method="post">
-                                            <input type="hidden" name="id_entreprise" value="<?= $value['id_entreprise'] ?>">
+                                            <input type="hidden" name="id_type_entreprise" value="<?= $value['id_type_entreprise'] ?>">
                                             <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </form>
                                     </td>
