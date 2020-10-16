@@ -151,6 +151,28 @@ if (isset($_SESSION['user-auth'])) {
             include_once('../app/views/view_transaction.php');
         } elseif($p == "lstCommission"){//View Liste Commission
             include_once('../app/views/view_lstCommission.php');
+        } elseif($p == "addCommission"){// Ajout Commission
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {//Modif Commission
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $url = ROOT_PATH."update/commission/".$_GET['modif'];
+                    $update = App::file_post_contents($url, $data);
+                    if($update){
+                        header('Location: index.php?p=lstCommission');
+                    }
+                }
+            } else { // Ajout Commission
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $data['user_create'] = $_SESSION['user-auth']['id'];
+                    $url = ROOT_PATH."index.php/addCommission";
+                    $add = App::file_post_contents($url, $data);
+                    if($add){
+                        header('Location: index.php?p=lstCommission');
+                    }
+                }
+            }
+            include_once('../app/views/view_addCommission.php');
         }
     } else{
         include_once('../app/views/view_dashboard.php');

@@ -40,7 +40,7 @@ $datas = json_decode($datas, true);
                         </div>
                         <br>
                         <label for="">Taux</label>
-                        <select class="form-control" name="type_user">
+                        <select class="form-control" name="taux">
                             <option value="0">Sans taux</option>
                             <option value="1">Avec taux</option>
                         </select>
