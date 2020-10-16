@@ -217,5 +217,21 @@ $app->get('/getCommission/{id}', function (Request $request, Response $response,
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//post: 
+$app->post('/update/commission/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $montant_debut = $request->getParam('montant_debut');
+    $montant_fin = $request->getParam('montant_fin');
+    $frais = $request->getParam('frais');
+    $taux = $request->getParam('taux');
+    $date = new DateTime('now');
+    $d = $date->format("Y-m-d h:i:s");
+    $sql= "UPDATE commission SET montant_debut =?, montant_fin=?, frais=?, taux=?, update_at=? WHERE id_commission=?";
+    $data = $pdo->prepare($sql, [$montant_debut, $montant_fin, $frais, $taux, $d, $id]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 
 $app->run();
