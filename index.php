@@ -278,5 +278,21 @@ $app->post('/update/commission/{id}', function (Request $request, Response $resp
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//post: add STA
+$app->post('/addSta', function (Request $request, Response $response, $args = []) {//AddIdentity
+    //get db object
+    $pdo = new db();
+    $sql = "INSERT INTO sta (nom, adresse, email, tel, bp, user_create) VALUES (?,?,?,?,?,?)";
+    $nom = $request->getParam('nom');
+    $adresse = $request->getParam('adresse');
+    $email = $request->getParam('email');
+    $bp = $request->getParam('bp');
+    $tel = $request->getParam('tel');
+    $user = $request->getParam('user_create');
+    $data = $pdo->prepare($sql, [$nom, $adresse, $email, $tel, $bp, $user]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 
 $app->run();
