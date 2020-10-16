@@ -193,6 +193,38 @@ if (isset($_SESSION['user-auth'])) {
                 }
             }
             include_once('../app/views/view_addCommission.php');
+        } elseif($p == "sta"){//View STA Dépôt
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {//Modif STA Dépôt
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $url = ROOT_PATH."index.php/update/sta/".$_GET['modif'];
+                    $update = App::file_post_contents($url, $data);
+                    if($update){
+                        header('Location: index.php?p=sta');
+                    }
+                }
+            } else {
+                if(!empty($_POST)){
+                    $id = $_POST['id_sta'];
+                    if(isset($id)){//Suppression (Logique) STA Dépôt
+                        $url = ROOT_PATH."index.php/delete/sta/".$id;
+                        $delete = file_get_contents($url);
+                        if($delete){
+                            $_SESSION['message'] = "Opération reussi !!";
+                        } else {
+                            $_SESSION['message'] = "Echec de l'opération!!";
+                        }
+                    } else {//Ajout STA Dépôt
+                        $data = $_POST;
+                        $url = ROOT_PATH."index.php/addSta";
+                        $add = App::file_post_contents($url, $data);
+                        if($add){
+                            header('Location: index.php?p=sta');
+                        }
+                    }
+                }
+            }
+        include_once('../app/views/view_depot.php');
         }
     } else{
         include_once('../app/views/view_dashboard.php');
