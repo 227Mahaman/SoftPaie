@@ -98,7 +98,7 @@
 								<ul class="nav">
 									<li><a href="index.php?p=addCommission" class="">Ajouter une commission</a></li>
 									<li><a href="index.php?p=lstCommission" class="">Liste Commission</a></li>
-									<li><a href="index.php?p=depot" class="">Dépôt</a></li>
+									<li><a href="index.php?p=sta" class="">Dépôt | STA</a></li>
 									<li><a href="index.php?p=identite" class="">Identité</a></li>
 									<li><a href="index.php?p=lstPays" class="lnr lnr-city">Pays</a></li>
 									<li><a href="index.php?p=lstTypeEnt" class="lnr lnr-list">Type Entreprise</a></li>
