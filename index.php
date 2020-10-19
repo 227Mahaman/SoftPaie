@@ -310,6 +310,23 @@ $app->post('/creationCompte', function (Request $request, Response $response, $a
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//post: Création de compte Client
+$app->post('/creationCclient', function (Request $request, Response $response, $args = []) {//Création de Compte Client
+    //get db object
+    $pdo = new db();
+    $sql = "INSERT INTO client (id_sta, nom, prenom, tel, adresse, email, user_create) VALUES (?,?,?,?,?,?,?)";
+    $sta = $request->getParam('id_sta');
+    $nom = $request->getParam('nom');
+    $prenom = $request->getParam('prenom');
+    $tel = $request->getParam('tel');
+    $adresse = $request->getParam('adresse');
+    $email = $request->getParam('email');
+    $user_create = $request->getParam('user_create');
+    $data = $pdo->prepare($sql, [$sta, $nom, $prenom, $tel, $adresse, $email, $user_create]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //get MyTransaction
 $app->get('/getMyTransaction/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
