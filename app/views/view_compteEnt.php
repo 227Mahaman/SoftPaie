@@ -16,7 +16,7 @@ $identites = json_decode($identites, true);
 $pays = file_get_contents(ROOT_PATH."index.php/getAllPays");
 $pays = json_decode($pays, true);
 $sta = file_get_contents(ROOT_PATH."index.php/getStas");
-$sta = json_decode($pays, true);
+$sta = json_decode($sta, true);
 ?>
 <!-- MAIN CONTENT -->
 <div class="main-content">
@@ -56,8 +56,18 @@ $sta = json_decode($pays, true);
 							</div>
 							<br>
                             <div class="input-group">
-                                <input class="form-control" name="nidentite" placeholder="N°Identité du gérant de l'entreprise" type="text">
+                                <input class="form-control" name="n_identite" placeholder="N°Identité du gérant de l'entreprise" type="text">
                                 <span class="input-group-addon"><i class="">N°Identité</i></span>
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-tel">Nom sur l'Identité</i></span>
+                                <input class="form-control" name="nom_identite" placeholder="Nom du gérant qui se trouve sur l'identité" type="text">
+							</div>
+                            <br>
+                            <div class="input-group">
+                                <input class="form-control" name="prenom_identite" placeholder="Prénom du gérant qui se trouve sur l'identité" type="text">
+                                <span class="input-group-addon"><i class="">Prénom sur l'Identité</i></span>
                             </div>
                             <br>
                             <div class="input-group">
@@ -72,7 +82,7 @@ $sta = json_decode($pays, true);
                             <br>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-tel">N°Registration</i></span>
-                                <input class="form-control" name="nregistration" placeholder="N°Registration de l'entreprise" type="text">
+                                <input class="form-control" name="n_registration" placeholder="N°Registration de l'entreprise" type="text">
 							</div>
                             <br>
                             <div class="input-group">
@@ -86,7 +96,7 @@ $sta = json_decode($pays, true);
 							</div>
                             <br>
                             <label for="">Type de l'Entreprise</label>
-                            <select class="form-control" name="type_entreprise">
+                            <select class="form-control" name="id_type_type_entreprise">
                                 <?php
                                     if(is_array($typeEnt) || is_object($typeEnt)) {
                                         foreach ($typeEnt as $value) {  
@@ -98,7 +108,7 @@ $sta = json_decode($pays, true);
                             </select>
                             <br>
                             <label for="">Type d'Identité</label>
-                            <select class="form-control" name="identite">
+                            <select class="form-control" name="id_type_identite">
                                 <?php
                                     if(is_array($identites) || is_object($identites)) {
                                         foreach ($identites as $value) {  
@@ -110,12 +120,24 @@ $sta = json_decode($pays, true);
                             </select>
                             <br>
                             <label for="">Pays</label>
-                            <select class="form-control" name="pays">
+                            <select class="form-control" name="id_pays">
                                 <?php
                                     if(is_array($pays) || is_object($pays)) {
                                         foreach ($pays as $value) {  
                                         ?>
                                         <option <?//= (is_array($datas) || is_object($datas))? ($value['id_pays'] == $datas['0']['pays'])? "selected" : "" : "" ?> value="<?= $value['id_pays']?>"><?= $value['nom']?></option>
+                                        <?php }
+                                    }
+                                ?>
+                            </select>
+                            <br>
+                            <label for="">Société de Transfert d'Argent</label>
+                            <select class="form-control" name="id_sta">
+                                <?php
+                                    if(is_array($sta) || is_object($sta)) {
+                                        foreach ($sta as $value) {  
+                                        ?>
+                                        <option <?//= (is_array($datas) || is_object($datas))? ($value['id_pays'] == $datas['0']['pays'])? "selected" : "" : "" ?> value="<?= $value['id_sta']?>"><?= $value['nom']?></option>
                                         <?php }
                                     }
                                 ?>
