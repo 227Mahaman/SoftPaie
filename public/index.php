@@ -303,7 +303,7 @@ if (isset($_SESSION['user-auth'])) {
             } else {
                 $compte = $pdo->prepare("SELECT * FROM entreprise WHERE statut=1 AND user_create=?", [$_SESSION['user-auth']['id']]);
                 $_SESSION['user-auth']['entreprise'] = $compte['0']['id_entreprise'];//ID Entreprise
-                if(!isset($compte)){//Vérification (Si l'utilisateur n'a pas de compte entreprise)
+                if(empty($compte)){//Vérification (Si l'utilisateur n'a pas de compte entreprise)
                     header('Location: index.php?p=compte');
                 } else {
                     header('Location: index.php?p=dashboard');
