@@ -156,15 +156,37 @@ if (isset($_SESSION['user-auth'])) {
                 }
             }
             include_once('../app/views/view_lstEntClient.php');
-        } elseif($p == "lstTypeEnt"){//View Liste TypeEntreprise 
-            if(!empty($_POST)){//Suppression Type Entreprise
-                $id = $_POST['id_entreprise'];
-                $url = ROOT_PATH."index.php/deleteTypeEnt/".$id;
-                $delete = file_get_contents($url);
-                if($delete){
-                    $_SESSION['message'] = "Opération reussi !!";
-                } else {
-                    $_SESSION['message'] = "Echec de l'opération!!";
+        } elseif($p == "lstTypeEnt"){//View Liste TypeEntreprise
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {//Modif TypeEntreprise
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $url = ROOT_PATH."index.php/update/typeEnt/".$_GET['modif'];
+                    $update = App::file_post_contents($url, $data);
+                    if($update){
+                        header('Location: index.php?p=lstTypeEnt');
+                    }
+                }
+            } else {
+                if(!empty($_POST)){
+                    if(isset($_POST['id_type_entreprise'])){//Suppression (Logique) Type Entreprise
+                        $id = $_POST['id_type_entreprise'];
+                        $url = ROOT_PATH."index.php/delete/typeEnt/".$id;
+                        $delete = file_get_contents($url);
+                        if($delete){
+                            $_SESSION['message'] = "Opération reussi !!";
+                        } else {
+                            $_SESSION['message'] = "Echec de l'opération!!";
+                        }
+                    } else {//Ajout Pays
+                        $data = $_POST;
+                        $data['user_create'] = $_SESSION['user-auth']['id'];
+                        $url = ROOT_PATH."index.php/addTypeEnt";
+                        $add = App::file_post_contents($url, $data);
+                        //die(var_dump($add));
+                        if($add){
+                            header('Location: index.php?p=lstTypeEnt');
+                        }
+                    }
                 }
             }
             include_once('../app/views/view_lstTypeEnt.php');
