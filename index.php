@@ -167,7 +167,7 @@ $app->get('/getAllPays', function (Request $request, Response $response) {
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
 //post: Ajout Pays
-$app->post('/addPays', function (Request $request, Response $response, $args = []) {//AddCommission
+$app->post('/addPays', function (Request $request, Response $response, $args = []) {//AddPays
     //get db object
     $pdo = new db();
     $sql = "INSERT INTO pays (code, nom, user_create) VALUES (?,?,?)";
@@ -226,6 +226,18 @@ $app->get('/getEntreprise/{id}', function (Request $request, Response $response,
     $id = $request->getAttribute('id');
     $pdo = new db();
     $data = $pdo->query("SELECT * FROM entreprise WHERE id_entreprise='$id'");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
+//post: Ajout TypeEntreprise
+$app->post('/addTypeEnt', function (Request $request, Response $response, $args = []) {//AddTypeEntreprise
+    //get db object
+    $pdo = new db();
+    $sql = "INSERT INTO type_entreprise (libelle, user_create) VALUES (?,?)";
+    $libelle = $request->getParam('libelle');
+    $user = $request->getParam('user_create');
+    $data = $pdo->prepare($sql, [$libelle, $user]);
     return $response->write(json_encode($data))
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
