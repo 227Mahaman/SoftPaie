@@ -41,7 +41,7 @@ ob_start();
                                     <td><?= $value['montant_debut'];?> F</td>
                                     <td><?= $value['montant_fin'];?> F</td>
                                     <td><?= $value['frais'];?> F</td>
-                                    <td><?= $value['taux'];?> %</td>
+                                    <td><?= ($value['taux']==0) ? "<span class='label label-success'>Non</span>" : "<span class='label label-primary'>Oui</span>";?></td>
                                     <td><?= $value['created_at'];?></td>
                                     <td>
                                         <a href="index.php?p=addCommission&modif=<?= $value['id_commission'] ?>" class="btn btn-primary">
