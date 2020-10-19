@@ -319,7 +319,7 @@ if (isset($_SESSION['user-auth'])) {
 } else {
     if (!empty($_POST)) {//Inscription à la plateforme
         $data = $_POST;
-        $data['type_user'] = 2; 
+        //$data['type_user'] = 2; 
         $url = ROOT_PATH."index.php/signUpUser";
         $signUp = App::file_post_contents($url, $data);
         if($signUp){
