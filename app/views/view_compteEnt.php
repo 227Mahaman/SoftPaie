@@ -13,7 +13,7 @@ $typeEnt = file_get_contents(ROOT_PATH."index.php/getTypeEntreprise");
 $typeEnt = json_decode($typeEnt, true);
 $identites = file_get_contents(ROOT_PATH."index.php/getIdentites");
 $identites = json_decode($identites, true);
-$pays = file_get_contents(ROOT_PATH."index.php/getPays");
+$pays = file_get_contents(ROOT_PATH."index.php/getAllPays");
 $pays = json_decode($pays, true);
 ?>
 <!-- MAIN CONTENT -->
