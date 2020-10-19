@@ -5,6 +5,11 @@ $entreprises = file_get_contents(ROOT_PATH."index.php/countEntClients");
 $entreprises = json_decode($entreprises, true);
 $users = file_get_contents(ROOT_PATH."index.php/countUsers");
 $users = json_decode($users, true);
+$transactions = file_get_contents(ROOT_PATH."index.php/countTransactions");
+$transactions = json_decode($transactions, true);
+$stas = file_get_contents(ROOT_PATH."index.php/countStas");
+$stas = json_decode($stas, true);
+$date = new DateTime('now');
 ?>
 <!-- MAIN CONTENT -->
 <div class="main-content">
@@ -13,13 +18,13 @@ $users = json_decode($users, true);
         <div class="panel panel-headline">
             <div class="panel-heading">
                 <h3 class="panel-title">Weekly Overview</h3>
-                <p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
+                <p class="panel-subtitle">Aujourd'hui: <?= $date->format("Y-m-d h:i:s");?></p>
             </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="metric">
-                            <span class="icon"><i class="fa fa-money"></i></span>
+                            <span class="icon"><i class="fa fa-shopping-bag"></i></span>
                             <p>
                                 <span class="number"><?= $entreprises['0']['total'];?></span>
                                 <span class="title">Entreprise</span>
@@ -28,7 +33,7 @@ $users = json_decode($users, true);
                     </div>
                     <div class="col-md-3">
                         <div class="metric">
-                            <span class="icon"><i class="fa fa-shopping-bag"></i></span>
+                            <span class="icon"><i class="fa fa-user"></i></span>
                             <p>
                                 <span class="number"><?= $users['0']['total'];?></span>
                                 <span class="title">Utilisateurs</span>
@@ -37,10 +42,10 @@ $users = json_decode($users, true);
                     </div>
                     <div class="col-md-3">
                         <div class="metric">
-                            <span class="icon"><i class="fa fa-eye"></i></span>
+                            <span class="icon"><i class="fa fa-home"></i></span>
                             <p>
-                                <span class="number">274,678</span>
-                                <span class="title">Visits</span>
+                                <span class="number"><?= $stas['0']['total'];?></span>
+                                <span class="title">EFCD | STA</span>
                             </p>
                         </div>
                     </div>
@@ -48,8 +53,8 @@ $users = json_decode($users, true);
                         <div class="metric">
                             <span class="icon"><i class="fa fa-bar-chart"></i></span>
                             <p>
-                                <span class="number">35%</span>
-                                <span class="title">Conversions</span>
+                                <span class="number"><?= $transactions['0']['total'];?></span>
+                                <span class="title">Transaction</span>
                             </p>
                         </div>
                     </div>
