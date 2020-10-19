@@ -122,8 +122,8 @@ if (isset($_SESSION['user-auth'])) {
                 }
             } else {
                 if(!empty($_POST)){
-                    $id = $_POST['id_pays'];
-                    if(isset($id)){//Suppression (Logique) Pays
+                    if(isset($_POST['id_pays'])){//Suppression (Logique) Pays
+                        $id = $_POST['id_pays'];
                         $url = ROOT_PATH."index.php/delete/pays/".$id;
                         $delete = file_get_contents($url);
                         if($delete){
@@ -136,6 +136,7 @@ if (isset($_SESSION['user-auth'])) {
                         $data['user_create'] = $_SESSION['user-auth']['id'];
                         $url = ROOT_PATH."index.php/addPays";
                         $add = App::file_post_contents($url, $data);
+                        //die(var_dump($add));
                         if($add){
                             header('Location: index.php?p=lstPays');
                         }
