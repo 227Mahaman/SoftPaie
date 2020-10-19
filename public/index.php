@@ -301,9 +301,11 @@ if (isset($_SESSION['user-auth'])) {
             if($_SESSION['user-auth']['typeUser']==="Administrateur"){//Verification si c'est un Administrateur
                 header('Location: index.php?p=dashboard');
             } else {
-                $compte = $pdo->prepare("SELECT * FROM entreprise WHERE statut=1 AND user_create=?", [$_SESSION['user-auth']['id']]);
+                $id = $_SESSION['user-auth']['id'];
+                $compte = $pdo->prepare("SELECT * FROM entreprise WHERE statut=1 AND user_create=?", [$id]);
                 $_SESSION['user-auth']['entreprise'] = $compte['0']['id_entreprise'];//ID Entreprise
-                if(empty($compte)){//Vérification (Si l'utilisateur n'a pas de compte entreprise)
+                //var_dump($compte['0']['id_entreprise']);die();
+                if(empty($compte['0']['id_entreprise'])){//Vérification (Si l'utilisateur n'a pas de compte entreprise)
                     header('Location: index.php?p=compte');
                 } else {
                     header('Location: index.php?p=dashboard');

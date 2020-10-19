@@ -96,7 +96,7 @@ $sta = json_decode($sta, true);
 							</div>
                             <br>
                             <label for="">Type de l'Entreprise</label>
-                            <select class="form-control" name="id_type_type_entreprise">
+                            <select class="form-control" name="id_type_entreprise">
                                 <?php
                                     if(is_array($typeEnt) || is_object($typeEnt)) {
                                         foreach ($typeEnt as $value) {  
