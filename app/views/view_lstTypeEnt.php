@@ -63,7 +63,7 @@ $datas = json_decode($datas, true);
                                     <td><?= $value['libelle'];?></td>
                                     <td><?= $value['created_at'];?></td>
                                     <td>
-                                        <a href="index.php?action=lstTypeEnt&modif=<?= $value['id_type_entreprise'] ?>" class="btn btn-primary">
+                                        <a href="index.php?p=lstTypeEnt&modif=<?= $value['id_type_entreprise'] ?>" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <form method="post">
