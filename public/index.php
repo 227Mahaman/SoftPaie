@@ -37,7 +37,9 @@ if (isset($_SESSION['user-auth'])) {
                     header('Location: index.php?p=myCompte');
                 }
             }
-            include_once('../app/views/view_compteEnt.php');
+            include_once('../app/views/view_compteClient.php');
+        } elseif($p == "myCompte"){//View myCompte
+            include_once('../app/views/view_dashMyCompte.php');
         } elseif($p == "login"){//Se connecter au plateforme
             include_once('../app/views/view_loginIn.php');
         } elseif($p == "profil"){//My Profil
