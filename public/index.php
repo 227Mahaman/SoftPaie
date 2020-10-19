@@ -294,6 +294,18 @@ if (isset($_SESSION['user-auth'])) {
                 }
             }
         include_once('../app/views/view_depot.php');
+        } elseif($p == "lstClt"){//View Liste Client 
+            if(!empty($_POST)){//Suppression Clients
+                $id = $_POST['id_client'];
+                $url = ROOT_PATH."index.php/delete/client/".$id;
+                $delete = file_get_contents($url);
+                if($delete){
+                    $_SESSION['message'] = "Opération reussi !!";
+                } else {
+                    $_SESSION['message'] = "Echec de l'opération!!";
+                }
+            }
+            include_once('../app/views/view_lstClient.php');
         }
     } else{
         include_once('../app/views/view_dashboard.php');
