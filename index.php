@@ -257,6 +257,19 @@ $app->get('/getTypeEntps/{id}', function (Request $request, Response $response, 
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//post: update TypeEntreprise
+$app->post('/update/typeEnt/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $libelle = $request->getParam('libelle');
+    $date = new DateTime('now');
+    $d = $date->format("Y-m-d h:i:s");
+    $sql= "UPDATE type_entreprise SET libelle =?, update_at=? WHERE id_type_entreprise=?";
+    $data = $pdo->prepare($sql, [$libelle, $id]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //post: delete (logique) TypeEntreprise
 $app->post('/delete/typeEnt/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
