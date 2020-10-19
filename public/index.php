@@ -302,6 +302,14 @@ if (isset($_SESSION['user-auth'])) {
             //header('Location: index.php?p=dashboard');
             if($_SESSION['user-auth']['typeUser']==="Administrateur"){//Verification si c'est un Administrateur
                 header('Location: index.php?p=dashBoard');
+            } elseif($_SESSION['user-auth']['typeUser']==="Client"){//Verification si c'est un client
+                $compteClient = $pdo->prepare("SELECT * FROM client WHERE statut=1 AND user_create=?", [$id]);
+                $_SESSION['user-auth']['client'] = $compteClient['0']['id_client'];//ID Client
+                if(empty($compteClient['0']['id_client'])){//Vérification (Si l'utilisateur n'a pas de compte client)
+                    header('Location: index.php?p=compteClient');
+                } else {
+                    header('Location: index.php?p=dashboard');
+                }   
             } else {
                 $id = $_SESSION['user-auth']['id'];
                 $compte = $pdo->prepare("SELECT * FROM entreprise WHERE statut=1 AND user_create=?", [$id]);
