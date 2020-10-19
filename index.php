@@ -265,7 +265,7 @@ $app->post('/update/typeEnt/{id}', function (Request $request, Response $respons
     $date = new DateTime('now');
     $d = $date->format("Y-m-d h:i:s");
     $sql= "UPDATE type_entreprise SET libelle =?, update_at=? WHERE id_type_entreprise=?";
-    $data = $pdo->prepare($sql, [$libelle, $id]);
+    $data = $pdo->prepare($sql, [$libelle, $d, $id]);
     return $response->write(json_encode($data))
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
