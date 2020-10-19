@@ -171,6 +171,14 @@ if (isset($_SESSION['user-auth'])) {
             $id = $_SESSION['user-auth']['entreprise'];
             include_once('../app/views/view_transaction.php');
         } elseif($p == "lstCommission"){//View Liste Commission
+            if (!empty($_POST)) {//Suppression logique
+                $id = $_POST['id_commission'];
+                $url = ROOT_PATH."index.php/delete/commission/".$id;
+                $update = App::file_post_contents($url, $data);
+                if($update){
+                    header('Location: index.php?p=lstCommission');
+                }
+            }
             include_once('../app/views/view_lstCommission.php');
         } elseif($p == "addCommission"){// Ajout Commission
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {//Modif Commission
