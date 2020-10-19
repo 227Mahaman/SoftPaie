@@ -10,8 +10,10 @@ extract($_GET);
 if (isset($_SESSION['user-auth'])) {
     if(!empty($_GET['p'])){
         //extract($_GET);
-        if ($p == "dashboard") {
+        if ($p == "dashboard") {//Dashboard CLient
             include_once('../app/views/view_dashboard.php');
+        } elseif($p == "dashBoard"){//Dashboard Administrateur
+            include_once('../app/views/view_dashBoard.php');
         } elseif($p == "deconnexion"){
             include_once('../app/views/view_deconnexion.php');
         } elseif($p == "compte"){//(Compte | Profil) Entreprise
@@ -299,7 +301,7 @@ if (isset($_SESSION['user-auth'])) {
             $_SESSION['user-auth']['typeUser'] = $type['0']['label'];
             //header('Location: index.php?p=dashboard');
             if($_SESSION['user-auth']['typeUser']==="Administrateur"){//Verification si c'est un Administrateur
-                header('Location: index.php?p=dashboard');
+                header('Location: index.php?p=dashBoard');
             } else {
                 $id = $_SESSION['user-auth']['id'];
                 $compte = $pdo->prepare("SELECT * FROM entreprise WHERE statut=1 AND user_create=?", [$id]);
