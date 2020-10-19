@@ -22,7 +22,7 @@ $datas = json_decode($datas, true);
                         </div>
                         <div class="panel-body">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-">Code</i></span>
+                                <span class="input-group-addon"><i class="fa fa-code">Code</i></span>
                                 <input class="form-control" name="code" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['code'] : "" ?>" placeholder="+/00 ..." type="text">
                             </div>
                             <br>

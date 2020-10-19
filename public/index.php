@@ -111,14 +111,35 @@ if (isset($_SESSION['user-auth'])) {
             }
             include_once('../app/views/view_lstTypeUser.php');
         } elseif($p == "lstPays"){
-            if(!empty($_POST)){//Suppression Pays
-                $id = $_POST['id_pays'];
-                $url = ROOT_PATH."index.php/deletePays/".$id;
-                $delete = file_get_contents($url);
-                if($delete){
-                    $_SESSION['message'] = "Opération reussi !!";
-                } else {
-                    $_SESSION['message'] = "Echec de l'opération!!";
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {//Modif Pays
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $url = ROOT_PATH."index.php/update/pays/".$_GET['modif'];
+                    $update = App::file_post_contents($url, $data);
+                    if($update){
+                        header('Location: index.php?p=lstPays');
+                    }
+                }
+            } else {
+                if(!empty($_POST)){
+                    $id = $_POST['id_pays'];
+                    if(isset($id)){//Suppression (Logique) Pays
+                        $url = ROOT_PATH."index.php/delete/pays/".$id;
+                        $delete = file_get_contents($url);
+                        if($delete){
+                            $_SESSION['message'] = "Opération reussi !!";
+                        } else {
+                            $_SESSION['message'] = "Echec de l'opération!!";
+                        }
+                    } else {//Ajout Pays
+                        $data = $_POST;
+                        $data['user_create'] = $_SESSION['user-auth']['id'];
+                        $url = ROOT_PATH."index.php/addPays";
+                        $add = App::file_post_contents($url, $data);
+                        if($add){
+                            header('Location: index.php?p=lstPays');
+                        }
+                    }
                 }
             }
             include_once('../app/views/view_lstPays.php');
