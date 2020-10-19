@@ -89,6 +89,7 @@
 									<li><a href="index.php?p=addTypeUser" class="">Ajout Type Utilisateur</a></li>
 									<li><a href="index.php?p=lstTypeUser" class="">Liste Type Utilisateur</a></li>
 									<li><a href="index.php?p=lstEntClt" class="lnr lnr-store">Liste Entreprise Client</a></li>
+									<li><a href="index.php?p=lstClt" class="lnr lnr-user">Liste Client</a></li>
 								</ul>
 							</div>
 						</li>
