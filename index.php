@@ -286,23 +286,26 @@ $app->post('/delete/typeEnt/{id}', function (Request $request, Response $respons
 $app->post('/creationCompte', function (Request $request, Response $response, $args = []) {//Création de Compte Entreprise
     //get db object
     $pdo = new db();
-    $sql = "INSERT INTO entreprise (type_entreprise, identite, pays, nom, adresse, email, bp, tel, nidentite, reference, description, nregistration, website, localisation, user_create) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    $type_entreprise = $request->getParam('type_entreprise');
-    $identite = $request->getParam('identite');
-    $pays = $request->getParam('pays');
+    $sql = "INSERT INTO entreprise (id_type_entreprise, id_type_identite, id_sta, id_pays, nom, adresse, email, bp, tel, n_identite, nom_identite, prenom_identite, reference, description, n_registration, website, localisation, user_create) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $type_entreprise = $request->getParam('id_type_entreprise');
+    $identite = $request->getParam('id_type_identite');
+    $sta = $request->getParam('id_sta');
+    $pays = $request->getParam('id_pays');
     $nom = $request->getParam('nom');
     $adresse = $request->getParam('adresse');
     $email = $request->getParam('email');
     $bp = $request->getParam('bp');
     $tel = $request->getParam('tel');
-    $nidentite = $request->getParam('nidentite');
+    $nidentite = $request->getParam('n_identite');
+    $nom_identite = $request->getParam('nom_identite');
+    $prenom_identite = $request->getParam('prenom_identite');
     $reference = $request->getParam('reference');
     $description = $request->getParam('description');
-    $nregistration = $request->getParam('nregistration');
+    $nregistration = $request->getParam('n_registration');
     $website = $request->getParam('website');
     $localisation = $request->getParam('localisation');
     $user_create = $request->getParam('user_create');
-    $data = $pdo->prepare($sql, [$type_entreprise, $identite, $pays, $nom, $adresse, $email, $bp, $tel, $nidentite, $reference, $description, $nregistration, $website, $localisation, $user_create]);
+    $data = $pdo->prepare($sql, [$type_entreprise, $identite, $sta, $pays, $nom, $adresse, $email, $bp, $tel, $nidentite, $nom_identite, $prenom_identite, $reference, $description, $nregistration, $website, $localisation, $user_create]);
     return $response->write(json_encode($data))
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
