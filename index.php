@@ -186,6 +186,20 @@ $app->get('/getPays/{id}', function (Request $request, Response $response) {
     $data = $pdo->query("SELECT * FROM pays WHERE id_pays='$id'");
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//post: update Pays
+$app->post('/update/pays/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $code = $request->getParam('code');
+    $nom = $request->getParam('nom');
+    $date = new DateTime('now');
+    $d = $date->format("Y-m-d h:i:s");
+    $sql= "UPDATE pays SET code =?, nom=?, update_at=? WHERE id_pays=?";
+    $data = $pdo->prepare($sql, [$code, $nom, $d, $id]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //post: delete (logique) Pays
 $app->post('/delete/pays/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
