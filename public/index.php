@@ -38,7 +38,7 @@ if (isset($_SESSION['user-auth'])) {
                 }
             }
             include_once('../app/views/view_compteClient.php');
-        } elseif($p == "myCompte"){//View myCompte
+        } elseif($p == "myCompte"){//View myCompte Client
             include_once('../app/views/view_dashMyCompte.php');
         } elseif($p == "login"){//Se connecter au plateforme
             include_once('../app/views/view_loginIn.php');
