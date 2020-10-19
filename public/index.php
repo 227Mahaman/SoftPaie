@@ -306,6 +306,8 @@ if (isset($_SESSION['user-auth'])) {
                 }
             }
             include_once('../app/views/view_lstClient.php');
+        } elseif($p == "api_cle"){//View Génération api cle
+            include_once('../app/views/view_apiKey.php');
         }
     } else{
         include_once('../app/views/view_dashboard.php');
