@@ -88,6 +88,7 @@ if (isset($_SESSION['user-auth'])) {
                         }
                     } else {//Ajout Identité
                         $data = $_POST;
+                        $data['user_create'] = $_SESSION['user-auth']['id'];
                         $url = ROOT_PATH."index.php/addIdentity";
                         $add = App::file_post_contents($url, $data);
                         if($add){
