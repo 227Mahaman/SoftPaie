@@ -468,7 +468,16 @@ $app->get('/countUsers', function (Request $request, Response $response, $args =
 $app->get('/countTransactions', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
     $pdo = new db();
-    $data = $pdo->query("SELECT COUNT(id) as total FROM transaction WHERE statut=1");
+    $data = $pdo->query("SELECT COUNT(id_transaction) as total FROM transaction WHERE statut=1");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
+//get: Count Transactions
+$app->get('/countStas', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT COUNT(id_sta) as total FROM sta WHERE statut=1");
     return $response->write(json_encode($data))
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
