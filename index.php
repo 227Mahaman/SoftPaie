@@ -109,9 +109,10 @@ $app->get('/getIdentity/{id}', function (Request $request, Response $response, $
 $app->post('/addIdentity', function (Request $request, Response $response, $args = []) {//AddIdentity
     //get db object
     $pdo = new db();
-    $sql = "INSERT INTO type_identite (libelle) VALUES (?)";
+    $sql = "INSERT INTO type_identite (libelle, user_create) VALUES (?,?)";
     $libelle = $request->getParam('libelle');
-    $data = $pdo->prepare($sql, [$libelle]);
+    $user = $request->getParam('user_create');
+    $data = $pdo->prepare($sql, [$libelle, $user]);
     return $response->write(json_encode($data))
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
