@@ -179,6 +179,13 @@ $app->post('/addPays', function (Request $request, Response $response, $args = [
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get: Pays
+$app->get('/getPays/{id}', function (Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM pays WHERE id_pays='$id'");
+    return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
+});
 //post: delete (logique) Pays
 $app->post('/delete/pays/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
