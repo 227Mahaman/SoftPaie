@@ -57,7 +57,7 @@ $datas = json_decode($datas, true);
                             </thead>
                             <tbody>
                             <?php
-                                $datas = file_get_contents(ROOT_PATH."index.php/getPays");
+                                $datas = file_get_contents(ROOT_PATH."index.php/getAllPays");
                                 $datas = json_decode($datas, true);
                                 //var_dump($datas);
                                 //die();
@@ -70,7 +70,7 @@ $datas = json_decode($datas, true);
                                     <td><?= $value['nom'];?></td>
                                     <td><?= $value['created_at'];?></td>
                                     <td>
-                                        <a href="index.php?action=lstPays&modif=<?= $value['id_pays'] ?>" class="btn btn-primary">
+                                        <a href="index.php?p=lstPays&modif=<?= $value['id_pays'] ?>" class="btn btn-primary">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                         <form method="post">

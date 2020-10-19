@@ -161,9 +161,9 @@ $app->get('/getTypeUser', function (Request $request, Response $response) {
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
 //get All Pays
-$app->get('/getPays', function (Request $request, Response $response) {
+$app->get('/getAllPays', function (Request $request, Response $response) {
     $pdo = new db();
-    $data = $pdo->query('SELECT * FROM pays');
+    $data = $pdo->query('SELECT * FROM pays WHERE statut=1');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
 //post: delete (logique) Pays
