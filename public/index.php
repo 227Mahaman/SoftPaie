@@ -27,6 +27,17 @@ if (isset($_SESSION['user-auth'])) {
                 }
             }
             include_once('../app/views/view_compteEnt.php');
+        } elseif($p == "compteClient"){//(Compte | Profil) Client
+            if(!empty($_POST)){//Renseignez les informations du client
+                $data = $_POST;
+                $data['user_create'] = $_SESSION['user-auth']['id'];
+                $url = ROOT_PATH."index.php/creationCclient";
+                $add = App::file_post_contents($url, $data);
+                if($add){
+                    header('Location: index.php?p=myCompte');
+                }
+            }
+            include_once('../app/views/view_compteEnt.php');
         } elseif($p == "login"){//Se connecter au plateforme
             include_once('../app/views/view_loginIn.php');
         } elseif($p == "profil"){//My Profil
@@ -308,7 +319,7 @@ if (isset($_SESSION['user-auth'])) {
                 if(empty($compteClient['0']['id_client'])){//Vérification (Si l'utilisateur n'a pas de compte client)
                     header('Location: index.php?p=compteClient');
                 } else {
-                    header('Location: index.php?p=dashboard');
+                    header('Location: index.php?p=myCompte');
                 }   
             } else {
                 $id = $_SESSION['user-auth']['id'];
