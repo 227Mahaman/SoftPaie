@@ -15,6 +15,8 @@ $identites = file_get_contents(ROOT_PATH."index.php/getIdentites");
 $identites = json_decode($identites, true);
 $pays = file_get_contents(ROOT_PATH."index.php/getAllPays");
 $pays = json_decode($pays, true);
+$sta = file_get_contents(ROOT_PATH."index.php/getStas");
+$sta = json_decode($pays, true);
 ?>
 <!-- MAIN CONTENT -->
 <div class="main-content">
