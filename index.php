@@ -279,6 +279,18 @@ $app->post('/update/commission/{id}', function (Request $request, Response $resp
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//post: delete (logique) Commission
+$app->post('/delete/commission/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $date = new DateTime('now');
+    $d = $date->format("Y-m-d h:i:s");
+    $sql= "UPDATE commission SET statut=?, update_at=? WHERE id_commission=?";
+    $data = $pdo->prepare($sql, [0, $d, $id]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //post: add STA
 $app->post('/addSta', function (Request $request, Response $response, $args = []) {//AddIdentity
     //get db object
