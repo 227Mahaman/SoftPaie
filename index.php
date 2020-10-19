@@ -499,4 +499,10 @@ $app->get('/countStas', function (Request $request, Response $response, $args = 
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get: All Clients
+$app->get('/getClients', function (Request $request, Response $response) {
+    $pdo = new db();
+    $data = $pdo->query('SELECT * FROM client WHERE statut=1');
+    return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
+});
 $app->run();
