@@ -166,6 +166,18 @@ $app->get('/getPays', function (Request $request, Response $response) {
     $data = $pdo->query('SELECT * FROM pays');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//post: delete (logique) Pays
+$app->post('/delete/pays/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $date = new DateTime('now');
+    $d = $date->format("Y-m-d h:i:s");
+    $sql= "UPDATE pays SET statut=?, update_at=? WHERE id_pays=?";
+    $data = $pdo->prepare($sql, [0, $d, $id]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //get All Entreprise Clients
 $app->get('/getEntClients', function (Request $request, Response $response) {
     $pdo = new db();
