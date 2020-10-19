@@ -248,6 +248,15 @@ $app->get('/getTypeEntreprise', function (Request $request, Response $response) 
     $data = $pdo->query('SELECT * FROM type_entreprise');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//get: a single Entreprise
+$app->get('/getTypeEntps/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM type_entreprise WHERE id_type_entreprise='$id'");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //post: delete (logique) TypeEntreprise
 $app->post('/delete/typeEnt/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
