@@ -446,4 +446,13 @@ $app->get('/getSta/{id}', function (Request $request, Response $response, $args 
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get: Count Entreprise Clients
+$app->get('/countEntClients', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT COUNT(id_entreprise) as total FROM entreprise WHERE statut=1");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
