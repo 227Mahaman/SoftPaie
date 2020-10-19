@@ -251,7 +251,7 @@ $app->post('/addCommission', function (Request $request, Response $response, $ar
 //get: All Commission
 $app->get('/getCommissions', function (Request $request, Response $response) {
     $pdo = new db();
-    $data = $pdo->query('SELECT * FROM commission');
+    $data = $pdo->query('SELECT * FROM commission WHERE statut=1');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
 //get: a single Commission
