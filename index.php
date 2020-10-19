@@ -248,6 +248,18 @@ $app->get('/getTypeEntreprise', function (Request $request, Response $response) 
     $data = $pdo->query('SELECT * FROM type_entreprise');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//post: delete (logique) TypeEntreprise
+$app->post('/delete/typeEnt/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $date = new DateTime('now');
+    $d = $date->format("Y-m-d h:i:s");
+    $sql= "UPDATE type_entreprise SET statut=?, update_at=? WHERE id_type_entreprise=?";
+    $data = $pdo->prepare($sql, [0, $d, $id]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //make a post request Création de compte Entreprise
 $app->post('/creationCompte', function (Request $request, Response $response, $args = []) {//Création de Compte Entreprise
     //get db object
