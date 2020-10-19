@@ -166,6 +166,19 @@ $app->get('/getAllPays', function (Request $request, Response $response) {
     $data = $pdo->query('SELECT * FROM pays WHERE statut=1');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//post: Ajout Pays
+$app->post('/addPays', function (Request $request, Response $response, $args = []) {//AddCommission
+    //get db object
+    $pdo = new db();
+    $sql = "INSERT INTO pays (code, nom, user_create) VALUES (?,?,?)";
+    $code = $request->getParam('code');
+    $nom = $request->getParam('nom');
+    $user = $request->getParam('user_create');
+    $data = $pdo->prepare($sql, [$code, $nom, $user]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //post: delete (logique) Pays
 $app->post('/delete/pays/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
