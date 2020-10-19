@@ -46,6 +46,10 @@
 									<label for="signin-password" class="control-label sr-only">Mot de passe</label>
 									<input type="password" class="form-control" id="signin-password" name="mot_pass" placeholder="Password">
 								</div>
+								<select name="type_user" class="form-control">
+									<option value="2">Entreprise</option>
+									<option value="3">Client</option>
+								</select>
 								<button type="submit" class="btn btn-primary btn-lg btn-block">Inscription</button>
 								<div class="bottom">
 									<span class="helper-text"><i class="fa fa-user"></i> J'ai déjà un compte, <a href="index.php?p=login">Me connecter</a></span>
