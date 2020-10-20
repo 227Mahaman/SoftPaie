@@ -96,15 +96,16 @@ ob_start();
                             </thead>
                             <tbody>
                                 <?php
-                                //$id = $_SESSION['user-auth']['entreprise'];
                                 $datas = file_get_contents(ROOT_PATH."index.php/getMyTransaction/".$id);
                                 $datas = json_decode($datas, true);
                                 if (is_array($datas) || is_object($datas)) {
-                                    foreach ($datas as $value) {  
+                                    foreach ($datas as $value) {
+                                        $client =  file_get_contents(ROOT_PATH."index.php/getClient/".$value['id_client']);
+                                        $client = json_decode($client, true);
                                     ?>
                                     <tr>
                                         <td><a href="#"><?= $value['id_transaction'];?></a></td>
-                                        <td><?= $value['codeclient'];?></td>
+                                        <td><?= $client['0']['tel'];?></td>
                                         <td><?= $value['montant_transaction'];?> FCFA</td>
                                         <td><?= $value['created_at'];?></td>
                                         <?php if($value['statut'] == 1){?>
