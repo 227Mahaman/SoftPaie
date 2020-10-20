@@ -17,7 +17,10 @@ if (isset($_SESSION['user-auth'])) {
 				$add = App::file_post_contents($url, $data);
 				//die(var_dump($add));
 				if($add){
-					header('Location: index.php?p=lstTypeEnt');
+					session_destroy();
+					header('Location: index.php?p=message');
+				} else {
+					header('Location: index.php?p=message');
 				}
 			}
             include_once('views/paiement.php');
