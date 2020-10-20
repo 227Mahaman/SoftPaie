@@ -505,4 +505,19 @@ $app->get('/getClients', function (Request $request, Response $response) {
     $data = $pdo->query('SELECT * FROM client WHERE statut=1');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//post: Transaction
+$app->post('/paiement', function (Request $request, Response $response, $args = []) {//AddIdentity
+    //get db object
+    $pdo = new db();
+    $sql = "INSERT INTO transaction (id_client, id_entreprise, id_commission, id_sta, montant_transaction) VALUES (?,?,?,?,?)";
+    $client = $request->getParam('id_client');
+    $entreprise = $request->getParam('id_entreprise');
+    $commission = $request->getParam('id_commission');
+    $sta = $request->getParam('id_sta');
+    $montant = $request->getParam('montant_transaction');
+    $data = $pdo->prepare($sql, [$client, $entreprise, $commission, $sta, $montant]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
