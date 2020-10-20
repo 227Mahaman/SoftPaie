@@ -10,6 +10,16 @@ extract($_GET);
 if (isset($_SESSION['user-auth'])) {
 	if(!empty($_GET['p'])){
 		if ($p == "paiement") {//Paiement
+			if (!empty($_POST)) {//
+				$data = $_POST;
+				$data['id_client'] = $_SESSION['user-auth']['client'];
+				$url = ROOT_PATH."index.php/paiement";
+				$add = App::file_post_contents($url, $data);
+				//die(var_dump($add));
+				if($add){
+					header('Location: index.php?p=lstTypeEnt');
+				}
+			}
             include_once('views/paiement.php');
         }
 	}
@@ -17,12 +27,13 @@ if (isset($_SESSION['user-auth'])) {
 } elseif(!empty($p) && $p == "login"){
 	include_once('views/login.php');
 } else  {
-	if (!empty($_POST)) {//
+	if (!empty($_POST)) {//Connexion
         $data = $_POST;
         $pass = sha1($data['mot_pass']);
         $pdo = new db();
 		$user = $pdo->prepare("SELECT * FROM users WHERE pseudo=? AND mot_pass=?", [$data['pseudo'], $pass]);
 		if (empty($user)) {
+			die('Acces denied');
             $_SESSION['messages'] = "Erreur authentification";
         } else {
 			$_SESSION['user-auth']['id'] = $user['0']['id'];
