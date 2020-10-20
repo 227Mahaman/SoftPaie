@@ -505,6 +505,15 @@ $app->get('/getClients', function (Request $request, Response $response) {
     $data = $pdo->query('SELECT * FROM client WHERE statut=1');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//get: a single Client
+$app->get('/getClient/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM client WHERE id_client='$id'");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //post: Transaction
 $app->post('/paiement', function (Request $request, Response $response, $args = []) {//AddIdentity
     //get db object
