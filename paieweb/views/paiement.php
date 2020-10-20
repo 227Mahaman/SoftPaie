@@ -144,8 +144,15 @@
                                     <div class="form-group">
                                         <select class="form-control" name="id_sta">
                                             <option class="hidden"  selected disabled>Choisir la société de transfert</option>
-                                            <option>NITA</option>
-                                            <option>Al-IZZA</option>
+                                            <?php
+                                                $sta = file_get_contents(ROOT_PATH."index.php/getStas");
+                                                $sta = json_decode($sta, true);
+                                                if (is_array($sta) || is_object($sta)) {
+                                                    foreach ($sta as $value) {?>
+                                                    <option value="<?= $value['id_sta'];?>"><?= $value['nom'];?></option>
+                                                    <?php }
+                                                }
+                                            ?>
                                         </select>
                                     </div>
                                     <input type="submit" class="btnRegister"  value="Payer"/>
