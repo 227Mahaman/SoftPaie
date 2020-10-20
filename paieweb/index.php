@@ -26,7 +26,7 @@ if (isset($_SESSION['user-auth'])) {
             include_once('views/paiement.php');
         }
 	}
-	include_once('views/login.php');
+	//include_once('views/login.php');
 } elseif(!empty($p) && $p == "login"){
 	include_once('views/login.php');
 } else  {
