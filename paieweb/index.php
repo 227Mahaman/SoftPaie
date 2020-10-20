@@ -2,7 +2,7 @@
 session_start();
 extract($_GET);
 if (isset($_SESSION['user-auth'])) {
-	include_once('../app/views/view_dashboard.php');
+	include_once('views/paiement.php');
 } elseif(!empty($p) && $p == "login"){
 
 } else  {
@@ -14,5 +14,5 @@ if (isset($_SESSION['user-auth'])) {
             header('Location: index.php?p=login');
         }
     }
-    require('views/paiement.php');
+    require('views/login.php');
 }
