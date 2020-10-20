@@ -138,7 +138,16 @@
                                     <div class="form-group">
                                         <select class="form-control" name="id_entreprise">
                                             <option class="hidden"  selected disabled>Choisir l'entreprise</option>
-                                            <option>NeAkoyDev</option>
+                                            <?php
+                                                $datas = file_get_contents(ROOT_PATH."index.php/getEntClients");
+                                                $datas = json_decode($datas, true);
+                                                if (is_array($datas) || is_object($datas)) {
+                                                    foreach ($datas as $value) {  
+                                                    ?>
+                                                    <option  value="<?= $value['id_entreprise'];?>"><?= $value['nom'];?></option>
+                                                    <?php }
+                                                }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
