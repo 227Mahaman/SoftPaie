@@ -43,6 +43,7 @@ if (isset($_SESSION['user-auth'])) {
             $_SESSION['user-auth']['pseudo'] = $user['0']['pseudo'];
             $type= $pdo->prepare("SELECT * FROM type_users where id_typeuser=?", [$user['0']['type_user']]);
 			$_SESSION['user-auth']['typeUser'] = $type['0']['label'];
+			$id = $_SESSION['user-auth']['id'];
 			$compteClient = $pdo->prepare("SELECT * FROM client WHERE statut=1 AND user_create=?", [$id]);
             $_SESSION['user-auth']['client'] = $compteClient['0']['id_client'];//ID Client récuperé
 			if($_SESSION['user-auth']['typeUser']==="Client"){//Verification si c'est un Client
