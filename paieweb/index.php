@@ -24,7 +24,9 @@ if (isset($_SESSION['user-auth'])) {
 				}
 			}
             include_once('views/paiement.php');
-        }
+        } elseif($p == "message"){
+			include_once('views/message.php');
+		}
 	}
 	//include_once('views/login.php');
 } elseif(!empty($p) && $p == "login"){
