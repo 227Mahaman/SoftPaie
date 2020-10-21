@@ -389,6 +389,26 @@ if (isset($_SESSION['user-auth'])) {
                 );
                 $i++;
             }//fin foreach
+            //**********4.récupération de la liste des actions autorisées du bloc parametre*********************
+            $sql = "SELECT  g.id_groupe,icon_groupe, icon_action, libelle_groupe, p.id_action, libelle_action, url_action
+                FROM action a, profil_has_action p, groupe_action g
+                WHERE a.id_action = p.id_action and a.id_groupe=g.id_groupe
+                and id_profil=$id_profil and bloc_menu='parametre'
+                order by ordre_affichage_groupe asc, g.id_groupe,  ordre_affichage_action asc";
+            $result_compte = $pdo->query($sql);
+            //initialisation de la variable de session pour le bloc parametre
+            $_SESSION['bloc_parametre']= array();
+            $i=0;
+            foreach($result_parametre as $row_parametre){
+                $_SESSION['bloc_parametre'][$i] = array('id_groupe' => $row_parametre['id_groupe'],
+                                                     'libelle_groupe' => $row_parametre['libelle_groupe'],
+                                                      'icon_action' => $row_parametre['icon_action'],
+                                                     'id_action' => $row_parametre['id_action'],
+                                                     'libelle_action' => $row_parametre['libelle_action'],
+                                                     'url_action' => $row_parametre['url_action']
+                );
+                $i++;
+            }//fin foreach
             //header('Location: index.php?p=dashboard');
             if($_SESSION['user-auth']['typeUser']==="Administrateur"){//Verification si c'est un Administrateur
                 header('Location: index.php?p=dashBoard');
