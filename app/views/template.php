@@ -114,12 +114,30 @@
 							<a href="#subPages2" data-toggle="collapse" class="collapsed"><i class="lnr lnr-briefcase"></i> <span>Configuration</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages2" class="collapse ">
 								<ul class="nav">
-									<li><a href="index.php?p=addCommission" class="">Ajouter une commission</a></li>
+									<!--liens bloc "config"-->
+									<?php
+									$id_current_group = 0;
+									$tab_longueur = sizeof($_SESSION['bloc_config']);
+									for($i=0; $i<$tab_longueur; $i++) {
+									$tab_config = $_SESSION['bloc_config'][$i];
+									//condition d'ouverture d'un nouveau menu
+									//if( $id_current_group != $tab_simple['id_groupe']){
+									//if($id_current_group > 0)
+									//	echo '</ul> </li>'; //fermeture du groupe precedent
+									?>
+									<?php if(!empty($tab_config['libelle_action'])):?>
+										<li><a href="index.php?p=<?= $tab_config['url_action'];?>" class="<?= $tab_config['icon_groupe']; ?>"><?= $tab_config['libelle_action']; ?></a></li>
+										<?php endif;?>
+									<?php
+									$id_current_group = $tab_config['id_groupe'];
+									}//fin for
+									?>
+									<!--<li><a href="index.php?p=addCommission" class="">Ajouter une commission</a></li>
 									<li><a href="index.php?p=lstCommission" class="">Liste Commission</a></li>
 									<li><a href="index.php?p=sta" class="">Dépôt | STA</a></li>
 									<li><a href="index.php?p=identite" class="">Identité</a></li>
 									<li><a href="index.php?p=lstPays" class="lnr lnr-city">Pays</a></li>
-									<li><a href="index.php?p=lstTypeEnt" class="lnr lnr-list">Type Entreprise</a></li>
+									<li><a href="index.php?p=lstTypeEnt" class="lnr lnr-list">Type Entreprise</a></li>-->
 								</ul>
 							</div>
 						</li>
