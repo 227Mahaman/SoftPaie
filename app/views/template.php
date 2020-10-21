@@ -175,9 +175,27 @@
 							<a href="#subPages4" data-toggle="collapse" class="collapsed"><i class="lnr lnr-code"></i> <span>Paramètre</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages4" class="collapse ">
 								<ul class="nav">
-									<li><a href="index.php?p=api_cle" class="">Api</a></li>
+									<!--liens bloc "compte"-->
+									<?php
+									$id_current_group = 0;
+									$tab_longueur = sizeof($_SESSION['bloc_parametre']);
+									for($i=0; $i<$tab_longueur; $i++) {
+									$tab_parametre = $_SESSION['bloc_parametre'][$i];
+									//condition d'ouverture d'un nouveau menu
+									//if( $id_current_group != $tab_simple['id_groupe']){
+									//if($id_current_group > 0)
+									//	echo '</ul> </li>'; //fermeture du groupe precedent
+									?>
+									<?php if(!empty($tab_parametre['libelle_action'])):?>
+										<li><a href="index.php?p=index.php?p=<?= $tab_parametre['url_action'];?>" class="<?= $tab_parametre['icon_action']; ?>"><?= $tab_parametre['libelle_action']; ?></a></li>
+									<!--<li><a href="index.php?p=api_cle" class="">Api</a></li>
 									<li><a href="index.php?p=#" class="">#</a></li>
-									<li><a href="index.php?p=#" class="">#</a></li>
+									<li><a href="index.php?p=#" class="">#</a></li>-->
+									<?php endif;?>
+									<?php
+									$id_current_group = $tab_parametre['id_groupe'];
+									}//fin for
+									?>
 								</ul>
 							</div>
 						</li>
