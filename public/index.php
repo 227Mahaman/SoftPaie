@@ -330,7 +330,7 @@ if (isset($_SESSION['user-auth'])) {
             //le profil du user
             $id_profil = $user['0']['type_user']; 
             //********1.récupération de la liste des actions autorisées du bloc Administration***********************************
-            $sql = "SELECT  g.id_groupe,icon_groupe, libelle_groupe, p.id_action, libelle_action, url_action
+            $sql = "SELECT  g.id_groupe,icon_groupe, icon_action, libelle_groupe, p.id_action, libelle_action, url_action
                 FROM action a, profil_has_action p, groupe_action g
                 WHERE a.id_action = p.id_action and a.id_groupe=g.id_groupe
                 and id_profil=? and bloc_menu='administration'
@@ -342,7 +342,7 @@ if (isset($_SESSION['user-auth'])) {
             foreach($result_administration as $row_administration){
                 $_SESSION['bloc_administration'][$i] = array('id_groupe' => $row_administration['id_groupe'],
                                                      'libelle_groupe' => $row_administration['libelle_groupe'],
-                                                     'icon_groupe' => $row_administration['icon_groupe'],
+                                                     'icon_action' => $row_compte['icon_action'],
                                                      'id_action' => $row_administration['id_action'],
                                                      'libelle_action' => $row_administration['libelle_action'],
                                                      'url_action' => $row_administration['url_action']
@@ -350,7 +350,7 @@ if (isset($_SESSION['user-auth'])) {
                 $i++;
             }//fin foreach
             //**********2.récupération de la liste des actions autorisées du bloc configuration*********************
-            $sql = "SELECT  g.id_groupe,icon_groupe, libelle_groupe, p.id_action, libelle_action, url_action
+            $sql = "SELECT  g.id_groupe,icon_groupe, icon_action, libelle_groupe, p.id_action, libelle_action, url_action
                 FROM action a, profil_has_action p, groupe_action g
                 WHERE a.id_action = p.id_action and a.id_groupe=g.id_groupe
                 and id_profil=$id_profil and bloc_menu='config'
@@ -362,7 +362,7 @@ if (isset($_SESSION['user-auth'])) {
             foreach($result_config as $row_config){
                 $_SESSION['bloc_config'][$i] = array('id_groupe' => $row_config['id_groupe'],
                                                      'libelle_groupe' => $row_config['libelle_groupe'],
-                                                      'icon_groupe' => $row_config['icon_groupe'],
+                                                     'icon_action' => $row_compte['icon_action'],
                                                      'id_action' => $row_config['id_action'],
                                                      'libelle_action' => $row_config['libelle_action'],
                                                      'url_action' => $row_config['url_action']
