@@ -327,6 +327,48 @@ if (isset($_SESSION['user-auth'])) {
             $_SESSION['user-auth']['pseudo'] = $user['0']['pseudo'];
             $type= $pdo->prepare("SELECT * FROM type_users where id_typeuser=?", [$user['0']['type_user']]);
             $_SESSION['user-auth']['typeUser'] = $type['0']['label'];
+            //le profil du user
+            $id_profil = $user['0']['type_user']; 
+            //********1.récupération de la liste des actions autorisées du bloc Administration***********************************
+            $sql = "SELECT  g.id_groupe,icon_groupe, libelle_groupe, p.id_action, libelle_action, url_action
+                FROM action a, profil_has_action p, groupe_action g
+                WHERE a.id_action = p.id_action and a.id_groupe=g.id_groupe
+                and id_profil=? and bloc_menu='administration'
+                order by libelle_groupe asc, ordre_affichage_action asc";
+            $result_administration = $pdo->prepare($sql, [$id_profil]);
+            //initialisation de la variable de session pour administration
+            $_SESSION['bloc_administration']= array();
+            $i=0;
+            foreach($result_administration as $row_administration){
+                $_SESSION['bloc_administration'][$i] = array('id_groupe' => $row_administration['id_groupe'],
+                                                     'libelle_groupe' => $row_administration['libelle_groupe'],
+                                                     'icon_groupe' => $row_administration['icon_groupe'],
+                                                     'id_action' => $row_administration['id_action'],
+                                                     'libelle_action' => $row_administration['libelle_action'],
+                                                     'url_action' => $row_administration['url_action']
+                );
+                $i++;
+            }//fin foreach
+            //**********2.récupération de la liste des actions autorisées du bloc config*********************
+            $sql = "SELECT  g.id_groupe,icon_groupe, libelle_groupe, p.id_action, libelle_action, url_action
+                FROM action a, profil_has_action p, groupe_action g
+                WHERE a.id_action = p.id_action and a.id_groupe=g.id_groupe
+                and id_profil=$id_profil and bloc_menu='config'
+                order by ordre_affichage_groupe asc, g.id_groupe,  ordre_affichage_action asc";
+            $result_config = $pdo->query($sql);
+            //initialisation de la variable de session pour le bloc config
+            $_SESSION['bloc_config']= array();
+            $i=0;
+            foreach($result_config as $row_config){
+                $_SESSION['bloc_config'][$i] = array('id_groupe' => $row_config['id_groupe'],
+                                                     'libelle_groupe' => $row_config['libelle_groupe'],
+                                                      'icon_groupe' => $row_config['icon_groupe'],
+                                                     'id_action' => $row_config['id_action'],
+                                                     'libelle_action' => $row_config['libelle_action'],
+                                                     'url_action' => $row_config['url_action']
+                                                );
+                $i++;
+            }//fin foreach
             //header('Location: index.php?p=dashboard');
             if($_SESSION['user-auth']['typeUser']==="Administrateur"){//Verification si c'est un Administrateur
                 header('Location: index.php?p=dashBoard');

@@ -82,14 +82,31 @@
 							<a href="#subPages1" data-toggle="collapse" class="collapsed"><i class="lnr lnr-flag"></i> <span>Administration</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages1" class="collapse ">
 								<ul class="nav">
-									<li><a href="index.php?p=role" class="">Rôle</a></li>
-									<li><a href="index.php?p=module" class="">Module</a></li>
+									<!--liens bloc "administration"-->
+									<?php
+									$id_current_group = 0;
+									$tab_longueur = sizeof($_SESSION['bloc_administration']);
+									for($i=0; $i<$tab_longueur; $i++) {
+									$tab_simple = $_SESSION['bloc_administration'][$i];
+									//condition d'ouverture d'un nouveau menu
+									//if( $id_current_group != $tab_simple['id_groupe']){
+									//if($id_current_group > 0)
+									//	echo '</ul> </li>'; //fermeture du groupe precedent
+									?>
+									<?php if(!empty($tab_simple['libelle_action'])):?>
+									<li><a href="index.php?p=<?= $tab_simple['url_action'];?>" class="<?= $tab_simple['icon_groupe']; ?>"><?= $tab_simple['libelle_action'];?></a></li>
+									<?php endif;?>
+									<?php
+									$id_current_group = $tab_simple['id_groupe'];
+									}//fin for
+									?>
+									<!--<li><a href="index.php?p=module" class="">Module</a></li>
 									<li><a href="index.php?p=addUser" class="lnr lnr-users">Ajout Utilisateur</a></li>
 									<li><a href="index.php?p=lstUser" class="lnr lnr-list">Liste Utilisateur</a></li>
 									<li><a href="index.php?p=addTypeUser" class="">Ajout Type Utilisateur</a></li>
 									<li><a href="index.php?p=lstTypeUser" class="">Liste Type Utilisateur</a></li>
 									<li><a href="index.php?p=lstEntClt" class="lnr lnr-store">Liste Entreprise Client</a></li>
-									<li><a href="index.php?p=lstClt" class="lnr lnr-user">Liste Client</a></li>
+									<li><a href="index.php?p=lstClt" class="lnr lnr-user">Liste Client</a></li>-->
 								</ul>
 							</div>
 						</li>
