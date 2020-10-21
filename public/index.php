@@ -349,7 +349,7 @@ if (isset($_SESSION['user-auth'])) {
                 );
                 $i++;
             }//fin foreach
-            //**********2.récupération de la liste des actions autorisées du bloc config*********************
+            //**********2.récupération de la liste des actions autorisées du bloc configuration*********************
             $sql = "SELECT  g.id_groupe,icon_groupe, libelle_groupe, p.id_action, libelle_action, url_action
                 FROM action a, profil_has_action p, groupe_action g
                 WHERE a.id_action = p.id_action and a.id_groupe=g.id_groupe
@@ -367,6 +367,26 @@ if (isset($_SESSION['user-auth'])) {
                                                      'libelle_action' => $row_config['libelle_action'],
                                                      'url_action' => $row_config['url_action']
                                                 );
+                $i++;
+            }//fin foreach
+            //**********3.récupération de la liste des actions autorisées du bloc compte*********************
+            $sql = "SELECT  g.id_groupe,icon_groupe, icon_action, libelle_groupe, p.id_action, libelle_action, url_action
+                FROM action a, profil_has_action p, groupe_action g
+                WHERE a.id_action = p.id_action and a.id_groupe=g.id_groupe
+                and id_profil=$id_profil and bloc_menu='compte'
+                order by ordre_affichage_groupe asc, g.id_groupe,  ordre_affichage_action asc";
+            $result_compte = $pdo->query($sql);
+            //initialisation de la variable de session pour le bloc compte
+            $_SESSION['bloc_compte']= array();
+            $i=0;
+            foreach($result_compte as $row_compte){
+                $_SESSION['bloc_compte'][$i] = array('id_groupe' => $row_compte['id_groupe'],
+                                                     'libelle_groupe' => $row_compte['libelle_groupe'],
+                                                      'icon_action' => $row_compte['icon_action'],
+                                                     'id_action' => $row_compte['id_action'],
+                                                     'libelle_action' => $row_compte['libelle_action'],
+                                                     'url_action' => $row_compte['url_action']
+                );
                 $i++;
             }//fin foreach
             //header('Location: index.php?p=dashboard');
