@@ -147,9 +147,27 @@
 							<a href="#subPages3" data-toggle="collapse" class="collapsed"><i class="lnr lnr-store"></i> <span>Compte</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages3" class="collapse ">
 								<ul class="nav">
-									<li><a href="index.php?p=transaction" class="">Transaction</a></li>
+									<!--liens bloc "compte"-->
+									<?php
+									$id_current_group = 0;
+									$tab_longueur = sizeof($_SESSION['bloc_compte']);
+									for($i=0; $i<$tab_longueur; $i++) {
+									$tab_compte = $_SESSION['bloc_compte'][$i];
+									//condition d'ouverture d'un nouveau menu
+									//if( $id_current_group != $tab_simple['id_groupe']){
+									//if($id_current_group > 0)
+									//	echo '</ul> </li>'; //fermeture du groupe precedent
+									?>
+									<?php if(!empty($tab_compte['libelle_action'])):?>
+										<li><a href="index.php?p=<?= $tab_compte['url_action'];?>" class="<?= $tab_compte['icon_action']; ?>"><?= $tab_compte['libelle_action']; ?></a></li>
+									<!--<li><a href="index.php?p=transaction" class="">Transaction</a></li>
 									<li><a href="index.php?p=solde" class="">Solde</a></li>
-									<li><a href="index.php?p=paiement" class="">Page de paiement</a></li>
+									<li><a href="index.php?p=paiement" class="">Page de paiement</a></li>-->
+									<?php endif;?>
+									<?php
+									$id_current_group = $tab_compte['id_groupe'];
+									}//fin for
+									?>
 								</ul>
 							</div>
 						</li>
