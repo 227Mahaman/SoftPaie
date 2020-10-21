@@ -101,7 +101,7 @@ $sta = json_decode($sta, true);
                                     if(is_array($typeEnt) || is_object($typeEnt)) {
                                         foreach ($typeEnt as $value) {  
                                         ?>
-                                        <option <?//= (is_array($datas) || is_object($datas))? ($value['id_entreprise'] == $datas['0']['type_entreprise'])? "selected" : "" : "" ?> value="<?= $value['id_entreprise']?>"><?= $value['libelle']?></option>
+                                        <option <?//= (is_array($datas) || is_object($datas))? ($value['id_entreprise'] == $datas['0']['type_entreprise'])? "selected" : "" : "" ?> value="<?= $value['id_type_entreprise']?>"><?= $value['libelle']?></option>
                                         <?php }
                                     }
                                 ?>
@@ -113,7 +113,7 @@ $sta = json_decode($sta, true);
                                     if(is_array($identites) || is_object($identites)) {
                                         foreach ($identites as $value) {  
                                         ?>
-                                        <option <?//= (is_array($datas) || is_object($datas))? ($value['id_identite'] == $datas['0']['identite'])? "selected" : "" : "" ?> value="<?= $value['id_identite']?>"><?= $value['libelle']?></option>
+                                        <option <?//= (is_array($datas) || is_object($datas))? ($value['id_identite'] == $datas['0']['identite'])? "selected" : "" : "" ?> value="<?= $value['id_type_identite']?>"><?= $value['libelle']?></option>
                                         <?php }
                                     }
                                 ?>

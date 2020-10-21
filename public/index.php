@@ -20,6 +20,7 @@ if (isset($_SESSION['user-auth'])) {
             if(!empty($_POST)){//Renseignez les informations de l'entreprise
                 $data = $_POST;
                 $data['user_create'] = $_SESSION['user-auth']['id'];
+                //var_dump($data);die;
                 $url = ROOT_PATH."index.php/creationCompte";
                 $add = App::file_post_contents($url, $data);
                 if($add){
