@@ -1,6 +1,8 @@
 <?php
 $title = "Module";
 if (isset($_GET['role'])) extract($_GET);
+$profil = file_get_contents(ROOT_PATH."index.php/getTypeUser/".$role);
+$profil = json_decode($profil, true);
 ob_start();
 ?>
 
@@ -13,7 +15,7 @@ ob_start();
                 <!-- CONDENSED TABLE -->
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Données: <?= isset($_GET['role']) ? $profil : 'Module' ?></h3>
+                        <h3 class="panel-title">Données: <?= isset($_GET['role']) ? $profil['label'] : 'Module' ?></h3>
                     </div>
                     <div class="panel-body">
                         <table class="table table-condensed">
