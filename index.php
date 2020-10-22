@@ -615,6 +615,16 @@ $app->post('/update/module/{id}', function (Request $request, Response $response
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get: delete (logique) module
+$app->get('/delete/module/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $sql= "UPDATE groupe_action SET statut=? WHERE id_groupe=?";
+    $pdo = new db();
+    $data = $pdo->prepare($sql,[0, $id]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //get: all  action (menu)
 $app->get('/getActions', function (Request $request, Response $response) {
     $pdo = new db();
