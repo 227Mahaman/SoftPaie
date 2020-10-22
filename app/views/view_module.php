@@ -71,7 +71,7 @@ ob_start();
                 </form>
             </div>
             <?php endif; ?>
-            <div class="col-md-12">
+            <div class="<?= (isset($_GET['role'])) ? 'col-md-12' : 'col-md-8' ?>">
                 <!-- CONDENSED TABLE -->
                 <div class="panel">
                     <div class="panel-heading">
