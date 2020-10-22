@@ -97,8 +97,10 @@ ob_start();
                                 $datas = json_decode($datas, true);
                                 if (is_array($datas) || is_object($datas)) {
                                     foreach ($datas as $value) {
-                                        $actProfil = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$value['id_action']."/".$role);
-                                        $actProfil = json_decode($actProfil, true); 
+                                        if(isset($_GET['role'])){//Vérification
+                                            $actProfil = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$value['id_action']."/".$role);
+                                            $actProfil = json_decode($actProfil, true);
+                                        }
                                     ?>
                                 <tr>
                                     <td><?= $value['id_action'];?></td>
