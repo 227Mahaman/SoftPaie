@@ -544,4 +544,19 @@ $app->get('/getActions', function (Request $request, Response $response) {
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get: selected
+$app->get('/{table}/{field}/{value}/{field2}/{value2}', function (Request $request, Response $response) {
+    $table = $request->getAttribute('table');
+    $field = $request->getAttribute('field');
+    $value = $request->getAttribute('value');
+    $field2 = $request->getAttribute('field2');
+    $value2 = $request->getAttribute('value2');
+    //$sql = "SELECT * FROM ? WHERE ?=? AND ?=?";
+    $pdo = new db();
+$data = $pdo->query("SELECT * FROM $table WHERE $field='$value' AND $field2='$value2'");
+    //$data = $pdo->prepare($sql, [$table, $field, $value, $field2, $value2]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
