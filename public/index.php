@@ -333,7 +333,7 @@ if (isset($_SESSION['user-auth'])) {
                 }
             } else {
                 if(!empty($_POST)){
-                    $id = $_POST['id_action'];
+                    $id = $_POST['id_groupe'];
                     if(isset($id)){//Suppression (Logique) Module
                         $url = ROOT_PATH."index.php/delete/module/".$id;
                         $delete = file_get_contents($url);
