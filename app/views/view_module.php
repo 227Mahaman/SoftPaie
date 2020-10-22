@@ -4,6 +4,8 @@ if (isset($_GET['role'])){
     extract($_GET);
     $profil = file_get_contents(ROOT_PATH."index.php/getTypeUser/".$role);
     $profil = json_decode($profil, true);
+    $actionProfil = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$role);
+    $actionProfil = json_decode($actionProfil, true);
 } else {
     //Récuperation des profils
     $profils = file_get_contents(ROOT_PATH."index.php/getTypeUser");
@@ -54,6 +56,7 @@ ob_start();
                             <label for="profil">Profil</label>
                             <select class="form-control" name="type_user">
                                 <?php
+                                    $tab_longueur = sizeof($profils);
                                     if(is_array($profils) || is_object($profils)) {
                                         foreach ($profils as $value) {  
                                         ?>
@@ -92,8 +95,6 @@ ob_start();
                             <?php
                                 $datas = file_get_contents(ROOT_PATH."index.php/getActions");
                                 $datas = json_decode($datas, true);
-                                //var_dump($datas);
-                                //die();
                                 if (is_array($datas) || is_object($datas)) {
                                     foreach ($datas as $value) {  
                                     ?>
@@ -112,7 +113,7 @@ ob_start();
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <div class="checkbox">
                                                 <label>
-                                                    <input class="module_is_checked" onchange="addPermissionRole(this)" value="<?= $value['id_action'] ?>" type="checkbox" <?= ($value['id_groupe']==$role) ? 'checked' : '';?>> ajouter au profil
+                                                    <input class="module_is_checked" onchange="addPermissionRole(this)" value="<?= $value['id_action'] ?>" type="checkbox" <?= ($actionProfil['id_action']==$value['id_action']) ? 'checked' : '';?> > ajouter au profil
                                                 </label>
                                                 </div>
                                             </div>
