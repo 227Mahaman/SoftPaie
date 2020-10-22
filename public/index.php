@@ -323,6 +323,8 @@ if (isset($_SESSION['user-auth'])) {
             include_once('../app/views/view_role.php');
         } elseif($p == "module"){
             include_once('../app/views/view_module.php');
+        } elseif($p == "menu"){
+            include_once('../app/views/view_menu.php');
         }
     } else{
         include_once('../app/views/view_dashboard.php');
