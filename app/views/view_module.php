@@ -1,5 +1,11 @@
 <?php
 $title = "Module";
+$datas = '';
+if(!empty($_GET['modif']) && ctype_digit($_GET['modif'])){
+    $id = $_GET['modif'];
+    $datas = file_get_contents(ROOT_PATH."index.php/getModule/".$id);
+    $datas = json_decode($datas, true);
+}
 ob_start();
 ?>
 
