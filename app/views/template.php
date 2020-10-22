@@ -77,7 +77,7 @@
 				<nav>
 					<ul class="nav">
 						<li><a href="index.php?p=dashboard" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-						<?php if($_SESSION['user-auth']['typeUser'] == "Administrateur"):?>
+						<?//php if($_SESSION['user-auth']['typeUser'] == "Administrateur"):?>
 						<li>
 							<a href="#subPages1" data-toggle="collapse" class="collapsed"><i class="lnr lnr-flag"></i> <span>Administration</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages1" class="collapse ">
@@ -141,8 +141,8 @@
 								</ul>
 							</div>
 						</li>
-						<?php endif;?>
-						<?php if($_SESSION['user-auth']['typeUser'] == "Administrateur" || $_SESSION['user-auth']['typeUser'] == "Entreprise"):?>
+						<?//php endif;?>
+						<?//php if($_SESSION['user-auth']['typeUser'] == "Administrateur" || $_SESSION['user-auth']['typeUser'] == "Entreprise"):?>
 						<li>
 							<a href="#subPages3" data-toggle="collapse" class="collapsed"><i class="lnr lnr-store"></i> <span>Compte</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages3" class="collapse ">
@@ -199,7 +199,7 @@
 								</ul>
 							</div>
 						</li>
-						<?php endif;?>
+						<?//php endif;?>
 						<!--<li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
 						<li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
 						<li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
