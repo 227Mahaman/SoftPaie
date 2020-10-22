@@ -1,0 +1,128 @@
+<?php
+$title = "Menu (Action)";
+if (isset($_GET['module'])){
+    extract($_GET);
+    $module = file_get_contents(ROOT_PATH."index.php/getModule/".$module);
+    $module = json_decode($profil, true);
+} else {
+    //Récuperation des modules
+    $modules = file_get_contents(ROOT_PATH."index.php/getModules");
+    $modules = json_decode($modules, true);
+    $datas= '';
+}
+ob_start();
+?>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+    <div class="container-fluid">
+        <h3 class="page-title"></h3>
+        <div class="row">
+            <?php if (!isset($_GET['module'])) : ?>
+            <div class="col-md-4">
+                <form role="form" method="post" enctype="multipart/form-data">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Renseigner les informations</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-">Libellé</i></span>
+                                <input class="form-control" name="libelle_action" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['libelle_action'] : "" ?>" placeholder="Libellé du module (action)" type="text">
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-">Description</i></span>
+                                <input class="form-control" name="description_action" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['description_action'] : "" ?>" placeholder="Description du module" type="text">
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-">URL</i></span>
+                                <input class="form-control" name="url_action" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['url_action'] : "" ?>" placeholder="URL du module" type="text">
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-">Ordre</i></span>
+                                <input class="form-control" name="ordre_affichage_action" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['ordre_affichage_action'] : "" ?>" placeholder="Ordre d'affichage d'action" type="text">
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-">Icon</i></span>
+                                <input class="form-control" name="icon_action" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['icon_action'] : "" ?>" placeholder="lnr lnr-icon / fa fa-icon" type="text">
+                            </div>
+                            <br>
+                            <label for="profil">Module (Groupe)</label>
+                            <select class="form-control" name="id_groupe">
+                                <?php
+                                    if(is_array($modules) || is_object($modules)) {
+                                        foreach ($modules as $value) {  
+                                        ?>
+                                        <option <?= (is_array($datas) || is_object($datas))? ($value['id_groupe'] == $datas['0']['id_groupe'])? "selected" : "" : "" ?> value="<?= $value['id_groupe']?>"><?= $value['libelle_groupe']?></option>
+                                        <?php }
+                                    }
+                                ?>
+                            </select>
+                            <br>
+                        </div>
+                        <div class="panel-footer">
+                            <button type="sumit" class="btn btn-primary btn-block">Ajouter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <?php endif; ?>
+            <div class="<?= (isset($_GET['module'])) ? 'col-md-12' : 'col-md-8' ?>">
+                <!-- CONDENSED TABLE -->
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Données: <?= isset($_GET['module']) ? "Module ".$module['0']['label'] : 'Menu' ?></h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Menu</th>
+                                    <th>Description</th>
+                                    <th>URL</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                                $datas = file_get_contents(ROOT_PATH."index.php/getActions");
+                                $datas = json_decode($datas, true);
+                                if (is_array($datas) || is_object($datas)) {
+                                    foreach ($datas as $value) {
+                                    ?>
+                                <tr>
+                                    <td><?= $value['id_action'];?></td>
+                                    <td><?= $value['libelle_action'];?></td>
+                                    <td><?= $value['description_action'];?></td>
+                                    <td><?= $value['url_action'];?></td>
+                                    <td>
+                                        <?php if (isset($_GET['module'])) : ?>
+                                            
+                                        <?php else : ?>
+                                            <a href="index.php?p=menu&modif=<?= $value['id_action'] ?>" class="btn btn-primary">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                                    <?php }
+                            }?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- END CONDENSED TABLE -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MAIN CONTENT -->
+<?php
+$content = ob_get_clean();
+require('template.php');
+?>
