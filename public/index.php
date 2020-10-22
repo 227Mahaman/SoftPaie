@@ -321,6 +321,8 @@ if (isset($_SESSION['user-auth'])) {
             //     }
             // }
             include_once('../app/views/view_role.php');
+        } elseif($p == "module"){
+            include_once('../app/views/view_module.php');
         }
     } else{
         include_once('../app/views/view_dashboard.php');
