@@ -634,8 +634,8 @@ $app->post('/update/menu/{id}', function (Request $request, Response $response, 
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
-//post: delete (logique) menu
-$app->post('/delete/menu/{id}', function (Request $request, Response $response, $args = []) {
+//get: delete (logique) menu
+$app->get('/delete/menu/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
     $sql= "UPDATE action SET statut=?, update_at=? WHERE id_action=?";
     $pdo = new db();
