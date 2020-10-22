@@ -29,40 +29,23 @@ ob_start();
                         <div class="panel-body">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-">Libellé</i></span>
-                                <input class="form-control" name="libelle_action" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['libelle_action'] : "" ?>" placeholder="Libellé du module (action)" type="text">
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-">Description</i></span>
-                                <input class="form-control" name="description_action" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['description_action'] : "" ?>" placeholder="Description du module" type="text">
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-">URL</i></span>
-                                <input class="form-control" name="url_action" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['url_action'] : "" ?>" placeholder="URL du module" type="text">
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-">Ordre</i></span>
-                                <input class="form-control" name="ordre_affichage_action" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['ordre_affichage_action'] : "" ?>" placeholder="Ordre d'affichage d'action" type="text">
+                                <input class="form-control" name="libelle_groupe" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['libelle_groupe'] : "" ?>" placeholder="Libellé du module (groupe)" type="text">
                             </div>
                             <br>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-">Icon</i></span>
-                                <input class="form-control" name="icon_action" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['icon_action'] : "" ?>" placeholder="lnr lnr-icon / fa fa-icon" type="text">
+                                <input class="form-control" name="icon_groupe" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['icon_groupe'] : "" ?>" placeholder="lnr lnr-icon / fa fa-icon" type="text">
                             </div>
                             <br>
-                            <label for="profil">Profil</label>
-                            <select class="form-control" name="type_user">
-                                <?php
-                                    if(is_array($profils) || is_object($profils)) {
-                                        foreach ($profils as $value) {  
-                                        ?>
-                                        <option <?= (is_array($datas) || is_object($datas))? ($value['id_typeuser'] == $datas['0']['type_user'])? "selected" : "" : "" ?> value="<?= $value['id_typeuser']?>"><?= $value['label']?></option>
-                                        <?php }
-                                    }
-                                ?>
-                            </select>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-">Bloc</i></span>
+                                <input class="form-control" name="bloc_menu" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['bloc_menu'] : "" ?>" placeholder="Bloc pour menu" type="text">
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-">Ordre</i></span>
+                                <input class="form-control" name="ordre_affichage_groupe" value="<?= (is_array($datas) || is_object($datas))? $datas['0']['ordre_affichage_groupe'] : "" ?>" placeholder="Ordre d'affichage module" type="text">
+                            </div>
                             <br>
                         </div>
                         <div class="panel-footer">
