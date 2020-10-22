@@ -324,6 +324,37 @@ if (isset($_SESSION['user-auth'])) {
         } elseif($p == "module"){
             include_once('../app/views/view_module.php');
         } elseif($p == "menu"){
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {//Modif Menu
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $url = ROOT_PATH."index.php/update/menu/".$_GET['modif'];
+                    $update = App::file_post_contents($url, $data);
+                    if($update){
+                        header('Location: index.php?p=menu');
+                    }
+                }
+            } else {
+                if(!empty($_POST)){
+                    $id = $_POST['id_action'];
+                    if(isset($id)){//Suppression (Logique) Menu
+                        $url = ROOT_PATH."index.php/delete/menu/".$id;
+                        $delete = file_get_contents($url);
+                        if($delete){
+                            $_SESSION['message'] = "Opération reussi !!";
+                        } else {
+                            $_SESSION['message'] = "Echec de l'opération!!";
+                        }
+                    } else {//Ajout Menu
+                        $data = $_POST;
+                        //$data['user_create'] = $_SESSION['user-auth']['id'];
+                        $url = ROOT_PATH."index.php/addMenu";
+                        $add = App::file_post_contents($url, $data);
+                        if($add){
+                            header('Location: index.php?p=menu');
+                        }
+                    }
+                }
+            }
             include_once('../app/views/view_menu.php');
         }
     } else{
