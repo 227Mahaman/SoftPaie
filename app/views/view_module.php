@@ -96,7 +96,9 @@ ob_start();
                                 $datas = file_get_contents(ROOT_PATH."index.php/getActions");
                                 $datas = json_decode($datas, true);
                                 if (is_array($datas) || is_object($datas)) {
-                                    foreach ($datas as $value) {  
+                                    foreach ($datas as $value) {
+                                        $actProfil = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$value['id_action']."/".$role);
+                                        $actProfil = json_decode($actProfil, true); 
                                     ?>
                                 <tr>
                                     <td><?= $value['id_action'];?></td>
@@ -113,7 +115,7 @@ ob_start();
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <div class="checkbox">
                                                 <label>
-                                                    <input class="module_is_checked" onchange="addPermissionRole(this)" value="<?= $value['id_action'] ?>" type="checkbox" <?= ($actionProfil['id_action']==$value['id_action']) ? 'checked' : '';?> > ajouter au profil
+                                                    <input class="module_is_checked" onchange="addPermissionRole(this)" value="<?= $value['id_action'] ?>" type="checkbox" <?= (isset($actProfil['0']['id_action']) && $actProfil['0']['id_action']==$value['id_action']) ? 'checked' : '';?> > ajouter au profil
                                                 </label>
                                                 </div>
                                             </div>

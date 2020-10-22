@@ -559,7 +559,7 @@ $data = $pdo->query("SELECT * FROM $table WHERE $field='$value' AND $field2='$va
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
-//get: a single Client
+//get: action by profil
 $app->get('/getActionProfil/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
     $pdo = new db();
@@ -568,7 +568,7 @@ $app->get('/getActionProfil/{id}', function (Request $request, Response $respons
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
-//get: a single Client
+//get: action by profil en fonction de l'action 
 $app->get('/getActionProfil/{action}/{profil}', function (Request $request, Response $response, $args = []) {
     $action = $request->getAttribute('action');
     $profil = $request->getAttribute('profil');
