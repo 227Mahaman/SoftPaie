@@ -587,6 +587,20 @@ $app->get('/getModule/{id}', function (Request $request, Response $response) {
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//post: update Module
+$app->post('/update/module/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $icon = $request->getParam('icon_groupe');
+    $libelle_groupe = $request->getParam('libelle_groupe');
+    $bloc = $request->getParam('bloc_menu');
+    $ordre = $request->getParam('ordre_affichage_groupe');
+    $sql= "UPDATE groupe_action SET id_groupe=?, libelle_groupe=?, bloc_menu=?, ordre_affichage_groupe=? WHERE id_groupe=?";
+    $data = $pdo->prepare($sql, [$libelle_groupe, $icon, $bloc, $ordre, $id]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //get: all  action (menu)
 $app->get('/getActions', function (Request $request, Response $response) {
     $pdo = new db();
