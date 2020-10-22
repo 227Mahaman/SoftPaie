@@ -586,4 +586,13 @@ $app->get('/getModules', function (Request $request, Response $response) {
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get: module
+$app->get('/getModule/{id}', function (Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM groupe_action WHERE id_groupe='$id' statut=1");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
