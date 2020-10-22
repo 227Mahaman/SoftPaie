@@ -86,6 +86,10 @@ ob_start();
                                         <a href="index.php?p=menu&module=<?= $value['id_groupe'] ?>" class="btn btn-info">
                                             <i class="fa fa-eye"></i>
                                         </a>
+                                        <form method="post">
+                                            <input type="hidden" name="id_groupe" value="<?= $value['id_groupe'] ?>">
+                                            <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                                     <?php }
