@@ -4,6 +4,12 @@ if (isset($_GET['module'])){
     extract($_GET);
     $module = file_get_contents(ROOT_PATH."index.php/getModule/".$module);
     $module = json_decode($profil, true);
+} elseif (isset($_GET['role'])){//Rôle (Profil)
+    extract($_GET);
+    $profil = file_get_contents(ROOT_PATH."index.php/getTypeUser/".$role);
+    $profil = json_decode($profil, true);
+    //$actionProfil = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$role);
+    //$actionProfil = json_decode($actionProfil, true);
 } else {
     //Récuperation des modules
     $modules = file_get_contents(ROOT_PATH."index.php/getModules");
@@ -18,7 +24,7 @@ ob_start();
     <div class="container-fluid">
         <h3 class="page-title"></h3>
         <div class="row">
-            <?php if (!isset($_GET['module'])) : ?>
+            <?php if (!isset($_GET['module']) && !isset($_GET['role'])) : ?>
             <div class="col-md-4">
                 <form role="form" method="post" enctype="multipart/form-data">
                     <div class="panel">
@@ -71,11 +77,11 @@ ob_start();
                 </form>
             </div>
             <?php endif; ?>
-            <div class="<?= (isset($_GET['module'])) ? 'col-md-12' : 'col-md-8' ?>">
+            <div class="<?= (isset($_GET['role'])) ? 'col-md-12' : 'col-md-8' ?>">
                 <!-- CONDENSED TABLE -->
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Données: <?= isset($_GET['module']) ? "Module ".$module['0']['label'] : 'Menu' ?></h3>
+                        <h3 class="panel-title">Menu: <?= isset($_GET['role']) ? "Profil ".$profil['0']['label'] : '' ?></h3>
                     </div>
                     <div class="panel-body">
                         <table class="table table-condensed">
@@ -94,6 +100,10 @@ ob_start();
                                 $datas = json_decode($datas, true);
                                 if (is_array($datas) || is_object($datas)) {
                                     foreach ($datas as $value) {
+                                        if(isset($_GET['role'])){//Vérification
+                                            $actProfil = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$value['id_action']."/".$role);
+                                            $actProfil = json_decode($actProfil, true);
+                                        }
                                     ?>
                                 <tr>
                                     <td><?= $value['id_action'];?></td>
@@ -101,8 +111,16 @@ ob_start();
                                     <td><?= $value['description_action'];?></td>
                                     <td><?= $value['url_action'];?></td>
                                     <td>
-                                        <?php if (isset($_GET['module'])) : ?>
-                                            
+                                        <?php if (isset($_GET['role'])) : ?>
+                                            <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <div class="checkbox">
+                                                <label>
+                                                    <input class="module_is_checked" onchange="addPermissionRole(this)" value="<?= $value['id_action'] ?>" type="checkbox" <?= (isset($actProfil['0']['id_action']) && $actProfil['0']['id_action']==$value['id_action']) ? 'checked' : '';?> > ajouter au profil
+                                                </label>
+                                                </div>
+                                            </div>
+                                            </div>
                                         <?php else : ?>
                                             <a href="index.php?p=menu&modif=<?= $value['id_action'] ?>" class="btn btn-primary">
                                                 <i class="fa fa-pencil"></i>
@@ -110,7 +128,7 @@ ob_start();
                                         <?php endif; ?>
                                     </td>
                                 </tr>
-                                    <?php }
+                                <?php }
                             }?>
                             </tbody>
                         </table>
