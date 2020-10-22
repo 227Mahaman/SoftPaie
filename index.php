@@ -529,4 +529,12 @@ $app->post('/paiement', function (Request $request, Response $response, $args = 
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get: all  action (module)
+$app->get('/getActions', function (Request $request, Response $response) {
+    $pdo = new db();
+    $data = $pdo->query('SELECT * FROM action WHERE statut=1');
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
