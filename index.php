@@ -637,9 +637,11 @@ $app->post('/update/menu/{id}', function (Request $request, Response $response, 
 //post: delete (logique) menu
 $app->post('/delete/menu/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
-    $sql= "UPDATE action SET statut=? WHERE id_action=?";
+    $sql= "UPDATE action SET statut=?, update_at=? WHERE id_action=?";
     $pdo = new db();
-    $data = $pdo->prepare($sql,[0, $id]);
+    $date = new DateTime('now');
+    $d = $date->format("Y-m-d h:i:s");
+    $data = $pdo->prepare($sql,[0, $d, $id]);
     return $response->write(json_encode($data))
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
