@@ -15,11 +15,11 @@ if (isset($_GET['module'])){
     $datas = file_get_contents(ROOT_PATH."index.php/getMenu/".$id);
     $datas = json_decode($datas, true);
 } else {
-    //Récuperation des modules
-    $modules = file_get_contents(ROOT_PATH."index.php/getModules");
-    $modules = json_decode($modules, true);
     $datas= '';
 }
+//Récuperation des modules
+$modules = file_get_contents(ROOT_PATH."index.php/getModules");
+$modules = json_decode($modules, true);
 ob_start();
 ?>
 
