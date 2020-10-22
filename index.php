@@ -578,4 +578,12 @@ $app->get('/getActionProfil/{action}/{profil}', function (Request $request, Resp
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get: all modules
+$app->get('/getModules', function (Request $request, Response $response) {
+    $pdo = new db();
+    $data = $pdo->query('SELECT * FROM groupe_action WHERE statut=1');
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
