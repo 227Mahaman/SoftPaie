@@ -75,7 +75,7 @@ ob_start();
                 <!-- CONDENSED TABLE -->
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Données: <?= isset($_GET['role']) ? "Profil ".$profil['0']['label'] : 'Module' ?></h3>
+                        <h3 class="panel-title">Module: <?= isset($_GET['role']) ? "Profil ".$profil['0']['label'] : 'Module' ?></h3>
                     </div>
                     <div class="panel-body">
                         <table class="table table-condensed">
@@ -103,9 +103,21 @@ ob_start();
                                     <td><?= $value['description_action'];?></td>
                                     <td><?= $value['created_at'];?></td>
                                     <td>
-                                        <a href="index.php?p=module&role=<?= $value['id_action'] ?>" class="btn btn-primary">
-                                            <i class="fa fa-plus"></i>
-                                        </a>
+                                        <?php if (!isset($_GET['role'])) : ?>
+                                            <a href="index.php?p=module&modif=<?= $value['id_action'] ?>" class="btn btn-primary">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        <?php else : ?>
+                                            <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <div class="checkbox">
+                                                <label>
+                                                    <input class="module_is_checked" onchange="addPermissionRole(this)" value="<?= $value['id_action'] ?>" type="checkbox"> ajouter au profil
+                                                </label>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        <?php endif; ?>
                                     </td>
                                 </tr>
                                     <?php }
