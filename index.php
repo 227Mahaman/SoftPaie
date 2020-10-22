@@ -559,4 +559,13 @@ $data = $pdo->query("SELECT * FROM $table WHERE $field='$value' AND $field2='$va
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get: a single Client
+$app->get('/getActionProfil/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM action a, profil_has_action p, type_users t WHERE a.id_action=p.id_action AND p.id_profil=t.id_typeuser AND t.id_typeuser='$id'");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
