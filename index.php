@@ -160,6 +160,13 @@ $app->get('/getTypeUser', function (Request $request, Response $response) {
     $data = $pdo->query('SELECT * FROM type_users');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//get: single Type user
+$app->get('/getTypeUser/{id}', function (Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM type_users WHERE id_typeuser='$id'");
+    return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
+});
 //get All Pays
 $app->get('/getAllPays', function (Request $request, Response $response) {
     $pdo = new db();
