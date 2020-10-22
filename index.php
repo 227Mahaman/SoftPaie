@@ -536,14 +536,6 @@ $app->post('/paiement', function (Request $request, Response $response, $args = 
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
-//get: all  action (module)
-$app->get('/getActions', function (Request $request, Response $response) {
-    $pdo = new db();
-    $data = $pdo->query('SELECT * FROM action WHERE statut=1');
-    return $response->write(json_encode($data))
-    ->withHeader('Content-type', 'application/json')
-    ->withStatus(200);
-});
 //get: selected
 $app->get('/{table}/{field}/{value}/{field2}/{value2}', function (Request $request, Response $response) {
     $table = $request->getAttribute('table');
@@ -591,6 +583,23 @@ $app->get('/getModule/{id}', function (Request $request, Response $response) {
     $id = $request->getAttribute('id');
     $pdo = new db();
     $data = $pdo->query("SELECT * FROM groupe_action WHERE id_groupe='$id' statut=1");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
+//get: all  action (menu)
+$app->get('/getActions', function (Request $request, Response $response) {
+    $pdo = new db();
+    $data = $pdo->query('SELECT * FROM action WHERE statut=1');
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
+//get: menu
+$app->get('/getMenu/{id}', function (Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM action WHERE id_action='$id' AND statut=1");
     return $response->write(json_encode($data))
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
