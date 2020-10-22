@@ -610,4 +610,19 @@ $app->post('/addMenu', function (Request $request, Response $response, $args = [
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//post: update Menu
+$app->post('/update/menu/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $groupe = $request->getParam('id_groupe');
+    $libelle_action = $request->getParam('libelle_action');
+    $description_action = $request->getParam('description_action');
+    $url_action = $request->getParam('url_action');
+    $ordre = $request->getParam('ordre_affichage_action');
+    $sql= "UPDATE action SET id_groupe=?, libelle_action=?, description_action=?, url_action=?, ordre_affichage_action=? WHERE id_action=?";
+    $data = $pdo->prepare($sql, [$groupe, $libelle_action, $description_action, $url_action, $ordre, $id]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
