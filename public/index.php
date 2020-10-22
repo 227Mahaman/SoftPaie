@@ -309,6 +309,18 @@ if (isset($_SESSION['user-auth'])) {
             include_once('../app/views/view_lstClient.php');
         } elseif($p == "api_cle"){//View Génération api cle
             include_once('../app/views/view_apiKey.php');
+        }  elseif($p == "role"){
+            // if(!empty($_POST)){//Suppression TypeUser
+            //     $id = $_POST['id_typeuser'];
+            //     $url = ROOT_PATH."index.php/deleteTypeUser/".$id;
+            //     $delete = file_get_contents($url);
+            //     if($delete){
+            //         $_SESSION['message'] = "Opération reussi !!";
+            //     } else {
+            //         $_SESSION['message'] = "Echec de l'opération!!";
+            //     }
+            // }
+            include_once('../app/views/view_role.php');
         }
     } else{
         include_once('../app/views/view_dashboard.php');
