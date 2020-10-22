@@ -245,7 +245,7 @@ function getModuleRole() {
 // }
 
 function getDataWith2Param(table, field, value, $field2, $value2) {
-    console.log(myurl + table + '/' + field + '/' + value + "/" + $field2 + "/" + $value2);
+    console.log(myurl + table + '/' + field + '/' + value + '/' + $field2 + '/' + $value2);
 
     return $.ajax({
         url: myurl + table + '/' + field + '/' + value + "/" + $field2 + "/" + $value2,

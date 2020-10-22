@@ -112,7 +112,7 @@ ob_start();
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <div class="checkbox">
                                                 <label>
-                                                    <input class="module_is_checked" onchange="addPermissionRole(this)" value="<?= $value['id_action'] ?>" type="checkbox"> ajouter au profil
+                                                    <input class="module_is_checked" onchange="addPermissionRole(this)" value="<?= $value['id_action'] ?>" type="checkbox" <?= ($value['id_groupe']==$role) ? 'checked' : '';?>> ajouter au profil
                                                 </label>
                                                 </div>
                                             </div>
