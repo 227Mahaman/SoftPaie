@@ -129,6 +129,10 @@ ob_start();
                                             <a href="index.php?p=menu&modif=<?= $value['id_action'] ?>" class="btn btn-primary">
                                                 <i class="fa fa-pencil"></i>
                                             </a>
+                                            <form method="post">
+                                                <input type="hidden" name="id_action" value="<?= $value['id_action'] ?>">
+                                                <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                            </form>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
