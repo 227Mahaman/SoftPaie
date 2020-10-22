@@ -15,14 +15,14 @@ ob_start();
                 <!-- CONDENSED TABLE -->
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Données: <?= isset($_GET['role']) ? $profil['label'] : 'Module' ?></h3>
+                        <h3 class="panel-title">Données: <?= isset($_GET['role']) ? "Profil ".$profil['0']['label'] : 'Module' ?></h3>
                     </div>
                     <div class="panel-body">
                         <table class="table table-condensed">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nom du Rôle</th>
+                                    <th>Module</th>
                                     <th>Description</th>
                                     <th>Date Création</th>
                                     <th>Action</th>
@@ -30,7 +30,7 @@ ob_start();
                             </thead>
                             <tbody>
                             <?php
-                                $datas = file_get_contents(ROOT_PATH."index.php/getTypeUser");
+                                $datas = file_get_contents(ROOT_PATH."index.php/getActions");
                                 $datas = json_decode($datas, true);
                                 //var_dump($datas);
                                 //die();
@@ -38,12 +38,12 @@ ob_start();
                                     foreach ($datas as $value) {  
                                     ?>
                                 <tr>
-                                    <td><?= $value['id_typeuser'];?></td>
-                                    <td><?= $value['label'];?></td>
-                                    <td><?= $value['role'];?></td>
+                                    <td><?= $value['id_action'];?></td>
+                                    <td><?= $value['libelle_action'];?></td>
+                                    <td><?= $value['description_action'];?></td>
                                     <td><?= $value['created_at'];?></td>
                                     <td>
-                                        <a href="index.php?p=module&role=<?= $value['id_typeuser'] ?>" class="btn btn-primary">
+                                        <a href="index.php?p=module&role=<?= $value['id_action'] ?>" class="btn btn-primary">
                                             <i class="fa fa-plus"></i>
                                         </a>
                                     </td>
