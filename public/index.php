@@ -322,6 +322,37 @@ if (isset($_SESSION['user-auth'])) {
             // }
             include_once('../app/views/view_role.php');
         } elseif($p == "module"){
+            if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {//Modif Module
+                if (!empty($_POST)) {
+                    $data = $_POST;
+                    $url = ROOT_PATH."index.php/update/module/".$_GET['modif'];
+                    $update = App::file_post_contents($url, $data);
+                    if($update){
+                        header('Location: index.php?p=module');
+                    }
+                }
+            } else {
+                if(!empty($_POST)){
+                    $id = $_POST['id_action'];
+                    if(isset($id)){//Suppression (Logique) Module
+                        $url = ROOT_PATH."index.php/delete/module/".$id;
+                        $delete = file_get_contents($url);
+                        if($delete){
+                            $_SESSION['message'] = "Opération reussi !!";
+                        } else {
+                            $_SESSION['message'] = "Echec de l'opération!!";
+                        }
+                    } else {//Ajout Module
+                        $data = $_POST;
+                        //$data['user_create'] = $_SESSION['user-auth']['id'];
+                        $url = ROOT_PATH."index.php/addModule";
+                        $add = App::file_post_contents($url, $data);
+                        if($add){
+                            header('Location: index.php?p=module');
+                        }
+                    }
+                }
+            }
             include_once('../app/views/view_module.php');
         } elseif($p == "menu"){
             if (!empty($_GET['modif']) && ctype_digit($_GET['modif'])) {//Modif Menu
