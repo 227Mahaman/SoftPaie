@@ -10,6 +10,10 @@ if (isset($_GET['module'])){
     $profil = json_decode($profil, true);
     //$actionProfil = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$role);
     //$actionProfil = json_decode($actionProfil, true);
+} elseif(!empty($_GET['modif']) && ctype_digit($_GET['modif'])){
+    $id = $_GET['modif'];
+    $datas = file_get_contents(ROOT_PATH."index.php/getMenu/".$id);
+    $datas = json_decode($datas, true);
 } else {
     //Récuperation des modules
     $modules = file_get_contents(ROOT_PATH."index.php/getModules");
