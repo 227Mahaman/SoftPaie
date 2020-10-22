@@ -1,17 +1,17 @@
 <?php
 $title = "Module";
-if (isset($_GET['role'])){
-    extract($_GET);
-    $profil = file_get_contents(ROOT_PATH."index.php/getTypeUser/".$role);
-    $profil = json_decode($profil, true);
-    //$actionProfil = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$role);
-    //$actionProfil = json_decode($actionProfil, true);
-} else {
+// if (isset($_GET['role'])){
+//     extract($_GET);
+//     $profil = file_get_contents(ROOT_PATH."index.php/getTypeUser/".$role);
+//     $profil = json_decode($profil, true);
+//     //$actionProfil = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$role);
+//     //$actionProfil = json_decode($actionProfil, true);
+// } else {
     //Récuperation des profils
     $profils = file_get_contents(ROOT_PATH."index.php/getTypeUser");
     $profils = json_decode($profils, true);
     $datas= '';
-}
+//}
 ob_start();
 ?>
 
@@ -20,7 +20,6 @@ ob_start();
     <div class="container-fluid">
         <h3 class="page-title"></h3>
         <div class="row">
-            <?php if (!isset($_GET['role'])) : ?>
             <div class="col-md-4">
                 <form role="form" method="post" enctype="multipart/form-data">
                     <div class="panel">
@@ -56,7 +55,6 @@ ob_start();
                             <label for="profil">Profil</label>
                             <select class="form-control" name="type_user">
                                 <?php
-                                    $tab_longueur = sizeof($profils);
                                     if(is_array($profils) || is_object($profils)) {
                                         foreach ($profils as $value) {  
                                         ?>
@@ -73,12 +71,11 @@ ob_start();
                     </div>
                 </form>
             </div>
-            <?php endif; ?>
-            <div class="<?= (isset($_GET['role'])) ? 'col-md-12' : 'col-md-8' ?>">
+            <div class="col-md-8">
                 <!-- CONDENSED TABLE -->
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Module: <?= isset($_GET['role']) ? "Profil ".$profil['0']['label'] : 'Module' ?></h3>
+                        <h3 class="panel-title">Données: Module (GROUPE)</h3>
                     </div>
                     <div class="panel-body">
                         <table class="table table-condensed">
@@ -86,43 +83,32 @@ ob_start();
                                 <tr>
                                     <th>#</th>
                                     <th>Module</th>
-                                    <th>Description</th>
-                                    <th>Date Création</th>
+                                    <th>Icon</th>
+                                    <th>Bloc</th>
+                                    <th>Ordre</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                             <?php
-                                $datas = file_get_contents(ROOT_PATH."index.php/getActions");
+                                $datas = file_get_contents(ROOT_PATH."index.php/getModules");
                                 $datas = json_decode($datas, true);
                                 if (is_array($datas) || is_object($datas)) {
                                     foreach ($datas as $value) {
-                                        if(isset($_GET['role'])){//Vérification
-                                            $actProfil = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$value['id_action']."/".$role);
-                                            $actProfil = json_decode($actProfil, true);
-                                        }
                                     ?>
                                 <tr>
-                                    <td><?= $value['id_action'];?></td>
-                                    <td><?= $value['libelle_action'];?></td>
-                                    <td><?= $value['description_action'];?></td>
-                                    <td><?= $value['created_at'];?></td>
+                                    <td><?= $value['id_groupe'];?></td>
+                                    <td><?= $value['libelle_groupe'];?></td>
+                                    <td><?= $value['icon_groupe'];?></td>
+                                    <td><?= $value['bloc_menu'];?></td>
+                                    <td><?= $value['ordre_affichage_groupe'];?></td>
                                     <td>
-                                        <?php if (!isset($_GET['role'])) : ?>
-                                            <a href="index.php?p=module&modif=<?= $value['id_action'] ?>" class="btn btn-primary">
-                                                <i class="fa fa-pencil"></i>
-                                            </a>
-                                        <?php else : ?>
-                                            <div class="form-group">
-                                            <div class="col-sm-offset-2 col-sm-10">
-                                                <div class="checkbox">
-                                                <label>
-                                                    <input class="module_is_checked" onchange="addPermissionRole(this)" value="<?= $value['id_action'] ?>" type="checkbox" <?= (isset($actProfil['0']['id_action']) && $actProfil['0']['id_action']==$value['id_action']) ? 'checked' : '';?> > ajouter au profil
-                                                </label>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        <?php endif; ?>
+                                        <a href="index.php?p=module&modif=<?= $value['id_groupe'] ?>" class="btn btn-primary">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                        <a href="index.php?p=menu&module=<?= $value['id_groupe'] ?>" class="btn btn-info">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                     <?php }
