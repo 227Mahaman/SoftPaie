@@ -1,17 +1,5 @@
 <?php
 $title = "Module";
-// if (isset($_GET['role'])){
-//     extract($_GET);
-//     $profil = file_get_contents(ROOT_PATH."index.php/getTypeUser/".$role);
-//     $profil = json_decode($profil, true);
-//     //$actionProfil = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$role);
-//     //$actionProfil = json_decode($actionProfil, true);
-// } else {
-    //Récuperation des profils
-    $profils = file_get_contents(ROOT_PATH."index.php/getTypeUser");
-    $profils = json_decode($profils, true);
-    $datas= '';
-//}
 ob_start();
 ?>
 
