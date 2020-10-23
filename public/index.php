@@ -416,7 +416,7 @@ if (isset($_SESSION['user-auth'])) {
             $sql = "SELECT  g.id_groupe,icon_groupe, icon_action, libelle_groupe, p.id_action, libelle_action, url_action
                 FROM action a, profil_has_action p, groupe_action g
                 WHERE a.id_action = p.id_action and a.id_groupe=g.id_groupe
-                and id_profil=? and bloc_menu='administration'
+                and id_profil=? and bloc_menu='administration' and a.statut=1
                 order by libelle_groupe asc, ordre_affichage_action asc";
             $result_administration = $pdo->prepare($sql, [$id_profil]);
             //initialisation de la variable de session pour administration
