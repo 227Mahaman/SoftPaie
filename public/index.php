@@ -476,7 +476,7 @@ if (isset($_SESSION['user-auth'])) {
             $sql = "SELECT  g.id_groupe,icon_groupe, icon_action, libelle_groupe, p.id_action, libelle_action, url_action
                 FROM action a, profil_has_action p, groupe_action g
                 WHERE a.id_action = p.id_action and a.id_groupe=g.id_groupe
-                and id_profil=$id_profil and bloc_menu='parametre'
+                and id_profil=$id_profil and bloc_menu='parametre' and a.statut=1
                 order by ordre_affichage_groupe asc, g.id_groupe,  ordre_affichage_action asc";
             $result_compte = $pdo->query($sql);
             //initialisation de la variable de session pour le bloc parametre
