@@ -364,25 +364,47 @@ if (isset($_SESSION['user-auth'])) {
                         header('Location: index.php?p=menu');
                     }
                 }
-            } else {
-                if(!empty($_POST)){
+                // } elseif(isset($_GET['role'])){
+                //     if(!empty($_POST)){
+                //         $data = $_POST;
+                //         $url = ROOT_PATH."index.php/addMenuToProfil/".$role;
+                //         $add = App::file_post_contents($url, $data);
+                //         var_dump($add);die;
+                //         if($add){
+                //             header('Location: index.php?p=menu&role='.$role);
+                //         }
+                //     }
+                // }else {
+            } elseif(isset($_POST['menu']) && isset($_POST['profil'])){
+                //if(isset($_POST['id_action']) && isset($_POST['id_profil'])){
+                    $data = $_POST;
+                    //$p = $_POST['profil'];
+                    var_dump($data);
+                    $url = ROOT_PATH."index.php/addMenuToProfil";
+                    $add = App::file_post_contents($url, $data);
+                    var_dump($add);die;
+                    //         if($add){
+                    //             header('Location: index.php?p=menu&role='.$role);
+                    //         }
+                //}
+            } elseif(!empty($_POST)) {
+                //$id = $_POST['id_action'];
+                if(isset($_POST['id_action'])){//Suppression (Logique) Menu
                     $id = $_POST['id_action'];
-                    if(isset($id)){//Suppression (Logique) Menu
-                        $url = ROOT_PATH."index.php/delete/menu/".$id;
-                        $delete = file_get_contents($url);
-                        if($delete){
-                            $_SESSION['message'] = "Opération reussi !!";
-                        } else {
-                            $_SESSION['message'] = "Echec de l'opération!!";
-                        }
-                    } else {//Ajout Menu
-                        $data = $_POST;
-                        //$data['user_create'] = $_SESSION['user-auth']['id'];
-                        $url = ROOT_PATH."index.php/addMenu";
-                        $add = App::file_post_contents($url, $data);
-                        if($add){
-                            header('Location: index.php?p=menu');
-                        }
+                    $url = ROOT_PATH."index.php/delete/menu/".$id;
+                    $delete = file_get_contents($url);
+                    if($delete){
+                        $_SESSION['message'] = "Opération reussi !!";
+                    } else {
+                        $_SESSION['message'] = "Echec de l'opération!!";
+                    }
+                } else {//Ajout Menu
+                    $data = $_POST;
+                    //$data['user_create'] = $_SESSION['user-auth']['id'];
+                    $url = ROOT_PATH."index.php/addMenu";
+                    $add = App::file_post_contents($url, $data);
+                    if($add){
+                        header('Location: index.php?p=menu');
                     }
                 }
             }

@@ -9,9 +9,10 @@ if (isset($_GET['module'])){
     $profil = file_get_contents(ROOT_PATH."index.php/getTypeUser/".$role);
     $profil = json_decode($profil, true);
     if(!empty($_POST)){
-        $id = $_POST['id_action'];
-        $url = ROOT_PATH."index.php/addMenuToProfil/".$id."/".$role;
+        $data = $_POST;
+        $url = ROOT_PATH."index.php/addMenuToProfil/".$role;
         $add = App::file_post_contents($url, $data);
+        var_dump($add);die;
         if($add){
             header('Location: index.php?p=menu&role='.$role);
         }
@@ -129,8 +130,9 @@ ob_start();
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <div class="checkbox">
                                                 <label>
+                                                    <input type="hidden" name="profil" value="<?= $_GET['role']; ?>">
                                                     <!--onchange="addPermissionRole(this)"-->
-                                                    <input class="module_is_checked" onchange="submit()" value="<?= $value['id_action'] ?>" type="checkbox" <?= (isset($actProfil['0']['id_action']) && $actProfil['0']['id_action']==$value['id_action']) ? 'checked' : '';?> > ajouter au profil
+                                                    <input class="module_is_checked" name="menu" onchange="submit()" value="<?= $value['id_action'] ?>" type="checkbox" <?= (isset($actProfil['0']['id_action']) && $actProfil['0']['id_action']==$value['id_action']) ? 'checked' : '';?> > ajouter au profil
                                                 </label>
                                                 </div>
                                             </div>
