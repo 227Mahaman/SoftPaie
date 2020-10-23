@@ -76,7 +76,7 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="index.php?p=dashboard" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+						<li><a href="index.php?p=<?= ($_SESSION['user-auth']['typeUser'] == "Administrateur") ? 'dashBoard' : 'dashboard' ?>" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
 						<?php if($_SESSION['user-auth']['typeUser'] == "Administrateur"):?>
 						<li>
 							<a href="#subPages1" data-toggle="collapse" class="collapsed"><i class="lnr lnr-flag"></i> <span>Administration</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
