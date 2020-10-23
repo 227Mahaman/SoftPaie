@@ -8,6 +8,14 @@ if (isset($_GET['module'])){
     extract($_GET);
     $profil = file_get_contents(ROOT_PATH."index.php/getTypeUser/".$role);
     $profil = json_decode($profil, true);
+    if(!empty($_POST)){
+        $id = $_POST['id_action'];
+        $url = ROOT_PATH."index.php/addMenuToAction/".$id."/".$role;
+        $add = App::file_post_contents($url, $data);
+        if($add){
+            header('Location: index.php?p=menu&role='.$role);
+        }
+    }
     //$actionProfil = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$role);
     //$actionProfil = json_decode($actionProfil, true);
 } elseif(!empty($_GET['modif']) && ctype_digit($_GET['modif'])){
@@ -116,15 +124,18 @@ ob_start();
                                     <td><?= $value['url_action'];?></td>
                                     <td>
                                         <?php if (isset($_GET['role'])) : ?>
+                                            <form method="post">
                                             <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <div class="checkbox">
                                                 <label>
-                                                    <input class="module_is_checked" onchange="addPermissionRole(this)" value="<?= $value['id_action'] ?>" type="checkbox" <?= (isset($actProfil['0']['id_action']) && $actProfil['0']['id_action']==$value['id_action']) ? 'checked' : '';?> > ajouter au profil
+                                                    <!--onchange="addPermissionRole(this)"-->
+                                                    <input class="module_is_checked" onchange="submit()" value="<?= $value['id_action'] ?>" type="checkbox" <?= (isset($actProfil['0']['id_action']) && $actProfil['0']['id_action']==$value['id_action']) ? 'checked' : '';?> > ajouter au profil
                                                 </label>
                                                 </div>
                                             </div>
                                             </div>
+                                            </form>
                                         <?php else : ?>
                                             <a href="index.php?p=menu&modif=<?= $value['id_action'] ?>" class="btn btn-primary">
                                                 <i class="fa fa-pencil"></i>
