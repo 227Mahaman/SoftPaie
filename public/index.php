@@ -364,31 +364,14 @@ if (isset($_SESSION['user-auth'])) {
                         header('Location: index.php?p=menu');
                     }
                 }
-                // } elseif(isset($_GET['role'])){
-                //     if(!empty($_POST)){
-                //         $data = $_POST;
-                //         $url = ROOT_PATH."index.php/addMenuToProfil/".$role;
-                //         $add = App::file_post_contents($url, $data);
-                //         var_dump($add);die;
-                //         if($add){
-                //             header('Location: index.php?p=menu&role='.$role);
-                //         }
-                //     }
-                // }else {
             } elseif(isset($_POST['menu']) && isset($_POST['profil'])){
-                //if(isset($_POST['id_action']) && isset($_POST['id_profil'])){
                     $data = $_POST;
-                    //$p = $_POST['profil'];
-                    var_dump($data);
                     $url = ROOT_PATH."index.php/addMenuToProfil";
                     $add = App::file_post_contents($url, $data);
-                    var_dump($add);die;
-                    //         if($add){
-                    //             header('Location: index.php?p=menu&role='.$role);
-                    //         }
-                //}
+                    if($add){
+                        header('Location: index.php?p=menu&role='.$role);
+                    }
             } elseif(!empty($_POST)) {
-                //$id = $_POST['id_action'];
                 if(isset($_POST['id_action'])){//Suppression (Logique) Menu
                     $id = $_POST['id_action'];
                     $url = ROOT_PATH."index.php/delete/menu/".$id;
