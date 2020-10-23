@@ -6,20 +6,22 @@ if (host == 'localhost') {
 }
 myurl= "http://localhost/slim3/index.php/";
 //myurl = protocol + '//' + host + folder + '/api/object/';
-// var $_GET = {};
-// document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
-//     function decode(s) {
-//         return decodeURIComponent(s.split("+").join(" "));
-//     }
+//Recuperer les données enget
+var $_GET = {};
+document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+    function decode(s) {
+        return decodeURIComponent(s.split("+").join(" "));
+    }
 
-//     $_GET[decode(arguments[1])] = decode(arguments[2]);
-// });
+    $_GET[decode(arguments[1])] = decode(arguments[2]);
+});
 // getPermission();
 $('input:checkbox.module_is_checked').each(function (i, v) {
-    $mr = getDataWith2Param('profil_has_action', 'id_action', $(v).val(), 'id_typeuser', $_GET['role']);
+    $mr = getDataWith2Param('profil_has_action', 'id_action', $(v).val(), 'id_profil', $_GET['role']);
 
     $mr.done(function ($mr) {
-        if (!$mr.error) {
+        console.log($mr, "res");
+        if ($mr.length!=0) {//Si le menu existe pour le profil
             $(v).attr('checked', true);
         }
     });

@@ -131,8 +131,8 @@ ob_start();
                                                 <div class="checkbox">
                                                 <label>
                                                     <input type="hidden" name="profil" value="<?= $_GET['role']; ?>">
-                                                    <!--onchange="addPermissionRole(this)"-->
-                                                    <input class="module_is_checked" name="menu" onchange="submit()" value="<?= $value['id_action'] ?>" type="checkbox" <?= (isset($actProfil['0']['id_action']) && $actProfil['0']['id_action']==$value['id_action']) ? 'checked' : '';?> > ajouter au profil
+                                                    <!-- name="menu" onchange="submit()" -->
+                                                    <input class="module_is_checked" onchange="addPermissionRole(this)" value="<?= $value['id_action'] ?>" type="checkbox" <?//= (isset($actProfil['0']['id_action']) && $actProfil['0']['id_action']==$value['id_action']) ? 'checked' : '';?> > ajouter au profil
                                                 </label>
                                                 </div>
                                             </div>
