@@ -666,8 +666,11 @@ $app->post('/update/menu/{id}', function (Request $request, Response $response, 
     $description_action = $request->getParam('description_action');
     $url_action = $request->getParam('url_action');
     $ordre = $request->getParam('ordre_affichage_action');
-    $sql= "UPDATE action SET id_groupe=?, libelle_action=?, description_action=?, url_action=?, ordre_affichage_action=? WHERE id_action=?";
-    $data = $pdo->prepare($sql, [$groupe, $libelle_action, $description_action, $url_action, $ordre, $id]);
+    $icon = $request->getParam('icon_action');
+    $date = new DateTime('now');
+    $d = $date->format("Y-m-d h:i:s");
+    $sql= "UPDATE action SET id_groupe=?, libelle_action=?, description_action=?, url_action=?, ordre_affichage_action=?, icon_action=?, update_at=? WHERE id_action=?";
+    $data = $pdo->prepare($sql, [$groupe, $libelle_action, $description_action, $url_action, $ordre, $icon, $d, $id]);
     return $response->write(json_encode($data))
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
