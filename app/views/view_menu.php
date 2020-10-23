@@ -10,7 +10,7 @@ if (isset($_GET['module'])){
     $profil = json_decode($profil, true);
     if(!empty($_POST)){
         $id = $_POST['id_action'];
-        $url = ROOT_PATH."index.php/addMenuToAction/".$id."/".$role;
+        $url = ROOT_PATH."index.php/addMenuToProfil/".$id."/".$role;
         $add = App::file_post_contents($url, $data);
         if($add){
             header('Location: index.php?p=menu&role='.$role);

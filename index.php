@@ -687,4 +687,16 @@ $app->get('/delete/menu/{id}', function (Request $request, Response $response, $
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//post: add Menu to Profil
+$app->post('/addMenuToProfil/{role}', function (Request $request, Response $response, $args = []) {
+    $profil = $request->getAttribute('role');
+    $menu = $request->getParam('id_action');
+    //get db object
+    $pdo = new db();
+    $sql = "INSERT INTO profil_has_action (id_profil, id_action) VALUES (?,?)";
+    $data = $pdo->prepare($sql, [$profil, $menu]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
