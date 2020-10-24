@@ -41,12 +41,13 @@ function addMenuRole(chec) {
     console.log($data, $mr, "ci");
     if ($(chec).prop('checked') == true) {
         $mr.done(function ($mr) {
-            if ($mr.length!=0) {
-                console.log($mr, $mr.length!=0);
+            console.log($mr, $mr.length==0);
+            if ($mr.length==0) {
+                console.log($mr, $mr.length==0);
                 $.ajax({
                     url: myurl + "addMenuToProfilAjax",
                     type: "POST",
-                    contentType: 'application/json',
+                    contentType: 'application/x-www-form-urlencoded',
                     dataType: "json",
                     data: $data,
                     success: function (result) {
@@ -60,23 +61,23 @@ function addMenuRole(chec) {
             }
         });
 
-        // $mr.fail(function ($mr) {
-        //     console.log($mr, $mr.length!=0);
-        //     $.ajax({
-        //         url: myurl + "profil_has_action",
-        //         type: "POST",
-        //         contentType: 'application/json',
-        //         dataType: "json",
-        //         data: $data,
-        //         success: function (result) {
-        //             console.log(result);
-        //         },
-        //         error: function (xhr, resp, text) {
-        //             // show error to console
-        //             console.log(xhr, resp, text);
-        //         }
-        //     });
-        // });
+        $mr.fail(function ($mr) {
+            console.log($mr, $mr.length==0);
+            $.ajax({
+                url: myurl + "addMenuToProfilAjax",
+                type: "POST",
+                contentType: 'application/x-www-form-urlencoded',
+                dataType: "json",
+                data: $data,
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (xhr, resp, text) {
+                    // show error to console
+                    console.log(xhr, resp, text);
+                }
+            });
+        });
     } else {
         deleteDataWith2Param('profil_has_action', 'id_action', $(chec).val(), 'id_profil', $_GET['role']);
     }
