@@ -31,11 +31,12 @@ ob_start();
                                 $datas = json_decode($datas, true);
                                 //var_dump($datas);
                                 //die();
+                                $i=0;
                                 if (is_array($datas) || is_object($datas)) {
                                     foreach ($datas as $value) {  
                                     ?>
                                 <tr>
-                                    <td><?= $value['id'];?></td>
+                                    <td><?= ++$i;?></td>
                                     <td><?= $value['pseudo'];?></td>
                                     <td><?= $value['email'];?></td>
                                     <td><?= $value['created_at'];?></td>
