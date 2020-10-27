@@ -746,4 +746,16 @@ $app->post('/{table}/{field}/{value}/{field2}/{value2}', function (Request $requ
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//post: Generation api
+$app->post('/addApi', function (Request $request, Response $response, $args = []) {//
+    //get db object
+    $pdo = new db();
+    $sql = "INSERT INTO cle (id_entreprise, apikey) VALUES (?,?)";
+    $entreprise = $request->getParam('id_entreprise');
+    $apikey = $request->getParam('apikey');
+    $data = $pdo->prepare($sql, [$entreprise, $apikey]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
