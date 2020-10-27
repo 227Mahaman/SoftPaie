@@ -33,11 +33,12 @@ ob_start();
                                 $datas = json_decode($datas, true);
                                 //var_dump($datas);
                                 //die();
+                                $i=0;
                                 if (is_array($datas) || is_object($datas)) {
                                     foreach ($datas as $value) {  
                                     ?>
                                 <tr>
-                                    <td><?= $value['id_commission'];?></td>
+                                    <td><?= ++$i;?></td>
                                     <td><?= $value['montant_debut'];?> F</td>
                                     <td><?= $value['montant_fin'];?> F</td>
                                     <td><?= $value['frais'];?> F</td>
