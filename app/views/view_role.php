@@ -41,8 +41,11 @@ ob_start();
                                     <td><?= $value['role'];?></td>
                                     <td><?= $value['created_at'];?></td>
                                     <td>
-                                        <a href="index.php?p=menu&role=<?= $value['id_typeuser'] ?>" class="btn btn-primary">
+                                        <a href="index.php?p=menu&role=<?= $value['id_typeuser'] ?>" class="btn btn-success">
                                             <i class="fa fa-plus"></i>
+                                        </a>
+                                        <a href="index.php?p=menu&detail=<?= $value['id_typeuser'] ?>" class="btn btn-info">
+                                            <i class="fa fa-eye"></i>
                                         </a>
                                     </td>
                                 </tr>
