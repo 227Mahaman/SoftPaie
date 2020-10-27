@@ -96,7 +96,7 @@
 									//	echo '</ul> </li>'; //fermeture du groupe precedent
 									?>
 									<?php if(!empty($tab_simple['libelle_action'])):?>
-									<li><a href="index.php?p=<?= $tab_simple['url_action'];?>" class="<?= $tab_simple['icon_groupe']; ?>"><?= $tab_simple['libelle_action'];?></a></li>
+									<li><a href="index.php?p=<?= $tab_simple['url_action'];?>" class="<?= $tab_simple['icon_action']; ?>"><?= $tab_simple['libelle_action'];?></a></li>
 									<?php endif;?>
 									<?php
 									$id_current_group = $tab_simple['id_groupe'];
@@ -124,7 +124,7 @@
 									//	echo '</ul> </li>'; //fermeture du groupe precedent
 									?>
 									<?php if(!empty($tab_config['libelle_action'])):?>
-										<li><a href="index.php?p=<?= $tab_config['url_action'];?>" class="<?= $tab_config['icon_groupe']; ?>"><?= $tab_config['libelle_action']; ?></a></li>
+										<li><a href="index.php?p=<?= $tab_config['url_action'];?>" class="<?= $tab_config['icon_action']; ?>"><?= $tab_config['libelle_action']; ?></a></li>
 										<?php endif;?>
 									<?php
 									$id_current_group = $tab_config['id_groupe'];
