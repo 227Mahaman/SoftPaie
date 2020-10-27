@@ -311,6 +311,26 @@ if (isset($_SESSION['user-auth'])) {
             }
             include_once('../app/views/view_lstClient.php');
         } elseif($p == "api_cle"){//View Génération api cle
+            if(!empty($_POST)) {
+                // if(isset($_POST['id_action'])){//Suppression (Logique) Menu
+                //     $id = $_POST['id_action'];
+                //     $url = ROOT_PATH."index.php/delete/menu/".$id;
+                //     $delete = file_get_contents($url);
+                //     if($delete){
+                //         $_SESSION['message'] = "Opération reussi !!";
+                //     } else {
+                //         $_SESSION['message'] = "Echec de l'opération!!";
+                //     }
+                // } else {//Ajout Menu
+                    $data = $_POST;
+                    //$data['user_create'] = $_SESSION['user-auth']['id'];
+                    $url = ROOT_PATH."index.php/addMenu";
+                    $add = App::file_post_contents($url, $data);
+                    if($add){
+                        header('Location: index.php?p=menu');
+                    }
+                //}
+            }
             include_once('../app/views/view_apiKey.php');
         }  elseif($p == "role"){
             // if(!empty($_POST)){//Suppression TypeUser

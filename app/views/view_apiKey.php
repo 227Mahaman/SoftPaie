@@ -13,7 +13,8 @@ ob_start();
 				<hr>
 				<div class="well">
 					<form method="post">
-					<p class="text-center"><button type="submit" class="btn btn-primary">Générer</button></p>
+						<input type="hidden" name="entreprise" value="<?= $_SESSION['user-auth']['entreprise'];?>">
+						<p class="text-center"><button type="submit" class="btn btn-primary">Générer</button></p>
 					</form>
 				</div>
 			</div>
