@@ -111,6 +111,7 @@ ob_start();
                             <?php
                                 $datas = file_get_contents(ROOT_PATH."index.php/getActions");
                                 $datas = json_decode($datas, true);
+                                $i=0;
                                 if (is_array($datas) || is_object($datas)) {
                                     foreach ($datas as $value) {
                                         if(isset($_GET['role'])){//Vérification
@@ -119,7 +120,7 @@ ob_start();
                                         }
                                     ?>
                                 <tr>
-                                    <td><?= $value['id_action'];?></td>
+                                    <td><?= ++$i;?></td>
                                     <td><?= $value['libelle_action'];?></td>
                                     <td><?= $value['description_action'];?></td>
                                     <td><?= $value['url_action'];?></td>
