@@ -70,11 +70,12 @@ ob_start();
                             <?php
                                 $datas = file_get_contents(ROOT_PATH."index.php/getModules");
                                 $datas = json_decode($datas, true);
+                                $i=0;
                                 if (is_array($datas) || is_object($datas)) {
                                     foreach ($datas as $value) {
                                     ?>
                                 <tr>
-                                    <td><?= $value['id_groupe'];?></td>
+                                    <td><?= ++$i;?></td>
                                     <td><?= $value['libelle_groupe'];?></td>
                                     <td><?= $value['icon_groupe'];?></td>
                                     <td><?= $value['bloc_menu'];?></td>
