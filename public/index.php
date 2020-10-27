@@ -484,18 +484,18 @@ if (isset($_SESSION['user-auth'])) {
                 WHERE a.id_action = p.id_action and a.id_groupe=g.id_groupe
                 and id_profil=$id_profil and bloc_menu='parametre' and a.statut=1
                 order by ordre_affichage_groupe asc, g.id_groupe,  ordre_affichage_action asc";
-            $result_compte = $pdo->query($sql, [$id_profil]);
+            $result_parametre = $pdo->query($sql, [$id_profil]);
             //initialisation de la variable de session pour le bloc parametre
             $_SESSION['bloc_parametre']= array();
             $i=0;
             foreach($result_parametre as $row_parametre){
                 $_SESSION['bloc_parametre'][$i] = array('id_groupe' => $row_parametre['id_groupe'],
-                                                     'libelle_groupe' => $row_parametre['libelle_groupe'],
-                                                     'icon_groupe' => $row_parametre['icon_groupe'],
-                                                      'icon_action' => $row_parametre['icon_action'],
-                                                     'id_action' => $row_parametre['id_action'],
-                                                     'libelle_action' => $row_parametre['libelle_action'],
-                                                     'url_action' => $row_parametre['url_action']
+                    'libelle_groupe' => $row_parametre['libelle_groupe'],
+                    'icon_groupe' => $row_parametre['icon_groupe'],
+                    'icon_action' => $row_parametre['icon_action'],
+                    'id_action' => $row_parametre['id_action'],
+                    'libelle_action' => $row_parametre['libelle_action'],
+                    'url_action' => $row_parametre['url_action']
                 );
                 $i++;
             }//fin foreach
