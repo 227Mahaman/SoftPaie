@@ -230,6 +230,9 @@ if (isset($_SESSION['user-auth'])) {
         } elseif($p == "transaction"){//View Transaction
             $id = $_SESSION['user-auth']['entreprise'];
             include_once('../app/views/view_transaction.php');
+        } elseif($p == "paiement"){//View Page de Paiement
+            $id = $_SESSION['user-auth']['entreprise'];
+            include_once('../app/views/view_paiement.php');
         } elseif($p == "lstCommission"){//View Liste Commission
             if (!empty($_POST)) {//Suppression logique
                 $id = $_POST['id_commission'];
