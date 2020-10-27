@@ -157,9 +157,6 @@
 									?>
 									<?php if(!empty($tab_compte['libelle_action'])):?>
 										<li><a href="index.php?p=<?= $tab_compte['url_action'];?>" class="<?= $tab_compte['icon_action']; ?>"><?= $tab_compte['libelle_action']; ?></a></li>
-									<!--<li><a href="index.php?p=transaction" class="">Transaction</a></li>
-									<li><a href="index.php?p=solde" class="">Solde</a></li>
-									<li><a href="index.php?p=paiement" class="">Page de paiement</a></li>-->
 									<?php endif;?>
 									<?php
 									$id_current_group = $tab_compte['id_groupe'];
@@ -188,9 +185,6 @@
 									?>
 									<?php if(!empty($tab_parametre['libelle_action'])):?>
 										<li><a href="index.php?p=index.php?p=<?= $tab_parametre['url_action'];?>" class="<?= $tab_parametre['icon_action']; ?>"><?= $tab_parametre['libelle_action']; ?></a></li>
-									<!--<li><a href="index.php?p=api_cle" class="">Api</a></li>
-									<li><a href="index.php?p=#" class="">#</a></li>
-									<li><a href="index.php?p=#" class="">#</a></li>-->
 									<?php endif;?>
 									<?php
 									$id_current_group = $tab_parametre['id_groupe'];
