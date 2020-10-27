@@ -324,7 +324,7 @@ if (isset($_SESSION['user-auth'])) {
                 //     }
                 // } else {//Ajout API
                     $data = $_POST;
-                    $apikey.=$data['entreprise'];
+                    $apikey.=$data['id_entreprise'];
                     $data['apikey'] = $apikey;
                     //var_dump($data);die;
                     //$data['user_create'] = $_SESSION['user-auth']['id'];
