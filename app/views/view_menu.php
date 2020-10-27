@@ -37,7 +37,7 @@ ob_start();
     <div class="container-fluid">
         <h3 class="page-title"></h3>
         <div class="row">
-            <?php if (!isset($_GET['module']) && !isset($_GET['role'])) : ?>
+            <?php if (!isset($_GET['module']) && !isset($_GET['role']) && !isset($_GET['detail'])) : ?>
             <div class="col-md-4">
                 <form role="form" method="post" enctype="multipart/form-data">
                     <div class="panel">
@@ -90,11 +90,11 @@ ob_start();
                 </form>
             </div>
             <?php endif; ?>
-            <div class="<?= (isset($_GET['role'])) ? 'col-md-12' : 'col-md-8' ?>">
+            <div class="<?= (isset($_GET['role']) || isset($_GET['detail'])) ? 'col-md-12' : 'col-md-8' ?>">
                 <!-- CONDENSED TABLE -->
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Menu: <?= isset($_GET['role']) ? "Profil ".$profil['0']['label'] : '' ?></h3>
+                        <h3 class="panel-title">Menu: <?= isset($_GET['role']) || isset($_GET['detail']) ? " du Profil " : '' ?></h3>
                     </div>
                     <div class="panel-body">
                         <table class="table table-condensed">
@@ -109,8 +109,13 @@ ob_start();
                             </thead>
                             <tbody>
                             <?php
-                                $datas = file_get_contents(ROOT_PATH."index.php/getActions");
-                                $datas = json_decode($datas, true);
+                                if(isset($_GET['detail'])){
+                                    $datas = file_get_contents(ROOT_PATH."index.php/getActionProfil/".$_GET['detail']);
+                                    $datas = json_decode($datas, true);
+                                } else {
+                                    $datas = file_get_contents(ROOT_PATH."index.php/getActions");
+                                    $datas = json_decode($datas, true);
+                                }
                                 $i=0;
                                 if (is_array($datas) || is_object($datas)) {
                                     foreach ($datas as $value) {
@@ -139,6 +144,16 @@ ob_start();
                                             </div>
                                             </div>
                                             </form>
+                                        <?php elseif (isset($_GET['detail'])) : ?>
+                                            <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <div class="checkbox">
+                                                <label>
+                                                    <input value="<?= $row['id_action'] ?>" type="checkbox" checked disabled > ajouter au profil
+                                                </label>
+                                                </div>
+                                            </div>
+                                            </div>
                                         <?php else : ?>
                                             <a href="index.php?p=menu&modif=<?= $value['id_action'] ?>" class="btn btn-primary">
                                                 <i class="fa fa-pencil"></i>
