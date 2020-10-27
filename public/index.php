@@ -425,6 +425,7 @@ if (isset($_SESSION['user-auth'])) {
             foreach($result_administration as $row_administration){
                 $_SESSION['bloc_administration'][$i] = array('id_groupe' => $row_administration['id_groupe'],
                                                      'libelle_groupe' => $row_administration['libelle_groupe'],
+                                                     'icon_action' => $row_compte['icon_groupe'],
                                                      'icon_action' => $row_compte['icon_action'],
                                                      'id_action' => $row_administration['id_action'],
                                                      'libelle_action' => $row_administration['libelle_action'],
@@ -445,6 +446,7 @@ if (isset($_SESSION['user-auth'])) {
             foreach($result_config as $row_config){
                 $_SESSION['bloc_config'][$i] = array('id_groupe' => $row_config['id_groupe'],
                                                      'libelle_groupe' => $row_config['libelle_groupe'],
+                                                     'icon_action' => $row_compte['icon_groupe'],
                                                      'icon_action' => $row_compte['icon_action'],
                                                      'id_action' => $row_config['id_action'],
                                                      'libelle_action' => $row_config['libelle_action'],
@@ -465,6 +467,7 @@ if (isset($_SESSION['user-auth'])) {
             foreach($result_compte as $row_compte){
                 $_SESSION['bloc_compte'][$i] = array('id_groupe' => $row_compte['id_groupe'],
                                                      'libelle_groupe' => $row_compte['libelle_groupe'],
+                                                     'icon_action' => $row_compte['icon_groupe'],
                                                       'icon_action' => $row_compte['icon_action'],
                                                      'id_action' => $row_compte['id_action'],
                                                      'libelle_action' => $row_compte['libelle_action'],
@@ -485,6 +488,7 @@ if (isset($_SESSION['user-auth'])) {
             foreach($result_parametre as $row_parametre){
                 $_SESSION['bloc_parametre'][$i] = array('id_groupe' => $row_parametre['id_groupe'],
                                                      'libelle_groupe' => $row_parametre['libelle_groupe'],
+                                                     'icon_action' => $row_compte['icon_groupe'],
                                                       'icon_action' => $row_parametre['icon_action'],
                                                      'id_action' => $row_parametre['id_action'],
                                                      'libelle_action' => $row_parametre['libelle_action'],
