@@ -35,11 +35,12 @@ ob_start();
                                 $datas = json_decode($datas, true);
                                 //var_dump($datas);
                                 //die();
+                                $i=0;
                                 if (is_array($datas) || is_object($datas)) {
                                     foreach ($datas as $value) {  
                                     ?>
                                 <tr>
-                                    <td><?= $value['id_entreprise'];?></td>
+                                    <td><?= ++$i;?></td>
                                     <td><?= $value['nom'];?></td>
                                     <td><?= $value['adresse'];?></td>
                                     <td><?= $value['email'];?></td>
