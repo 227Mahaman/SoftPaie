@@ -184,7 +184,7 @@
 									//	echo '</ul> </li>'; //fermeture du groupe precedent
 									?>
 									<?php if(!empty($tab_parametre['libelle_action'])):?>
-										<li><a href="index.php?p=index.php?p=<?= $tab_parametre['url_action'];?>" class="<?= $tab_parametre['icon_action']; ?>"><?= $tab_parametre['libelle_action']; ?></a></li>
+										<li><a href="index.php?p=<?= $tab_parametre['url_action'];?>" class="<?= $tab_parametre['icon_action']; ?>"><?= $tab_parametre['libelle_action']; ?></a></li>
 									<?php endif;?>
 									<?php
 									$id_current_group = $tab_parametre['id_groupe'];
