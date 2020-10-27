@@ -312,7 +312,8 @@ if (isset($_SESSION['user-auth'])) {
             include_once('../app/views/view_lstClient.php');
         } elseif($p == "api_cle"){//View Génération api cle
             if(!empty($_POST)) {
-                // if(isset($_POST['id_action'])){//Suppression (Logique) Menu
+                $apikey= "localhost/slim3/paieweb/index.php?p=paiement&clt=";
+                // if(isset($_POST['id_action'])){//Suppression (Logique) API
                 //     $id = $_POST['id_action'];
                 //     $url = ROOT_PATH."index.php/delete/menu/".$id;
                 //     $delete = file_get_contents($url);
@@ -321,13 +322,16 @@ if (isset($_SESSION['user-auth'])) {
                 //     } else {
                 //         $_SESSION['message'] = "Echec de l'opération!!";
                 //     }
-                // } else {//Ajout Menu
+                // } else {//Ajout API
                     $data = $_POST;
+                    $apikey.=$data['entreprise'];
+                    $data['apikey'] = $apikey;
+                    var_dump($data);die;
                     //$data['user_create'] = $_SESSION['user-auth']['id'];
-                    $url = ROOT_PATH."index.php/addMenu";
+                    $url = ROOT_PATH."index.php/addAPI";
                     $add = App::file_post_contents($url, $data);
                     if($add){
-                        header('Location: index.php?p=menu');
+                        header('Location: index.php?p=api_cle');
                     }
                 //}
             }
