@@ -78,6 +78,8 @@
 					<ul class="nav">
 						<li><a href="index.php?p=<?= ($_SESSION['user-auth']['typeUser'] == "Administrateur") ? 'dashBoard' : 'dashboard' ?>" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
 						<?//php if($_SESSION['user-auth']['typeUser'] == "Administrateur"):?>
+						<!--Vérifier si l'user a accès au menu de ce bloc_administration-->
+						<?php if(sizeof($_SESSION['bloc_administration'])!=0):?>
 						<li>
 							<a href="#subPages1" data-toggle="collapse" class="collapsed"><i class="lnr lnr-flag"></i> <span>Administration</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages1" class="collapse ">
@@ -103,6 +105,9 @@
 								</ul>
 							</div>
 						</li>
+						<?php endif;?>
+						<!--Vérifier si l'user a accès au menu de ce bloc_config-->
+						<?php if(sizeof($_SESSION['bloc_config'])!=0):?>
 						<li>
 							<a href="#subPages2" data-toggle="collapse" class="collapsed"><i class="lnr lnr-briefcase"></i> <span>Configuration</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages2" class="collapse ">
@@ -132,6 +137,9 @@
 						<?//php 
 							//$_SESSION['user-auth']['typeUser'] == "Administrateur" || 
 							//if($_SESSION['user-auth']['typeUser'] == "Entreprise"):?>
+						<?php endif;?>
+						<!--Vérifier si l'user a accès au menu de ce bloc_compte-->
+						<?php if(sizeof($_SESSION['bloc_compte'])!=0):?>
 						<li>
 							<a href="#subPages3" data-toggle="collapse" class="collapsed"><i class="lnr lnr-store"></i> <span>Compte</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages3" class="collapse ">
@@ -160,11 +168,14 @@
 								</ul>
 							</div>
 						</li>
+						<?php endif;?>
+						<!--Vérifier si l'user a accès au menu de ce bloc_parametre-->
+						<?php if(sizeof($_SESSION['bloc_parametre'])!=0):?>
 						<li>
 							<a href="#subPages4" data-toggle="collapse" class="collapsed"><i class="lnr lnr-code"></i> <span>Paramètre</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages4" class="collapse ">
 								<ul class="nav">
-									<!--liens bloc "compte"-->
+									<!--liens bloc "parametre"-->
 									<?php
 									$id_current_group = 0;
 									$tab_longueur = sizeof($_SESSION['bloc_parametre']);
@@ -189,6 +200,7 @@
 							</div>
 						</li>
 						<?//php endif;?>
+						<?php endif;?>
 					</ul>
 				</nav>
 			</div>
