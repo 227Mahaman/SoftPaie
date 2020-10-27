@@ -343,6 +343,15 @@ $app->get('/getMyTransaction/{id}', function (Request $request, Response $respon
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get: MyTransaction
+$app->get('/getMyPaiement/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM transaction WHERE id_entreprise='$id' AND statut=1");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //get Solde Compte
 $app->get('/getSolde/{id}', function (Request $request, Response $response, $args = []) {
     $id = $request->getAttribute('id');
