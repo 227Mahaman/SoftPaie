@@ -77,7 +77,7 @@
 				<nav>
 					<ul class="nav">
 						<li><a href="index.php?p=<?= ($_SESSION['user-auth']['typeUser'] == "Administrateur") ? 'dashBoard' : 'dashboard' ?>" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-						<?php if($_SESSION['user-auth']['typeUser'] == "Administrateur"):?>
+						<?//php if($_SESSION['user-auth']['typeUser'] == "Administrateur"):?>
 						<li>
 							<a href="#subPages1" data-toggle="collapse" class="collapsed"><i class="lnr lnr-flag"></i> <span>Administration</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages1" class="collapse ">
@@ -100,13 +100,6 @@
 									$id_current_group = $tab_simple['id_groupe'];
 									}//fin for
 									?>
-									<!--<li><a href="index.php?p=module" class="">Module</a></li>
-									<li><a href="index.php?p=addUser" class="lnr lnr-users">Ajout Utilisateur</a></li>
-									<li><a href="index.php?p=lstUser" class="lnr lnr-list">Liste Utilisateur</a></li>
-									<li><a href="index.php?p=addTypeUser" class="">Ajout Type Utilisateur</a></li>
-									<li><a href="index.php?p=lstTypeUser" class="">Liste Type Utilisateur</a></li>
-									<li><a href="index.php?p=lstEntClt" class="lnr lnr-store">Liste Entreprise Client</a></li>
-									<li><a href="index.php?p=lstClt" class="lnr lnr-user">Liste Client</a></li>-->
 								</ul>
 							</div>
 						</li>
@@ -132,19 +125,13 @@
 									$id_current_group = $tab_config['id_groupe'];
 									}//fin for
 									?>
-									<!--<li><a href="index.php?p=addCommission" class="">Ajouter une commission</a></li>
-									<li><a href="index.php?p=lstCommission" class="">Liste Commission</a></li>
-									<li><a href="index.php?p=sta" class="">Dépôt | STA</a></li>
-									<li><a href="index.php?p=identite" class="">Identité</a></li>
-									<li><a href="index.php?p=lstPays" class="lnr lnr-city">Pays</a></li>
-									<li><a href="index.php?p=lstTypeEnt" class="lnr lnr-list">Type Entreprise</a></li>-->
 								</ul>
 							</div>
 						</li>
-						<?php endif;?>
-						<?php 
+						<?//php endif;?>
+						<?//php 
 							//$_SESSION['user-auth']['typeUser'] == "Administrateur" || 
-							if($_SESSION['user-auth']['typeUser'] == "Entreprise"):?>
+							//if($_SESSION['user-auth']['typeUser'] == "Entreprise"):?>
 						<li>
 							<a href="#subPages3" data-toggle="collapse" class="collapsed"><i class="lnr lnr-store"></i> <span>Compte</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages3" class="collapse ">
@@ -201,24 +188,7 @@
 								</ul>
 							</div>
 						</li>
-						<?php endif;?>
-						<!--<li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
-						<li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
-						<li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
-						<li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
-						<li>
-							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="subPages" class="collapse ">
-								<ul class="nav">
-									<li><a href="page-profile.html" class="">Profile</a></li>
-									<li><a href="page-login.html" class="">Login</a></li>
-									<li><a href="page-lockscreen.html" class="">Lockscreen</a></li>
-								</ul>
-							</div>
-						</li>
-						<li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
-						<li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
-						<li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>-->
+						<?//php endif;?>
 					</ul>
 				</nav>
 			</div>
