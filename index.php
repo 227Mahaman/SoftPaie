@@ -767,4 +767,12 @@ $app->get('/getMyAPI/{id}', function (Request $request, Response $response, $arg
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get MyAPI
+$app->get('/getAPI', function (Request $request, Response $response, $args = []) {
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM cle WHERE statut=1");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
