@@ -758,4 +758,13 @@ $app->post('/addApi', function (Request $request, Response $response, $args = []
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
 });
+//get MyAPI
+$app->get('/getMyAPI/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM cle WHERE id_entreprise='$id' AND statut=1");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 $app->run();
