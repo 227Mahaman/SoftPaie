@@ -420,7 +420,21 @@ if (isset($_SESSION['user-auth'])) {
                 }
             }
             include_once('../app/views/view_menu.php');
-        }
+        } elseif($p == "api"){//View API
+            if(!empty($_POST)){//Bloquer
+                $id = $_POST['id_cle'];
+                $url = ROOT_PATH."index.php/bloquer/api/".$id;
+                $bloquer = file_get_contents($url);
+                //var_dump($delete);
+                //die();
+                if($bloquer){
+                    $_SESSION['message'] = "Opération reussi !!";
+                } else {
+                    $_SESSION['message'] = "Echec de l'opération!!";
+                }
+            }
+        include_once('../app/views/view_api.php');
+    }
     } else{
         include_once('../app/views/view_dashboard.php');
     }
