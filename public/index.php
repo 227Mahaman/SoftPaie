@@ -330,7 +330,7 @@ if (isset($_SESSION['user-auth'])) {
                     //$data['user_create'] = $_SESSION['user-auth']['id'];
                     $url = ROOT_PATH."index.php/addApi";
                     $add = App::file_post_contents($url, $data);
-                    var_dump($add);die;
+                    //var_dump($add);die;
                     if($add){
                         header('Location: index.php?p=api_cle');
                     }

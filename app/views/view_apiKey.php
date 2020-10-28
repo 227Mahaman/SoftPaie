@@ -20,7 +20,7 @@ $datas = json_decode($datas, true);
 						<p class="text-center"><a href="<?= $datas['0']['apikey'];?>" target="_blank"><?= $datas['0']['apikey'];?></a></p>
 					<?php else :?>
 					<form method="post">
-						<input type="hidden" name="entreprise" value="<?= $_SESSION['user-auth']['entreprise'];?>">
+						<input type="hidden" name="id_entreprise" value="<?= $_SESSION['user-auth']['entreprise'];?>">
 						<p class="text-center"><button type="submit" class="btn btn-primary">Générer</button></p>
 					</form>
 					<?php endif;?>
