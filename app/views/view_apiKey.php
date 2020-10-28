@@ -15,7 +15,7 @@ $datas = json_decode($datas, true);
 				<p class="lead">L'api à utiliser sur votre plateforme.</p>
 				<hr>
 				<div class="well">
-					<?php if(isset($datas)):?>
+					<?php if(isset($datas) && $datas!=NULL):?>
 						API généré :
 						<p class="text-center"><a href="<?= $datas['0']['apikey'];?>" target="_blank"><?= $datas['0']['apikey'];?></a></p>
 					<?php else :?>
