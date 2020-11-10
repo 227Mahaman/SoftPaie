@@ -160,6 +160,13 @@ $app->get('/getTypeUser', function (Request $request, Response $response) {
     $data = $pdo->query('SELECT * FROM type_users');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//get: single Type user
+$app->get('/getTypeUser/{id}', function (Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM type_users WHERE id_typeuser='$id'");
+    return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
+});
 //get All Pays
 $app->get('/getAllPays', function (Request $request, Response $response) {
     $pdo = new db();
@@ -505,6 +512,15 @@ $app->get('/getClients', function (Request $request, Response $response) {
     $data = $pdo->query('SELECT * FROM client WHERE statut=1');
     return $response->write(json_encode($data))->withHeader('Content-type', 'application/json')->withStatus(200);
 });
+//get: a single Client
+$app->get('/getClient/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM client WHERE id_client='$id'");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
 //post: Transaction
 $app->post('/paiement', function (Request $request, Response $response, $args = []) {//AddIdentity
     //get db object
@@ -516,6 +532,104 @@ $app->post('/paiement', function (Request $request, Response $response, $args = 
     $sta = $request->getParam('id_sta');
     $montant = $request->getParam('montant_transaction');
     $data = $pdo->prepare($sql, [$client, $entreprise, $commission, $sta, $montant]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
+//get: selected
+$app->get('/{table}/{field}/{value}/{field2}/{value2}', function (Request $request, Response $response) {
+    $table = $request->getAttribute('table');
+    $field = $request->getAttribute('field');
+    $value = $request->getAttribute('value');
+    $field2 = $request->getAttribute('field2');
+    $value2 = $request->getAttribute('value2');
+    //$sql = "SELECT * FROM ? WHERE ?=? AND ?=?";
+    $pdo = new db();
+$data = $pdo->query("SELECT * FROM $table WHERE $field='$value' AND $field2='$value2'");
+    //$data = $pdo->prepare($sql, [$table, $field, $value, $field2, $value2]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
+//get: action by profil
+$app->get('/getActionProfil/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM action a, profil_has_action p, type_users t WHERE a.id_action=p.id_action AND p.id_profil=t.id_typeuser AND t.id_typeuser='$id'");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
+//get: action by profil en fonction de l'action 
+$app->get('/getActionProfil/{action}/{profil}', function (Request $request, Response $response, $args = []) {
+    $action = $request->getAttribute('action');
+    $profil = $request->getAttribute('profil');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM action a, profil_has_action p, type_users t WHERE a.id_action='$action' AND a.id_action=p.id_action AND p.id_profil=t.id_typeuser AND t.id_typeuser='$profil'");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
+//get: all modules
+$app->get('/getModules', function (Request $request, Response $response) {
+    $pdo = new db();
+    $data = $pdo->query('SELECT * FROM groupe_action WHERE statut=1');
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
+//get: module
+$app->get('/getModule/{id}', function (Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM groupe_action WHERE id_groupe='$id' statut=1");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
+//get: all  action (menu)
+$app->get('/getActions', function (Request $request, Response $response) {
+    $pdo = new db();
+    $data = $pdo->query('SELECT * FROM action WHERE statut=1');
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
+//get: menu
+$app->get('/getMenu/{id}', function (Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $data = $pdo->query("SELECT * FROM action WHERE id_action='$id' AND statut=1");
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
+//post: add Menu
+$app->post('/addMenu', function (Request $request, Response $response, $args = []) {//AddMenu Action
+    //get db object
+    $pdo = new db();
+    $sql = "INSERT INTO action (id_groupe, libelle_action, description_action, url_action, ordre_affichage_action) VALUES (?,?,?,?,?)";
+    $groupe = $request->getParam('id_groupe');
+    $libelle_action = $request->getParam('libelle_action');
+    $description_action = $request->getParam('description_action');
+    $url_action = $request->getParam('url_action');
+    $ordre = $request->getParam('ordre_affichage_action');
+    $data = $pdo->prepare($sql, [$groupe, $libelle_action, $description_action, $url_action, $ordre]);
+    return $response->write(json_encode($data))
+    ->withHeader('Content-type', 'application/json')
+    ->withStatus(200);
+});
+//post: update Menu
+$app->post('/update/menu/{id}', function (Request $request, Response $response, $args = []) {
+    $id = $request->getAttribute('id');
+    $pdo = new db();
+    $groupe = $request->getParam('id_groupe');
+    $libelle_action = $request->getParam('libelle_action');
+    $description_action = $request->getParam('description_action');
+    $url_action = $request->getParam('url_action');
+    $ordre = $request->getParam('ordre_affichage_action');
+    $sql= "UPDATE action SET id_groupe=?, libelle_action=?, description_action=?, url_action=?, ordre_affichage_action=? WHERE id_action=?";
+    $data = $pdo->prepare($sql, [$groupe, $libelle_action, $description_action, $url_action, $ordre, $id]);
     return $response->write(json_encode($data))
     ->withHeader('Content-type', 'application/json')
     ->withStatus(200);
